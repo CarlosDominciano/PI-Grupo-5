@@ -1,0 +1,156 @@
+body{
+    margin: 0;
+
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.main-senha{ 
+    width: 100vw;
+    height: 100vh;
+    background-image: linear-gradient(rgb(0, 0, 0), #000000, #3a084b, #7c0aa1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.left-senha{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.left-senha > h1{
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+    width: 35vw;
+}
+
+.rigth-senha{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-senha{
+    height: 90%;
+    width: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 30px 35px;
+    background: #038c733a;
+    border-radius: 20px;
+    box-shadow: 0px 10px 40px #00000059;
+}
+
+.card-senha > h1{
+    color: white;
+    font-weight: 800;
+    margin: 0;
+    font-family: 'Roboto Mono', monospace;
+}       
+
+.textfield{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    margin: 15px 0px;
+    width: 100%;
+}
+
+.textfield > input {
+    width: 100%;
+    border: none;
+    border-radius: 10px;
+    padding: 15px;
+    color: #610083;
+    font-size: 12pt;
+    box-shadow: 0px 10px 40px #00000059;
+    outline: none;
+    box-sizing: border-box;
+}
+
+.textfield > input::placeholder{
+    color: #610083;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+h5{
+    cursor: pointer;
+    color: white;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.btn-login{
+    width: 50%;
+    padding: 16px 10px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 900;
+    letter-spacing: 3px;
+    color: #ffffff;
+    background-color: #6e0c92;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #6e0c9242;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.btn-cadastro{
+    width: 100%;
+    padding: 16px 10px;
+    margin: 25px;
+    border: none;
+    border-radius: 8px;
+    outline: none;
+    text-transform: uppercase;
+    font-weight: 700;
+    letter-spacing: 3px;
+    color: #610083;
+    background-color: #038C73;
+    cursor: pointer;
+    box-shadow: 0px 10px 40px -12px #038c7377;
+    font-family: 'Roboto Mono', monospace;
+}
+
+@media only screen and (max-width: 950px) {
+    .card-senha{
+        width: 85%;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .main-senha{
+        flex-direction: column;
+        height: auto;
+    }
+    .left-senha > h1 {
+        width: 50vh;
+    }
+    .left-senha{
+        width: 100%;
+        height: auto;
+    }
+    .rigth-senha{
+        width: 100%;
+        height: auto;
+    }
+
+    .card-senha{
+        height: 90%;
+    }
+    
+}
