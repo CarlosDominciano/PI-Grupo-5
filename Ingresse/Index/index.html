@@ -9,10 +9,16 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,600&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@1,600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="index.css">
+    <link rel="stylesheet" href="../carrosel/gallery.min.css">
+    <link rel="stylesheet" href="../carrosel/gallery.theme.css">
 
 </head>
 <body>
+    <!-- Header -->
     <div class="header">
         <div class="container">
             <div class="logo">
@@ -71,7 +77,45 @@
             </div>
         </div>
     </div>
-    <script src="header.js"></script>
+    <!-- End Header -->
+    <!-- Carrosel -->
+    <div class="gallery items-2">
+        <div id="item-1" class="control-operator"></div>
+        <div id="item-2" class="control-operator"></div>
+
+        <figure class="item">
+           <div class="background-full">
+                <div class="imagem-carousel1"></div>
+                <div class="texto-carousel">
+                    <span class="texto-carousel-principal">
+                        Monitoramento de máquinas de auto-atendimento para cinema.
+                    </span>
+                    <span>
+                        Para facilitar sua vida <br>
+                        e dos demais!
+                    </span>
+                    <div></div>
+                </div>
+           </div>
+        </figure>
+        <figure class="item">
+            <div class="background-full">
+                <div class="imagem-carousel">
+
+                </div>
+                <div class="texto-carousel">
+
+                </div>
+            </div>
+        </figure>
+
+        <div class="controls">
+            <a href="#item-1" class="control-button">.</a>
+            <a href="#item-2" class="control-button">.</a>
+        </div>
+    </div>
+    
+    <script src="../header.js"></script>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
