@@ -4,7 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="css/cadastro.css" />
+    <link rel="stylesheet" href="./login.css" />
+    <link rel="stylesheet" href="./login.css">
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -14,35 +15,31 @@
     <title>Login</title>
   </head>
   <body>
-    <div class="main-cadastro">
-      <div class="left-cadastro">
+    <div class="main-login">
+      <div class="left-login">
         <h1>
-          Faça cadastro <br />
-          e entre no nosso time!
+          Se não tem conta ainda, <br />
+          não perca a chance de <br> 
+          fazer parte do nosso time!
         </h1>
-        <img
-          src="assets/design-team-animate (2).svg"
-          class="left-cadastro-image"
-          alt="cine animação"
-        />
+        <img src="../assets/cine.svg" class="left-login-image" alt="cine animação" />
       </div>
 
-      <div class="rigth-cadastro">
-        <div class="card-cadastro">
-          <h1>Cadastro</h1>
+      <div class="rigth-login">
+        <div class="card-login">
+          <h1>Login</h1>
           <div class="textfield">
             <input type="text" nome="usuario" placeholder="Usuário" />
           </div>
           <div class="textfield">
-            <input type="tel" nome="senha" placeholder="Telefone" />
-          </div>
-          <div class="textfield">
             <input type="password" nome="senha" placeholder="Senha" />
+            <h5 onclick="window.location.href = 'esqueceu-senha.html'">Esqueceu a senha</h5>
           </div>
-          <div class="textfield">
-            <input type="password" nome="senha" placeholder="Confirme senha" />
+          
+          <div class="btn">
+            <button class="btn-login"> Entrar </button>
+            <button class="btn-cadastro" onclick="window.location.href = 'cadastro.html'"> Cadastro </button>
           </div>
-          <button class="btn-login" onclick="window.location.href = 'login.html'">Ok</button>
         </div>
       </div>
     </div>

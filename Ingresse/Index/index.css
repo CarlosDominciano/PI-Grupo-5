@@ -1,17 +1,10 @@
+@import url(../variaveis.css);
+
 *
 {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-/* Variaveis */
-:root 
-{
-    --clrBack: #181424;
-    --clrGradi: #680484;
-    --clrLogo: #880484;
-    --clrRol1: #403454;
 }
 
 body 
@@ -20,7 +13,7 @@ body
 
 }
 
-/* header */
+/* Header */
 .logo 
 {
     margin-top: 45px;
@@ -52,12 +45,12 @@ body
     font-weight: 700;
     color: white;
     line-height: 26px;
-    letter-spacing: 0em;
+    letter-spacing: 0.2em;
     text-align: left;
     margin-left: 0.5rem;
 }
 
-.container 
+.header .container 
 {
     width: 90%;
     margin: auto;
@@ -148,7 +141,7 @@ body
     top: -50%;
     width: 70px;
     height: 70px;
-    background: #3aedc6;
+    background: var(--clrDetails);
     border-radius: 50%;
     border: 6px solid var(--clrBack);
     transition: 0.5s;
@@ -205,7 +198,7 @@ body
     transform: translateX(calc(70px * 4));
 } 
 
-/* Corpo */
+/* Carousel */
 .item
 {
     display: flex;
@@ -244,6 +237,7 @@ body
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
+
 }
 
 .texto-carousel span
@@ -264,11 +258,192 @@ body
 .texto-carousel div
 {
     background-image: url("../assets/monitor.png");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     height: 420px;
     width: 358px;
     position: absolute;
-    transform: scale(0.5);
+    transform: scale(0.4); 
     top: 20%;
     right: 25%;
 }
+
+@media only screen and (max-width: 800px) 
+{
+    .texto-carousel div
+    {
+        transform: scale(0.3);
+        right: 20%;
+    }
+}
+
+.gallery .controls .autoplay-button
+{
+    font-size: 10px;
+    margin-left: 10px;
+}
+
+/* Serviços */
+.servicos 
+{
+    padding: 10px 0 50px 0;    
+}
+  
+.servicos .container
+{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    padding: 5px 0;
+}
+
+.servicos .container .titulo
+{
+    font-size: 1.2em;
+    font-family: 'Work Sans', sans-serif;
+    font-style: italic;
+    font-weight: 100;
+    color: white;
+    letter-spacing: 0.1em;
+    padding: 2rem 0;
+}
+
+.servicos .container .boxes 
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.servicos .container .boxes .box
+{
+    width: 20%;
+    background-color: var(--clrDetails);
+    display: flex;
+    flex-direction: column;
+    border-radius: 0.5rem;
+    padding: 0.5rem;
+    flex-wrap: wrap ;
+}
+
+@media only screen and (max-width: 800px) 
+{
+    .servicos .container .boxes
+    {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+@media only screen and (max-width: 800px) 
+{
+    .servicos .container .boxes .box
+    {
+        width: 80%;
+        margin-bottom: 2em;
+    }
+}
+
+.box img 
+{
+    height: 50px;
+    width: 50px;
+}
+
+.box h3
+{
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    font-weight: 700;
+    padding: 0.8em 0;
+}
+
+.box p
+{
+    font-family: 'Work Sans', sans-serif;
+    color: white;
+    line-height: 1.3rem;
+}
+
+.servicos .premise 
+{
+    padding: 50px 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.servicos .premise img 
+{
+    width: 25rem;
+    align-self: center;
+}
+
+@media only screen and (max-width: 800px){
+    .servicos .premise img 
+    {
+    width: 15rem;
+    align-self: center;
+    }
+}
+@media only screen and (max-width: 900px){
+    .servicos .premise img 
+    {
+    width: 10rem;
+    align-self: center;
+    }
+}
+
+.servicos .premise .box 
+{
+    width: 22rem;
+    background-color: #baa0f241;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    padding: 1.2rem 2.2rem;
+    
+}
+
+.servicos .premise .box p
+{
+    font-size: 150%;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 400;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    line-height: 2rem;
+    padding-bottom: 1rem;
+}
+
+.servicos .premise .box .sign-up
+{
+    height: 2rem;
+    background-color: var(--clrDetails);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    width: fit-content;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 75%;
+    padding: 1.2rem 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 0px solid transparent;
+    letter-spacing: 0.3px;
+}
+
+.servicos .premise .box .sign-up:active
+{
+    background-color: var(--clrClickDetails);
+}
+
+
+
 
