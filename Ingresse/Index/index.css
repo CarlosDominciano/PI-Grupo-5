@@ -9,7 +9,7 @@
 
 body 
 {
-    background: linear-gradient(171.85deg, var(--clrBack) 24.34%, var(--clrGradi) 72.02%);
+    background-color: var(--clrBack);
 }
 
 /* Header */
@@ -308,6 +308,7 @@ body
 {
     font-size: 1.2em;
     font-family: 'Work Sans', sans-serif;
+    font-style: italic;
     font-weight: 100;
     color: white;
     letter-spacing: 0.1em;
@@ -493,7 +494,7 @@ body
 /* Tecnologias Utilizadas */
 .tecnologias
 {
-    padding-top: 4rem;
+    padding: 4rem 0;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -503,7 +504,7 @@ body
 .tecnologias .titulo
 {
     border: 0.17rem solid var(--clrDetails);
-    margin: 0 0;
+    margin: 3rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -772,3 +773,78 @@ body::-webkit-scrollbar-thumb
     background-color: var(--clrDetails);
     animation: scrollBody 3s linear infinite;
 }
+
+/* Monitoria */
+.monitoria
+{
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.monitoria .container
+{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.monitoria .container .titulo
+{
+    padding-bottom: 1.4rem; 
+    text-align: center;
+    font-family: 'Work Sans' , sans-serif;
+    font-size: 150%;
+    font-weight: 900;
+    color: white;
+    letter-spacing: 0.05rem;
+}
+
+.column 
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.column .box
+{
+    width: 25%;
+    color: white;
+    font-size: larger;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    background-color: var(--clrRol1);
+    padding: 2rem 0;
+    display: flex;
+    border-radius: 1rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.column .box-white
+{
+    width: 25%;
+    color: var(--clrDetails);
+    font-size: larger;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 700;
+    background-color: white;
+    border-radius: 1rem;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+
