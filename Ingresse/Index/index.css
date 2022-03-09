@@ -9,7 +9,7 @@
 
 body 
 {
-    background-color: var(--clrBack);
+    background: linear-gradient(171.85deg, var(--clrBack) 24.34%, var(--clrGradi) 72.02%);
 }
 
 /* Header */
@@ -308,7 +308,6 @@ body
 {
     font-size: 1.2em;
     font-family: 'Work Sans', sans-serif;
-    font-style: italic;
     font-weight: 100;
     color: white;
     letter-spacing: 0.1em;
@@ -494,7 +493,7 @@ body
 /* Tecnologias Utilizadas */
 .tecnologias
 {
-    padding: 4rem 0;
+    padding-top: 4rem;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -504,7 +503,7 @@ body
 .tecnologias .titulo
 {
     border: 0.17rem solid var(--clrDetails);
-    margin: 3rem 0;
+    margin: 0 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -680,75 +679,96 @@ body
     padding-left: 1rem;
 }
 
-.modal .modal-tecnologias .modal-coluna-left .img-tecnologias
+.modal .modal-tecnologias .img-tecnologias
 {
-    width: 33%;
+    width: 30%;
 }
 
-.modal .modal-tecnologias .modal-coluna-right .img-tecnologias
+/* Banner */
+.banner-cine 
 {
-    width: 33%;
-}
-.banner-cine {
-    background-image: url(https://www.shoppingparquedasbandeiras.com.br/sites/parque-das-bandeiras/files/shopping-media/Banner%20Interna/Banner%20Cinema.png);
+    background-image: url(../assets/theater.png);
     background-position: center;
     background-repeat: no-repeat;
-    background-size: cover;
-    height: 40%;
-    width: 100%;
-    position: absolute;
-    /* transform: scale(0.4); 
-    top: 20%;
-    right: 25%; */
-    font-family: 'Work Sans', sans-serif;
-    font-weight: 600;
-    font-size: 75%;
-    color: white;
-   
+    background-size: contain;
+    padding: 11% 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
 }
 
-body::-webkit-scrollbar {
-    width: 12px;              
-  }
-  
-  body::-webkit-scrollbar-track {
-    background: var(--clrGradi);        
-  }
-  
-  body::-webkit-scrollbar-thumb {
-    background-color: var(--clrDetails);    
-    
-    border-radius: 20px;      
-    border: 3px solid var(--clrGradi);  
-  }
-.banner-cine .frase-1 {
-    padding-top: 10%;
-    font-size: 250%;
-    margin-left: 10%;
-}
-.banner-cine .frase-2 {
-    margin-top: 2%;
-    font-size: 80%;
-    margin-left: 10%;
-}
-.banner-cine .contato-button{
-    padding: 1%;
-    align-items: center;
-    text-align: center;
-    border: 2px solid white;
+.banner-cine .box-left 
+{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: flex-start;
     color: white;
-    font-size: 100%;
-    display: inline-block;
-    margin-left: 68%;
-    margin-right: 11%;
+    font-family: 'Work Sans', sans-serif;
+}
+
+
+.banner-cine .box-right 
+{
+    width: 45%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.banner-cine .box-left .titulo
+{
+    font-size: xx-large;
+    font-weight: 700;
+    padding-bottom: 1rem;
+    letter-spacing: normal;
+}
+
+.banner-cine .box-left span 
+{
+    font-weight: 100;
+    font-size: x-large;
+    letter-spacing: 0.1rem;
+}
+
+.button-contact
+{
+    padding: 1rem 2rem;
+    border: 2px solid white;
+    border-radius: 5px;
+    background-color: transparent;
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 120%;
     cursor: pointer;
-    margin-bottom: 7%;
-        
-    }                                                                                                               
-                                                                                                                                                                                                                                                                                                                                  
-    /* .banner-cine button:active{
-        background-color: var(--clrClickDetails);
-    } */
-    .banner-cine span{
-        font-size: large;
-    }
+}
+
+.button-contact:active
+{
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Scroll do Body */
+body::-webkit-scrollbar 
+{
+    width: 12px;              
+}
+  
+body::-webkit-scrollbar-track 
+{
+    background: var(--clrLogo);        
+}
+  
+body::-webkit-scrollbar-thumb 
+{  
+    border-radius: 20px;      
+    border: 3px solid var(--clrRol1);  
+    background-color: var(--clrDetails);
+    animation: scrollBody 3s linear infinite;
+}
