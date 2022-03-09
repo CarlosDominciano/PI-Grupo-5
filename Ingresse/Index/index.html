@@ -15,7 +15,7 @@
     <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
 
 </head>
-    <body>
+    <body class="body">
         <!-- Header -->
         <div class="header">
             <div class="container">
@@ -237,12 +237,58 @@
         <!-- End Carousel MVV -->
         <!-- Serviços -->
         <div class="tecnologias">
-            <div class="titulo">
+            <div class="titulo" onclick="modalConst.open()">
                 <span>
                     TECNOLOGIAS UTILIZADAS
                 </span>
             </div>
         </div>
+        <div class="modal">
+            <div class="modal-tecnologias">
+                <img class="exit-modal" onclick="modalConst.close()" src="../assets/Exit.png">
+                <div class="modal-coluna-left">
+                    <div class="descricao-tecnologias">
+                        <img class="img-tecnologias" src="../assets/html-5.png">
+                        <span>
+                            Html
+                        </span>
+                    </div>
+                    <div class="descricao-tecnologias">
+                        <img class="img-tecnologias" src="../assets/css-3.png">
+                        <span>
+                            Css
+                        </span>
+                    </div>
+                    <div class="descricao-tecnologias">
+                        <img class="img-tecnologias" src="../assets/js.png">
+                        <span>
+                            Javascript
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-coluna-right">
+                    <div class="descricao-tecnologias">
+                        <img class="img-tecnologias" src="../assets/javaa.png">
+                        <span>
+                            Java
+                        </span>
+                    </div>
+                    <div class="descricao-tecnologias">
+                        <img class="img-tecnologias" src="../assets/powershell.png">
+                        <span>
+                            Powershell
+                        </span>
+                    </div>
+                    <div class="descricao-tecnologias">
+                        <img class="img-tecnologias" src="../assets/mysql.png">
+                        <span>
+                            MySQL
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script type="text/javascript" src="./index.js"></script>
         <script src="../header.js"></script>
         <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
         <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
