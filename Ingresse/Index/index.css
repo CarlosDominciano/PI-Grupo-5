@@ -689,3 +689,66 @@ body
 {
     width: 33%;
 }
+.banner-cine {
+    background-image: url(https://www.shoppingparquedasbandeiras.com.br/sites/parque-das-bandeiras/files/shopping-media/Banner%20Interna/Banner%20Cinema.png);
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 40%;
+    width: 100%;
+    position: absolute;
+    /* transform: scale(0.4); 
+    top: 20%;
+    right: 25%; */
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    font-size: 75%;
+    color: white;
+   
+}
+
+body::-webkit-scrollbar {
+    width: 12px;              
+  }
+  
+  body::-webkit-scrollbar-track {
+    background: var(--clrGradi);        
+  }
+  
+  body::-webkit-scrollbar-thumb {
+    background-color: var(--clrDetails);    
+    
+    border-radius: 20px;      
+    border: 3px solid var(--clrGradi);  
+  }
+.banner-cine .frase-1 {
+    padding-top: 10%;
+    font-size: 250%;
+    margin-left: 10%;
+}
+.banner-cine .frase-2 {
+    margin-top: 2%;
+    font-size: 80%;
+    margin-left: 10%;
+}
+.banner-cine .contato-button{
+    padding: 1%;
+    align-items: center;
+    text-align: center;
+    border: 2px solid white;
+    color: white;
+    font-size: 100%;
+    display: inline-block;
+    margin-left: 68%;
+    margin-right: 11%;
+    cursor: pointer;
+    margin-bottom: 7%;
+        
+    }                                                                                                               
+                                                                                                                                                                                                                                                                                                                                  
+    /* .banner-cine button:active{
+        background-color: var(--clrClickDetails);
+    } */
+    .banner-cine span{
+        font-size: large;
+    }
