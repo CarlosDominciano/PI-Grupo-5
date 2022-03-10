@@ -9,7 +9,7 @@
 
 body 
 {
-    background-color: var(--clrBack);
+    background-image: linear-gradient(var(--clrBack), var(--clrGradi));
 }
 
 /* Header */
@@ -27,7 +27,7 @@ body
     justify-content: space-between;
 }
 
-.logo 
+.header .logo 
 {
     margin-top: 45px;
     position: relative;
@@ -42,10 +42,8 @@ body
 {
     position: relative;
     display: block;
-    line-height: 75px;
     font-size: 1.5em;
     text-align: center;
-    transition: 0.3s;
     color: var(--clrBack);
     color: var(--clrLogo);
     margin-top: 3px;
@@ -55,12 +53,11 @@ body
     font-size: 1.5em;
     font-family: 'Work Sans', sans-serif;
     font-style: italic;
-    font-weight: 700;
+    font-weight: 1000;
     color: white;
-    line-height: 26px;
-    letter-spacing: 0.2em;
     text-align: left;
     margin-left: 0.5rem;
+    letter-spacing: 0.1rem;
 }
 
 .navigation 
@@ -821,7 +818,7 @@ body::-webkit-scrollbar-thumb
     font-family: 'Work Sans', sans-serif;
     font-weight: 700;
     background-color: var(--clrRol1);
-    padding: 2rem 0;
+    padding: 3rem 0;
     display: flex;
     border-radius: 1rem;
     flex-direction: column;
@@ -839,7 +836,7 @@ body::-webkit-scrollbar-thumb
     font-weight: 700;
     background-color: white;
     border-radius: 1rem;
-    padding: 2rem 0;
+    padding: 3rem 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -847,4 +844,174 @@ body::-webkit-scrollbar-thumb
     margin-bottom: 2rem;
 }
 
+.column hr
+{
+    width: 4rem;
+}
 
+.column .box-white hr
+{
+    border: 1px solid var(--clrDetails);
+    background-color: var(--clrDetails);
+}
+
+.column .box hr
+{
+    border: 1px solid white;
+    background-color: white;
+}
+
+.monitoria .column img
+{
+    margin-bottom: 1rem;
+    width: 1.5rem;
+    height: 1.5rem;
+} 
+
+.monitoria .column span
+{
+    padding-top: 1rem;
+}
+
+/* Footer */
+.footer
+{
+    background-color: var(--clrFooter);
+    padding: 2rem 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.footer .container
+{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.footer .container .box-left
+{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer .container .box-right
+{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer .container .box-left .informacoes
+{
+    font-weight: 600;
+    word-spacing: 0.15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer .container .box-left .informacoes .titulo
+{
+    color: var(--clrDetails);
+    padding: 0 0 1.3rem 0;
+}
+
+.footer .container .box-left .informacoes .titulo .conteudo
+{
+    color: white;
+    font-weight: 100;
+}
+
+.footer .container .box-left .informacoes .icon
+{
+    color: var(--clrLogo);
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    padding: 0 0 0 0.5em;
+    font-style: italic;
+}
+
+.footer .container .box-left .icon .logo
+{
+    color: white;
+    font-weight: 1000;
+    letter-spacing: 0.1rem;
+}
+
+.footer .container .box-right .titulo
+{
+    margin-bottom: -1.5rem;
+    color: white;
+    font-weight: 500;
+    font-size: small;
+}
+
+.footer .container .box-right .conteudo
+{
+    font-size: x-large;
+    letter-spacing: 1rem;
+    color: var(--clrDetails);
+}
+
+.footer .container .box-right .conteudo input
+{
+    height: 80%;
+    width: 14rem;
+    padding: 0.3rem;
+    border-radius: 0.15rem;
+    border: 0 solid transparent;
+}
+
+.footer .container .box-right .conteudo input::placeholder
+{
+    color: #0000006e;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.footer .container .box-right .conteudo button
+{
+    background-color: var(--clrDetails);
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 0.15rem;
+    cursor: pointer;
+    border: 0px solid transparent;
+    letter-spacing: 0.3px;
+}
+
+.footer .container .box-right .conteudo button:active
+{
+    background-color: var(--clrClickDetails);
+}
+
+/* Copyright */
+.copyright
+{
+    padding: 1rem 0;
+    background-color: var(--clrDetails);
+}
+
+.copyright .container
+{
+    width: 80%;
+    margin: auto;
+}
+
+.copyright .container .titulo
+{
+    font-family: 'Work Sans', sans-serif;
+    color: #610083;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.1rem;
+    font-weight: 400;
+    font-size: 90%;
+}
