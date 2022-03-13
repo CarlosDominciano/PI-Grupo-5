@@ -903,7 +903,7 @@ body::-webkit-scrollbar-thumb
 .footer
 {
     background-color: var(--clrFooter);
-    padding: 2rem 0;
+    padding: 4rem 0;
     font-family: 'Work Sans', sans-serif;
 }
 
