@@ -10,6 +10,7 @@
 body 
 {
     background-image: linear-gradient(var(--clrBack), var(--clrGradi));
+    transition: 1s;
 }
 
 /* Header */
@@ -108,7 +109,7 @@ body
     line-height: 75px;
     font-size: 1.5em;
     text-align: center;
-    transition: 0.5s;
+    transition: .5s;
     color: var(--clrBack);
     
 }
@@ -125,7 +126,7 @@ body
     font-weight: 400;
     font-size: 0.75rem;
     letter-spacing: 0.05em;
-    transition: 0.5s;
+    transition: .5s;
     opacity: 0;
     transform: translateY(20px);
 }
@@ -145,7 +146,7 @@ body
     background: var(--clrDetails);
     border-radius: 50%;
     border: 6px solid var(--clrBack);
-    transition: 0.5s;
+    transition: .5s;
 }
 
 .indicator::before
@@ -327,13 +328,13 @@ body
     flex-direction: column;
     border-radius: 0.5rem;
     padding: 0.5rem;
-    flex-wrap: wrap ;
+    flex-wrap: wrap;
+    transition: .5s;
 }
 
-.servicos .container .boxes .box:hover {
-    transform: scale(1.06);
-   transition: 1s;
-   cursor: default;
+.servicos .container .boxes .box:hover
+{
+    transform: scale(1.1);
 }
 
 @media only screen and (max-width: 800px) 
@@ -415,13 +416,7 @@ body
     display: flex;
     flex-direction: column;
     padding: 1.2rem 2.2rem;
-    
-}
-
-
-.servicos .premise .box:hover{
-    transform: scale(1.04);
-    transition: 1.4s;
+    transition: .5s;
 }
 
 .servicos .premise .box p
@@ -460,14 +455,7 @@ body
     background-color: var(--clrClickDetails);
 }
 
-.servicos .premise .box .sign-up:hover {
-    transform: scale(1.07);
-    transition: 1s;
-    cursor: pointer;
-}
-
-
-/* Caroulse MVV */
+/* Carousel MVV */
 .background-full-mvv
 {
     background-color: var(--clrDetails);
@@ -489,7 +477,6 @@ body
     justify-content: space-evenly;
     align-items: center;
     flex-wrap: wrap;
-
 }
 
 .background-full-mvv .texto-carousel span
@@ -503,6 +490,7 @@ body
 
 .background-full-mvv .texto-carousel .texto-carousel-principal
 {
+    text-shadow: 1px 1px 1px black;
     font-weight: 900;
     font-size: 180%;
 }
@@ -526,17 +514,16 @@ body
     justify-content: center;
     align-items: center;
     padding: 1rem 2rem;
-    transition: 0.5s;
     cursor: pointer;
     color: white;
     width: 70%;
     text-align: center;
+    transition: .5s;
 }
 
 .tecnologias .titulo:hover
 {
     transform: scale(1.1);
-    transition: 1s;
     color: var(--clrDetails);
 }
 
@@ -765,12 +752,18 @@ body
     font-weight: 600;
     font-size: 120%;
     cursor: pointer;
+    transition: cubic-bezier(0.075, 0.82, 0.165, 1) .5s;
 }
 
-.button-contact:hover{
-    transform: scale(1.08);
-    transition: 1.4s;
-   
+.button-contact:active
+{
+    background-color: #00000065;
+    transition: 0s;
+}
+
+.button-contact:hover
+{
+    transform: scale(1.1);   
 }
 
 /* Scroll do Body */
@@ -846,6 +839,7 @@ body::-webkit-scrollbar-thumb
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    transition: .5s;
 }
 
 .column .box-white
@@ -863,11 +857,13 @@ body::-webkit-scrollbar-thumb
     justify-content: center;
     align-items: center;
     margin-bottom: 2rem;
+    transition: .5s;
 }
 
-.column .box-white:hover, .column .box:hover{
+.column .box-white:hover, .column .box:hover
+{
     transform: scale(1.1);
-    transition: 1s;
+    cursor: pointer;
 }
 
 .column hr
