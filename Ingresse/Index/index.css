@@ -31,11 +31,11 @@ body
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 }
 
 .header .logo 
 {
-    margin-top: 45px;
     position: relative;
     padding: 0 1em;
     height: 35px;
@@ -69,141 +69,44 @@ body
 .navigation 
 {
     position: relative;
-    width: 400px;
-    height: 70px;
-    background-color: white;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-    margin: 35px 0; 
+    margin: 2.2rem 0; 
     padding: 0 1em;
 }
 
 .navigation ul
 {
     display: flex;
-    width: 350px;
 }
 
 .navigation ul li
 {
-    position: relative;
     list-style: none;
-    width: 70px;
-    height: 70px;
     z-index: 1;
+    font-family: 'Roboto Mono', monospace;
 }
 
 .navigation ul li a
 {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    width: 100%;
-    text-align: center;
-    font-weight: 500;
+    padding: 0 0.5rem;
+    text-decoration-line: none;
 }
 
-.navigation ul li a .icon
+.opcoes
 {
-    position: relative;
-    display: block;
-    line-height: 75px;
-    font-size: 1.5em;
-    text-align: center;
-    transition: .5s;
+    color: white;
+}
+
+.atual
+{
+    font-weight: 700;
+    background-color: white;
     color: var(--clrBack);
-    
+    border-radius: 0.2rem;
 }
-
-.navigation ul li.active a .icon 
-{
-    transform: translateY(-32px);
-}
-
-.navigation ul li a .text 
-{
-    position: absolute;
-    color: var(--clrBack);
-    font-weight: 400;
-    font-size: 0.75rem;
-    letter-spacing: 0.05em;
-    transition: .5s;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-.navigation ul li.active a .text
-{
-    opacity: 1;
-    transform: translateY(10px);
-}
-
-.indicator
-{
-    position: absolute;
-    top: -50%;
-    width: 70px;
-    height: 70px;
-    background: var(--clrDetails);
-    border-radius: 50%;
-    border: 6px solid var(--clrBack);
-    transition: .5s;
-}
-
-.indicator::before
-{
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: -25px;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-top-right-radius: 10px;
-    box-shadow: 0px -10px 0 0 var(--clrBack);
-}
-
-.indicator::after
-{
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -25px;
-    width: 20px;
-    height: 20px;
-    background: transparent;
-    border-top-left-radius: 10px;
-    box-shadow: 0px -10px 0 0 var(--clrBack);
-}
-
-.navigation ul li:nth-child(1).active ~ .indicator
-{
-    transform: translateX(calc(70px * 0));
-} 
-
-.navigation ul li:nth-child(2).active ~ .indicator
-{
-    transform: translateX(calc(70px * 1));
-} 
-
-.navigation ul li:nth-child(3).active ~ .indicator
-{
-    transform: translateX(calc(70px * 2));
-} 
-
-.navigation ul li:nth-child(4).active ~ .indicator
-{
-    transform: translateX(calc(70px * 3));
-} 
-
-.navigation ul li:nth-child(5).active ~ .indicator
-{
-    transform: translateX(calc(70px * 4));
-} 
 
 /* Carousel */
 .item
@@ -871,7 +774,7 @@ body::-webkit-scrollbar-thumb
 {
     transform: scale(1.1);
     cursor: pointer;
-    box-shadow: 0 0 20px 2px white;
+    box-shadow: 0 0 25px 2px white;
 }
 
 .column hr
