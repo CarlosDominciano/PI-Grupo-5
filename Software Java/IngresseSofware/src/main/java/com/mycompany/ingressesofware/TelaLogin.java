@@ -4,17 +4,27 @@
  */
 package com.mycompany.ingressesofware;
 
+import javax.swing.JFrame;
+
 /**
  *
  * @author diego.silva@VALEMOBI.CORP
  */
-public class TelaLogin extends javax.swing.JFrame {
 
+public class TelaLogin extends javax.swing.JFrame {
+    
     /**
      * Creates new form TelaLogin
      */
+    
     public TelaLogin() {
         initComponents();
+//        this.setLocationRelativeTo(null);
+       
+        setExtendedState(MAXIMIZED_BOTH);
+        setResizable(false);
+        
+        
     }
 
     /**
@@ -32,11 +42,11 @@ public class TelaLogin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGap(0, 737, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGap(0, 412, Short.MAX_VALUE)
         );
 
         pack();
@@ -73,6 +83,8 @@ public class TelaLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaLogin().setVisible(true);
+             
+              
             }
         });
     }
