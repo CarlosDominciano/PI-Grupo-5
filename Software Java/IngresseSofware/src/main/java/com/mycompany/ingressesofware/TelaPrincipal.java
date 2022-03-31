@@ -4,18 +4,26 @@
  */
 package com.mycompany.ingressesofware;
 
-
-
-
-
-
-
 /**
  *
  * @author diego.silva@VALEMOBI.CORP
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
+    TelaLogin telaLogin = new TelaLogin();
+    SlackIntegrationTest slackAlert = new SlackIntegrationTest();
+    Boolean seguranca;
+     
+    void metodoValidacao() {
+        Boolean seguranca = telaLogin.getValidacao();
+        if (seguranca == true) {
+            System.out.println("Entrada de usuario cliente.");
+        } else {
+            dispose();
+            slackAlert.sendMessageToSlack("Alerta tentativa de invasão.");
+        }
+    }
+        
     /**
      * Creates new form TelaLogin
      */
@@ -25,7 +33,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
 //        setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
-       
+
     }
 
     /**
@@ -218,21 +226,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
-        TelaLogin telaLogin = new TelaLogin();
-         telaLogin.setVisible(true);
+
+        telaLogin.setValidacao(false);
+
+        telaLogin.setVisible(true);
         dispose();
-        
+
     }//GEN-LAST:event_btnSairActionPerformed
 
     private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
-        // TODO add your handling code here:
+
+        slackAlert.sendMessageToSlack("Alert monitoring totens cine test");
+
     }//GEN-LAST:event_btnMonitorarTotens2ActionPerformed
 
     /**
      * @param args the command line arguments
      */
+   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -257,12 +270,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                 
                 new TelaPrincipal().setVisible(true);
-
+                
             }
         });
     }

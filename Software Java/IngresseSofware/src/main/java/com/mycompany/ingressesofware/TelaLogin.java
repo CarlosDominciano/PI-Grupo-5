@@ -4,27 +4,54 @@
  */
 package com.mycompany.ingressesofware;
 
-import java.awt.TextField;
-import javax.swing.JTextField;
+import com.github.britooo.looca.api.core.Looca;
+
 
 /**
  *
  * @author diego.silva@VALEMOBI.CORP
  */
 public class TelaLogin extends javax.swing.JFrame {
-
+TelaPrincipal telaPrincipal = new TelaPrincipal();
     /**
      * Creates new form TelaLogin
      */
+    
+     private Boolean validacao = false;
+
+    
+    public Boolean getValidacao() {
+        return validacao;
+    }
+    
+    public void setValidacao(Boolean validacao) {
+        this.validacao = validacao;
+    }
+    
+    
+    
     public TelaLogin() {
         initComponents();
         this.setLocationRelativeTo(null);
-
+        
 //        setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
-
+        System.out.println();
     }
 
+//    public void icone(){
+//        
+//     URL url = this.getClass().getResource("icone.png");
+//        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
+//        this.setIconImage(iconeTitulo);    
+//        
+//        setIconImage(iconeTitulo);
+// setResizable(false);
+// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+// setSize(400, 300);
+// setLocationRelativeTo(null);
+// setVisible(true);
+//    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -227,26 +254,27 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
         System.out.println("chamada a: btnEntrar function");
 //        String retorno = textfield.getText();
-        
+
         ErroDigite erroDigite = new ErroDigite();
         ErroInvalido erroInvalido = new ErroInvalido();
-        
+
         String inputEmail = this.inputEmail.getText();
         String inputSenha = this.inputSenha.getText();
         System.out.println(inputEmail);
         System.out.println(inputSenha);
-        
+
         if (inputEmail.equals("") || inputSenha.equals("")) {
             System.out.println("fix confirmacao email ou senha vazio");
             erroDigite.setVisible(true);
-        } else if (inputEmail.equals("email")) {
-           
+        } else {
             if (inputEmail.equals("email") && inputSenha.equals("senha")) {
-                 System.out.println("3");
-                TelaPrincipal telaPrincipal = new TelaPrincipal();
+                System.out.println("3");
+                
+                setValidacao(true);
                 telaPrincipal.setVisible(true);
                 dispose();
             } else {
+                System.out.println("fix confirmacao email ou senha incorreto");
                 System.out.println("4");
                 erroInvalido.setVisible(true);
             }
@@ -255,8 +283,7 @@ public class TelaLogin extends javax.swing.JFrame {
         // criar logica email e senha == a this.email this.senha ()
 
     }//GEN-LAST:event_btnEntrarActionPerformed
-    
-    
+
     /**
      * @param args the command line arguments
      */
@@ -288,6 +315,7 @@ public class TelaLogin extends javax.swing.JFrame {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaLogin().setVisible(true);
+                Looca looca = new Looca();
 
             }
         });
