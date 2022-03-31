@@ -86,7 +86,7 @@ body
 {
     list-style: none;
     z-index: 1;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Work Sans', monospace;
 }
 
 .navigation ul li a
@@ -102,7 +102,7 @@ body
 
 .atual
 {
-    font-weight: 700;
+    font-weight: 1000;
     background-color: white;
     color: var(--clrBack);
     border-radius: 0.2rem;

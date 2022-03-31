@@ -1,106 +1,227 @@
-body{
-    margin: 0;
-}
+@import url(../variaveis.css);
 
-body * {
+*
+{
+    margin: 0;
+    padding: 0;
     box-sizing: border-box;
 }
 
-.main-login{ 
-    width: 100vw;
-    height: 100vh;
-    background-image: linear-gradient(rgb(0, 0, 0), #000000, #3a084b, #7c0aa1);
+html 
+{ 
+    scroll-behavior: smooth;
+}
+
+body 
+{ 
+    transition: 1s;
+    background: var(--clrGradi);
+}
+
+/* Header */
+.header 
+{
+    background-color: var(--clrBack);
+}
+
+.header .container 
+{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header .logo 
+{
+    position: relative;
+    padding: 0 1em;
+    height: 35px;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.left-login{
-    width: 50vw;
-    height: 100vh;
+.logo .icon 
+{
+    position: relative;
+    display: block;
+    font-size: 1.5em;
+    text-align: center;
+    color: var(--clrBack);
+    color: var(--clrLogo);
+    margin-top: 3px;
+}
+
+.logo .text {
+    font-size: 1.5em;
+    font-family: 'Work Sans', sans-serif;
+    font-style: italic;
+    font-weight: 1000;
+    color: white;
+    text-align: left;
+    margin-left: 0.5rem;
+    letter-spacing: 0.1rem;
+}
+
+.navigation 
+{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    margin: 2.2rem 0; 
+    padding: 0 1em;
+}
+
+.navigation ul
+{
+    display: flex;
+}
+
+.navigation ul li
+{
+    list-style: none;
+    z-index: 1;
+    font-family: 'Work Sans', monospace;
+}
+
+.navigation ul li a
+{
+    padding: 0 0.5rem;
+    text-decoration-line: none;
+}
+
+.opcoes
+{
+    color: white;
+}
+
+.atual
+{
+    font-weight: 1000;
+    background-color: white;
+    color: var(--clrBack);
+    border-radius: 0.2rem;
+}
+
+/* Login */
+.main-login
+{ 
+    background-image: linear-gradient(var(--clrBack), var(--clrGradi));
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+.left-login
+{
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 2rem 0;
 }
 
-.left-login > h1{
+.left-login > h1
+{
     color: white;
     font-family: 'Roboto Mono', monospace;
-    width: 35vw;
+    width: 90%;
+    margin: auto;
 }
 
-.left-login-image{
-    width: 35vw;
+.left-login-image
+{
+    width: 80%;
+    margin: auto;
 }
 
-.rigth-login{
-    width: 50vw;
-    height: 100vh;
+.rigth-login
+{
+    width: 40%;
     display: flex;
     justify-content: center;
     align-items: center;
+    padding: 2rem 0;
 }
 
-.card-login{
-    height: 70%;
-    width: 60%;
+.card-login
+{
+    width: 90%;
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
     padding: 30px 35px;
-    background: #baa0f25b;
+    background: #038c733a;
     border-radius: 20px;
-    box-shadow: 0px 10px 40px #00000059;
 }
 
-.card-login > h1{
+.card-login > h1
+{
     color: white;
     font-weight: 800;
     margin: 0;
     font-family: 'Roboto Mono', monospace;
 }       
 
-.textfield{
+.textfield
+{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     justify-content: center;
     margin: 15px 0px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
-.textfield > input {
+.textfield > input 
+{
     width: 100%;
     border: none;
     border-radius: 10px;
     padding: 15px;
     color: #610083;
     font-size: 12pt;
-    box-shadow: 0px 10px 40px #00000059;
+    /* box-shadow: 0px 10px 40px #00000059; */
     outline: none;
     box-sizing: border-box;
 }
 
-.textfield > input::placeholder{
+.textfield > input::placeholder
+{
     color: #610083;
     letter-spacing: 3px;
     text-transform: uppercase;
 }
 
-h5{
+h5
+{
     cursor: pointer;
     color: white;
     font-family: 'Roboto Mono', monospace;
+    font-size: 20px;
+    margin-top: 1rem;
 }
 
-.btn{
+.btn
+{
     display: flex;
     flex-direction: row;
 }
 
-.btn-login{
+.btn-login
+{
     width: 100%;
     padding: 16px 10px;
     margin: 25px;
@@ -113,11 +234,12 @@ h5{
     color: #610083;
     background-color: #038C73;
     cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #038c7377;
+    /* box-shadow: 0px 10px 40px -12px #038c7377; */
     font-family: 'Roboto Mono', monospace;
 }
 
-.btn-cadastro{
+.btn-cadastro
+{
     width: 100%;
     padding: 16px 10px;
     margin: 25px;
@@ -130,36 +252,187 @@ h5{
     color: #610083;
     background-color: #038C73;
     cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #038c7377;
+    /* box-shadow: 0px 10px 40px -12px #038c7377; */
     font-family: 'Roboto Mono', monospace;
 }
 
-@media only screen and (max-width: 950px) {
+@media only screen and (max-width: 950px) 
+{
     .card-login{
         width: 85%;
     }
 }
 
-@media only screen and (max-width: 600px) {
-    .main-login{
+@media only screen and (max-width: 600px)
+{
+    .main-login
+    {
         flex-direction: column;
         height: auto;
     }
-    .left-login > h1 {
+    .left-login > h1 
+    {
         display: none;
     }
-    .left-login{
+    .left-login
+    {
         width: 100%;
         height: auto;
     }
-    .rigth-login{
+    .rigth-login
+    {
         width: 100%;
         height: auto;
     }
-    .left-login-image{
+    .left-login-image
+    {
         width: 50vh;
     }
-    .card-login{
+    .card-login
+    {
         height: 90%;
     }
+}
+
+/* Footer */
+.footer
+{
+    background-color: var(--clrFooter);
+    padding: 4rem 0;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.footer .container
+{
+    width: 90%;
+    margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.footer .container .box-left
+{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer .container .box-right
+{
+    width: 35%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer .container .box-left .informacoes
+{
+    font-weight: 600;
+    word-spacing: 0.15rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.footer .container .box-left .informacoes .titulo
+{
+    color: var(--clrDetails);
+    padding: 0 0 1.3rem 0;
+}
+
+.footer .container .box-left .informacoes .titulo .conteudo
+{
+    color: white;
+    font-weight: 100;
+}
+
+.footer .container .box-left .informacoes .icon
+{
+    color: var(--clrLogo);
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+    padding: 0 0 0 0.5em;
+    font-style: italic;
+}
+
+.footer .container .box-left .icon .logo
+{
+    color: white;
+    font-weight: 1000;
+    letter-spacing: 0.1rem;
+}
+
+.footer .container .box-right .titulo
+{
+    margin-bottom: -1.5rem;
+    color: white;
+    font-weight: 500;
+    font-size: small;
+}
+
+.footer .container .box-right .conteudo
+{
+    font-size: x-large;
+    letter-spacing: 1rem;
+    color: var(--clrDetails);
+}
+
+.footer .container .box-right .conteudo input
+{
+    height: 80%;
+    width: 14rem;
+    padding: 0.3rem;
+    border-radius: 0.15rem;
+    border: 0 solid transparent;
+}
+
+.footer .container .box-right .conteudo input::placeholder
+{
+    color: #0000006e;
+    font-family: 'Work Sans', sans-serif;
+}
+
+.footer .container .box-right .conteudo button
+{
+    background-color: var(--clrDetails);
+    color: white;
+    font-family: 'Work Sans', sans-serif;
+    font-weight: 600;
+    padding: 0.4rem 1rem;
+    border-radius: 0.15rem;
+    cursor: pointer;
+    border: 0px solid transparent;
+    letter-spacing: 0.3px;
+}
+
+.footer .container .box-right .conteudo button:active
+{
+    background-color: var(--clrClickDetails);
+}
+
+/* Copyright */
+.copyright
+{
+    padding: 1rem 0;
+    background-color: var(--clrDetails);
+}
+
+.copyright .container
+{
+    width: 80%;
+    margin: auto;
+}
+
+.copyright .container .titulo
+{
+    font-family: 'Work Sans', sans-serif;
+    color: #610083;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.1rem;
+    font-weight: 400;
+    font-size: 90%;
 }

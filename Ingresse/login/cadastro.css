@@ -86,7 +86,7 @@ body
 {
     list-style: none;
     z-index: 1;
-    font-family: 'Roboto Mono', monospace;
+    font-family: 'Work Sans', monospace;
 }
 
 .navigation ul li a
@@ -102,7 +102,7 @@ body
 
 .atual
 {
-    font-weight: 700;
+    font-weight: 1000;
     background-color: white;
     color: var(--clrBack);
     border-radius: 0.2rem;
@@ -161,7 +161,6 @@ body
     padding: 30px 35px;
     background: #038c733a;
     border-radius: 20px;
-    box-shadow: 0px 10px 40px #00000059;
 }
 
 .card-cadastro > h1
@@ -190,7 +189,6 @@ body
     padding: 15px;
     color: #610083;
     font-size: 12pt;
-    box-shadow: 0px 10px 40px #00000059;
     outline: none;
     box-sizing: border-box;
 }
@@ -222,7 +220,6 @@ h5{
     color: #ffffff;
     background-color: #6e0c92;
     cursor: pointer;
-    box-shadow: 0px 10px 40px -12px #6e0c9242;
     font-family: 'Roboto Mono', monospace;
 }
 
