@@ -4,6 +4,11 @@
  */
 package com.mycompany.ingressesofware;
 
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+
 /**
  *
  * @author diego.silva@VALEMOBI.CORP
@@ -13,7 +18,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaLogin telaLogin = new TelaLogin();
     SlackIntegrationTest slackAlert = new SlackIntegrationTest();
     Boolean seguranca;
-     
+
     void metodoValidacao() {
         Boolean seguranca = telaLogin.getValidacao();
         if (seguranca == true) {
@@ -23,11 +28,28 @@ public class TelaPrincipal extends javax.swing.JFrame {
             slackAlert.sendMessageToSlack("Alerta tentativa de invasão.");
         }
     }
-        
+
     /**
      * Creates new form TelaLogin
      */
     public TelaPrincipal() {
+       
+              try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ClassNotFoundException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (InstantiationException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (IllegalAccessException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+            java.util.logging.Logger.getLogger(TelaPrincipal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        }
         initComponents();
         this.setLocationRelativeTo(null);
 
@@ -51,12 +73,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelLogin = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         painelGeralBackground = new javax.swing.JPanel();
-        btnSair = new javax.swing.JToggleButton();
         txtNomeUsuario = new javax.swing.JLabel();
-        txtCargo = new javax.swing.JLabel();
-        painelGeralBackground1 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         btnMonitorarTotens2 = new javax.swing.JToggleButton();
+        jLabel6 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
+        progres1 = new javax.swing.JProgressBar();
+        progres3 = new javax.swing.JProgressBar();
+        jPanel3 = new javax.swing.JPanel();
+        progres4 = new javax.swing.JProgressBar();
+        progres2 = new javax.swing.JProgressBar();
+        jPanel4 = new javax.swing.JPanel();
+        progres5 = new javax.swing.JProgressBar();
+        btnSair1 = new javax.swing.JToggleButton();
+        btnIniciarMonitoramento = new javax.swing.JToggleButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -100,55 +129,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelGeralBackground.setBorder(javax.swing.BorderFactory.createCompoundBorder());
         painelGeralBackground.setToolTipText("");
 
-        btnSair.setBackground(new java.awt.Color(153, 0, 153));
-        btnSair.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
-        btnSair.setForeground(new java.awt.Color(255, 255, 255));
-        btnSair.setText("Sair");
-        btnSair.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSairActionPerformed(evt);
-            }
-        });
-
-        txtNomeUsuario.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        txtNomeUsuario.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         txtNomeUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtNomeUsuario.setText("Rogério freitas Silva");
-
-        txtCargo.setFont(new java.awt.Font("Liberation Sans", 0, 18)); // NOI18N
-        txtCargo.setForeground(new java.awt.Color(255, 255, 255));
-        txtCargo.setText("Infraestrutura");
+        txtNomeUsuario.setText("Monitoramento do totem: 1");
 
         javax.swing.GroupLayout painelGeralBackgroundLayout = new javax.swing.GroupLayout(painelGeralBackground);
         painelGeralBackground.setLayout(painelGeralBackgroundLayout);
         painelGeralBackgroundLayout.setHorizontalGroup(
             painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGeralBackgroundLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtNomeUsuario)
-                    .addComponent(txtCargo))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(345, 345, 345))
+            .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
+                .addGap(421, 421, 421)
+                .addComponent(txtNomeUsuario)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painelGeralBackgroundLayout.setVerticalGroup(
             painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
-                        .addComponent(txtNomeUsuario)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtCargo))
-                    .addComponent(btnSair, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap()
+                .addComponent(txtNomeUsuario)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
-
-        painelGeralBackground1.setBackground(new java.awt.Color(97, 0, 120));
-        painelGeralBackground1.setBorder(javax.swing.BorderFactory.createCompoundBorder());
-        painelGeralBackground1.setToolTipText("");
-
-        jLabel6.setIcon(new javax.swing.ImageIcon("/home/diego.silva@VALEMOBI.CORP/Área de Trabalho/PI-Grupo-5/Software Java/IngresseSofware/src/main/java/com/mycompany/ingressesofware/imagens/icone.png")); // NOI18N
 
         btnMonitorarTotens2.setBackground(new java.awt.Color(153, 0, 153));
         btnMonitorarTotens2.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
@@ -160,56 +160,161 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        javax.swing.GroupLayout painelGeralBackground1Layout = new javax.swing.GroupLayout(painelGeralBackground1);
-        painelGeralBackground1.setLayout(painelGeralBackground1Layout);
-        painelGeralBackground1Layout.setHorizontalGroup(
-            painelGeralBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelGeralBackground1Layout.createSequentialGroup()
-                .addGap(176, 176, 176)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 276, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(120, Short.MAX_VALUE))
-            .addGroup(painelGeralBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGeralBackground1Layout.createSequentialGroup()
-                    .addContainerGap(76, Short.MAX_VALUE)
-                    .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 460, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(36, 36, 36)))
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icone.png"))); // NOI18N
+
+        jPanel2.setBackground(new java.awt.Color(97, 0, 120));
+        jPanel2.setForeground(new java.awt.Color(102, 102, 102));
+
+        progres1.setStringPainted(true);
+
+        progres3.setStringPainted(true);
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(progres1, javax.swing.GroupLayout.DEFAULT_SIZE, 535, Short.MAX_VALUE)
+                    .addComponent(progres3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(41, Short.MAX_VALUE))
         );
-        painelGeralBackground1Layout.setVerticalGroup(
-            painelGeralBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGeralBackground1Layout.createSequentialGroup()
-                .addContainerGap(41, Short.MAX_VALUE)
-                .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 295, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(241, 241, 241))
-            .addGroup(painelGeralBackground1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGeralBackground1Layout.createSequentialGroup()
-                    .addContainerGap(430, Short.MAX_VALUE)
-                    .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(72, 72, 72)))
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addComponent(progres1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addComponent(progres3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(43, 43, 43))
         );
+
+        jPanel3.setBackground(new java.awt.Color(97, 0, 120));
+        jPanel3.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel3.setAutoscrolls(true);
+
+        progres4.setStringPainted(true);
+
+        progres2.setStringPainted(true);
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addGap(63, 63, 63)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(progres2, javax.swing.GroupLayout.DEFAULT_SIZE, 522, Short.MAX_VALUE)
+                    .addComponent(progres4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(39, Short.MAX_VALUE))
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(progres2, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progres4, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(36, 36, 36))
+        );
+
+        jPanel4.setBackground(new java.awt.Color(97, 0, 120));
+
+        progres5.setStringPainted(true);
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(progres5, javax.swing.GroupLayout.PREFERRED_SIZE, 1156, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(progres5, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(41, Short.MAX_VALUE))
+        );
+
+        btnSair1.setBackground(new java.awt.Color(153, 0, 153));
+        btnSair1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        btnSair1.setForeground(new java.awt.Color(255, 255, 255));
+        btnSair1.setText("Sair");
+        btnSair1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSair1ActionPerformed(evt);
+            }
+        });
+
+        btnIniciarMonitoramento.setBackground(new java.awt.Color(153, 0, 153));
+        btnIniciarMonitoramento.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        btnIniciarMonitoramento.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarMonitoramento.setText("Monitorar");
+        btnIniciarMonitoramento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarMonitoramentoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelLoginLayout = new javax.swing.GroupLayout(painelLogin);
         painelLogin.setLayout(painelLoginLayout);
         painelLoginLayout.setHorizontalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelLoginLayout.createSequentialGroup()
-                .addGap(349, 349, 349)
-                .addComponent(painelGeralBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addComponent(painelGeralBackground, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(painelLoginLayout.createSequentialGroup()
+                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLoginLayout.createSequentialGroup()
+                                .addGap(26, 26, 26)
+                                .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel6))
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelLoginLayout.createSequentialGroup()
+                                .addGap(6, 6, 6)
+                                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelLoginLayout.createSequentialGroup()
+                                .addGap(97, 97, 97)
+                                .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(btnSair1, javax.swing.GroupLayout.PREFERRED_SIZE, 319, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addGap(22, 22, 22)
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(painelLoginLayout.createSequentialGroup()
+                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         painelLoginLayout.setVerticalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painelLoginLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLoginLayout.createSequentialGroup()
                 .addComponent(painelGeralBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(53, 53, 53)
+                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(31, 31, 31)
+                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addGap(603, 603, 603)
-                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addComponent(painelGeralBackground1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(103, 103, 103)
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(btnSair1, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(91, 91, 91)
+                        .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -217,7 +322,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(painelLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 1293, Short.MAX_VALUE)
+            .addComponent(painelLogin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,26 +331,42 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void btnSairActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSairActionPerformed
 
+    private void btnIniciarMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramentoActionPerformed
+        Integer porcentagem1 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem2 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem3 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem4 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem5 = ThreadLocalRandom.current().nextInt(0, 101);
+        
+        progres1.setValue(porcentagem1);
+        progres2.setValue(porcentagem2);
+        progres3.setValue(porcentagem3);
+        progres4.setValue(porcentagem4);
+        progres5.setValue(porcentagem5);
+        
+        slackAlert.sendMessageToSlack("Alert system");
+
+
+    }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
+
+    private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
+
+
+    }//GEN-LAST:event_btnMonitorarTotens2ActionPerformed
+
+    private void btnSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair1ActionPerformed
+        // TODO add your handling code here:
         telaLogin.setValidacao(false);
 
         telaLogin.setVisible(true);
         dispose();
 
-    }//GEN-LAST:event_btnSairActionPerformed
-
-    private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
-
-        slackAlert.sendMessageToSlack("Alert monitoring totens cine test");
-
-    }//GEN-LAST:event_btnMonitorarTotens2ActionPerformed
+    }//GEN-LAST:event_btnSair1ActionPerformed
 
     /**
      * @param args the command line arguments
      */
-   
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -270,29 +391,36 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                 
+
                 new TelaPrincipal().setVisible(true);
-                
+
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JToggleButton btnIniciarMonitoramento;
     private javax.swing.JToggleButton btnMonitorarTotens2;
-    private javax.swing.JToggleButton btnSair;
+    private javax.swing.JToggleButton btnSair1;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel painelGeralBackground;
-    private javax.swing.JPanel painelGeralBackground1;
     private javax.swing.JPanel painelLogin;
-    private javax.swing.JLabel txtCargo;
+    private javax.swing.JProgressBar progres1;
+    private javax.swing.JProgressBar progres2;
+    private javax.swing.JProgressBar progres3;
+    private javax.swing.JProgressBar progres4;
+    private javax.swing.JProgressBar progres5;
     private javax.swing.JLabel txtNomeUsuario;
     // End of variables declaration//GEN-END:variables
 }

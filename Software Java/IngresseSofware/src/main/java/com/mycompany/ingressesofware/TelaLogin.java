@@ -5,53 +5,56 @@
 package com.mycompany.ingressesofware;
 
 import com.github.britooo.looca.api.core.Looca;
-
+import java.awt.Image;
+import java.awt.Toolkit;
+import java.net.URL;
+import javax.swing.JFrame;
 
 /**
  *
  * @author diego.silva@VALEMOBI.CORP
  */
 public class TelaLogin extends javax.swing.JFrame {
-TelaPrincipal telaPrincipal = new TelaPrincipal();
+
     /**
      * Creates new form TelaLogin
      */
-    
-     private Boolean validacao = false;
+    private Boolean validacao = false;
 
-    
     public Boolean getValidacao() {
         return validacao;
     }
-    
+
     public void setValidacao(Boolean validacao) {
         this.validacao = validacao;
     }
-    
-    
-    
+
     public TelaLogin() {
         initComponents();
+      
         this.setLocationRelativeTo(null);
-        
+
 //        setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
         System.out.println();
-    }
+        
+//        InserirIcone(this);
+        
 
-//    public void icone(){
-//        
-//     URL url = this.getClass().getResource("icone.png");
-//        Image iconeTitulo = Toolkit.getDefaultToolkit().getImage(url);
-//        this.setIconImage(iconeTitulo);    
-//        
-//        setIconImage(iconeTitulo);
-// setResizable(false);
-// setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-// setSize(400, 300);
-// setLocationRelativeTo(null);
-// setVisible(true);
+    }
+    
+//    public void InserirIcone(JFrame frm){
+//     try{
+//         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("/favicon.png"));
+//     } catch (Exception ex){
+//         System.out.println(ex.toString());
+//     }
 //    }
+        private void setIcon() {
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/favicon.png")));
+    }
+    
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -196,7 +199,7 @@ TelaPrincipal telaPrincipal = new TelaPrincipal();
                 .addContainerGap(60, Short.MAX_VALUE))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon("/home/diego.silva@VALEMOBI.CORP/Área de Trabalho/PI-Grupo-5/Software Java/IngresseSofware/src/main/java/com/mycompany/ingressesofware/imagens/iconee.png")); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/iconee.png"))); // NOI18N
 
         javax.swing.GroupLayout painelLoginLayout = new javax.swing.GroupLayout(painelLogin);
         painelLogin.setLayout(painelLoginLayout);
@@ -252,6 +255,7 @@ TelaPrincipal telaPrincipal = new TelaPrincipal();
 
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         // TODO add your handling code here:
+
         System.out.println("chamada a: btnEntrar function");
 //        String retorno = textfield.getText();
 
@@ -269,7 +273,7 @@ TelaPrincipal telaPrincipal = new TelaPrincipal();
         } else {
             if (inputEmail.equals("email") && inputSenha.equals("senha")) {
                 System.out.println("3");
-                
+                TelaPrincipal telaPrincipal = new TelaPrincipal();
                 setValidacao(true);
                 telaPrincipal.setVisible(true);
                 dispose();

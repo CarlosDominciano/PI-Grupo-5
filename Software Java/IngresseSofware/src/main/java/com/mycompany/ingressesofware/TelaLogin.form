@@ -275,7 +275,7 @@
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="2" name="/home/diego.silva@VALEMOBI.CORP/&#xc1;rea de Trabalho/PI-Grupo-5/Software Java/IngresseSofware/src/main/java/com/mycompany/ingressesofware/imagens/iconee.png"/>
+              <Image iconType="3" name="/iconee.png"/>
             </Property>
           </Properties>
         </Component>
