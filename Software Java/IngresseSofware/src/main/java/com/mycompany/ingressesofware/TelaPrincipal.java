@@ -333,6 +333,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramentoActionPerformed
+       
+        AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+        
         Integer porcentagem1 = ThreadLocalRandom.current().nextInt(0, 101);
         Integer porcentagem2 = ThreadLocalRandom.current().nextInt(0, 101);
         Integer porcentagem3 = ThreadLocalRandom.current().nextInt(0, 101);
@@ -347,7 +350,29 @@ public class TelaPrincipal extends javax.swing.JFrame {
         
         slackAlert.sendMessageToSlack("Alert system");
 
+        
+        if (porcentagem1 > 95) {
+           alertaMonitora.setVisible(true);
+          alertaMonitora.textoAlertaMonitoramento1();
 
+           
+        }else if (porcentagem2 > 95) {
+           alertaMonitora.setVisible(true);
+           alertaMonitora.textoAlertaMonitoramento2();
+           
+        }else if (porcentagem3 > 95) {
+           alertaMonitora.setVisible(true); 
+           alertaMonitora.textoAlertaMonitoramento3();
+
+           
+        }else if (porcentagem4 > 95) {
+           alertaMonitora.setVisible(true);
+          alertaMonitora.textoAlertaMonitoramento4();
+          
+        }else if (porcentagem5 >95) {
+          alertaMonitora.setVisible(true); 
+          alertaMonitora.textoAlertaMonitoramento5();
+        }
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
 
     private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
