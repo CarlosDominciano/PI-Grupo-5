@@ -1,12 +1,16 @@
-body{
+body
+{
     margin: 0;
+    padding: 0;
 }
 
-body * {
+body * 
+{
     box-sizing: border-box;
 }
 
-.main-dash{
+.main-dash
+{
     width: 100vw;
     height: 100vh;
     background-image:linear-gradient(to bottom right, rgb(0, 0, 0), #000000, #3a084b, #7c0aa1);
@@ -16,18 +20,21 @@ body * {
     flex-direction: row;
 }
 
-.main-left{
+.main-left
+{
 width: 70vw;
 }
 
-.main-rigth{
+.main-rigth
+{
     width: 30vw;
     align-items: center;
     justify-content: center;
     display: flex;
 }
 
-.lateral{
+.lateral
+{
     width: 90%;
     display: flex;
     flex-direction: column; 
@@ -40,7 +47,8 @@ width: 70vw;
     margin: 0;
 }
 
-.lateral-card{
+.lateral-card
+{
     background-color: #038C73;
     border-radius: 10px;
     padding: 10px 10px;
@@ -50,19 +58,22 @@ width: 70vw;
     margin: 5px;
 }
 
-.lateral-card > span{
+.lateral-card > span
+{
     color: #2F1538;
     letter-spacing: 3px;
     font-weight: 800;
 }
 
-.lateral > h2{
+.lateral > h2
+{
     color: white;
     text-transform: uppercase;
     font-weight: 800;
 }
 
-.perfil{
+.perfil
+{
     width: 90%;
     height: 30vh;
     display: flex;
@@ -72,7 +83,8 @@ width: 70vw;
 }
 
 
-.perfil-usuario{
+.perfil-usuario
+{
     background-image:linear-gradient(to bottom left, #2F1538, #461059);
     border-radius: 10px;
     color: white;
@@ -89,7 +101,8 @@ width: 70vw;
 }
 
 
-.perfil-notificacao{
+.perfil-notificacao
+{
     background-image:linear-gradient(to bottom left, #038C73, #46105963);
     display: flex;
     justify-content: center;
@@ -100,13 +113,15 @@ width: 70vw;
     width: 45%;
 }
 
-.perfil-notificacao > img{
+.perfil-notificacao > img
+{
     height: 60px;
     padding: 10px;
     cursor: pointer;
 }
 
-.select-totem{
+.select-totem
+{
     width: 90%;
     height: 50vh;
     display: flex;
@@ -120,7 +135,8 @@ width: 70vw;
 }
 
 
-.alinhar-top{
+.alinhar-top
+{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -128,7 +144,8 @@ width: 70vw;
     width: 33%;
 }
 
-.alinha-bottom{
+.alinha-bottom
+{
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -136,7 +153,8 @@ width: 70vw;
     width: 33%;
 }
 
-.totem-um{
+.totem-um
+{
     width: 100%;
     background-color: #038C73;
     margin-bottom: 5px;
@@ -148,14 +166,16 @@ width: 70vw;
     cursor: pointer;
 }
 
-.totem-um > span{
+.totem-um > span
+{
     color: white;
     text-transform: uppercase;
     font-weight: 800;
     font-family: 'Roboto Mono', monospace;
 }
 
-.totem-dois{
+.totem-dois
+{
     width: 100%;
     background-color: #038C73;
     margin-bottom: 5px;
@@ -167,14 +187,16 @@ width: 70vw;
     cursor: pointer;
 }
 
-.totem-dois > span{
+.totem-dois > span
+{
     color: white;
     text-transform: uppercase;
     font-weight: 800;
     font-family: 'Roboto Mono', monospace;
 }
 
-.totem-tres{
+.totem-tres
+{
     width: 100%;
     background-color: #038C73;
     margin-bottom: 5px;
@@ -186,14 +208,16 @@ width: 70vw;
     cursor: pointer;
 }
 
-.totem-tres > span{
+.totem-tres > span
+{
     color: white;
     text-transform: uppercase;
     font-weight: 800;
     font-family: 'Roboto Mono', monospace;
 }
 
-.totem-quatro{
+.totem-quatro
+{
     width: 100%;
     background-color: #038C73;
     margin-bottom: 5px;
@@ -205,7 +229,8 @@ width: 70vw;
     cursor: pointer;
 }
 
-.totem-quatro > span{
+.totem-quatro > span
+{
     color: white;
     text-transform: uppercase;
     font-weight: 800;
@@ -213,165 +238,191 @@ width: 70vw;
 }
 
 
-@media screen and (max-width: 950px){
- 
-.main-dash{
-    height: auto;
-}    
+@media screen and (max-width: 950px)
+{
+    .main-dash
+    {
+        height: auto;
+    }    
 
-   .select-totem{
+   .select-totem    
+    {
         display: block;
         height: 100%;
         width: 90%;
         margin-left: 5px;
     }
 
-.alinha-bottom{
+.alinha-bottom
+{
     display: flex;
     flex-direction: row;
     width: 100%;
     margin: 10px;
 }
 
-.alinhar-top{
+.alinhar-top
+{
     display: flex;
     flex-direction: row;
     width: 100%;
     margin: 10px;
 }
 
-.totem-um{
+.totem-um
+{
     margin: 0;
     width: 45%;
     height: 100px;
     padding: 40px 50px;
 }
 
-.totem-dois{
+.totem-dois
+{
     width: 45%;
     height: 100px;
     padding: 40px 50px;
 }
 
-.totem-tres{
+.totem-tres
+{
     margin: 0;
     width: 45%;
     height: 100px;
     padding: 40px 50px;
 }
 
-.totem-quatro{
+.totem-quatro
+{
     width: 45%;
     height: 100px;
     padding: 40px 50px;
 }
 
-.lateral{
+.lateral
+{
     width: 100%;
 }
 
 }
 
-@media only screen and (max-width: 600px){
+@media only screen and (max-width: 600px)
+{
+    .main-dash
+    {
+        height: auto;
+        display: flex;
+        flex-direction: column-reverse;
+    }
 
-.main-dash{
-    height: auto;
-    display: flex;
-    flex-direction: column-reverse;
-}
-
-.main-left{
-    width: 100vw;
+    .main-left  
+    {
+        width: 100vw;
     }
     
-    .main-rigth{
+    .main-rigth 
+    {
         width: 100vw;
         align-items: center;
         justify-content: center;
         display: flex;
     }
 
-.perfil{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
-    margin: 20px;
-}
+    .perfil
+    {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: auto;
+        margin: 20px;
+    }
 
-.perfil-usuario{
-    margin-bottom: 20px;
-    width: 80%;
-}
+    .perfil-usuario
+    {
+        margin-bottom: 20px;
+        width: 80%;
+    }
 
-.perfil-notificacao{
-    width: 80%;
-    align-items: center;
-    display: flex;
-    justify-content: center;
-}
+    .perfil-notificacao
+    {
+        width: 80%;
+        align-items: center;
+        display: flex;
+        justify-content: center;
+    }
 
-.select-totem{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: wrap;
-    height: auto;
-    margin: 10px;
-}
+    .select-totem
+    {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        height: auto;
+        margin: 10px;
+    }
 
-.alinha-bottom{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0px;
-}
+    .alinha-bottom
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0px;
+    }
 
-.alinhar-top{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    margin: 0px;
-}
+    .alinhar-top
+    {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        margin: 0px;
+    }
 
-.totem-um{
-    margin: 10px;
-    width: 100%;
-}
+    .totem-um
+    {
+        margin: 10px;
+        width: 100%;
+    }
 
-.totem-dois{
-    margin: 10px;
-    width: 100%;
-}
+    .totem-dois
+    {
+        margin: 10px;
+        width: 100%;
+    }
 
-.totem-tres{
-    margin: 10px;
-    width: 100%;
-}
+    .totem-tres
+    {
+        margin: 10px;
+        width: 100%;
+    }
 
-.totem-quatro{
-    margin: 10px;
-    width: 100%;
-}
+    .totem-quatro
+    {
+        margin: 10px;
+        width: 100%;
+    }
 
-.lateral{
-    width: 90%;
-}
+    .lateral
+    {
+        width: 90%;
+    }
 
-.cards{
-    display: flex;
-    flex-direction: column;
-}
+    .cards
+    {
+        display: flex;
+        flex-direction: column;
+    }
 
-.perfil-notificacao{
-  height: 50px;
-}
+    .perfil-notificacao
+    {
+    height: 50px;
+    }
 
-.perfil-notificacao > img{
-    height: 40px;
-    padding: 5px;
-    display: flex;
-    margin-left: 10px;
-    margin-right: 10px;
-}
+    .perfil-notificacao > img
+    {
+        height: 40px;
+        padding: 5px;
+        display: flex;
+        margin-left: 10px;
+        margin-right: 10px;
+    }
 
 }
