@@ -8,6 +8,7 @@ import com.github.britooo.looca.api.core.Looca;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JFrame;
 
 /**
@@ -25,9 +26,6 @@ public class TelaLogin extends javax.swing.JFrame {
         return validacao;
     }
 
-    public void setValidacao(Boolean validacao) {
-        this.validacao = validacao;
-    }
 
     public TelaLogin() {
         initComponents();
@@ -253,9 +251,10 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputSenhaActionPerformed
 
+    TelaToken telaToken = new TelaToken();
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        // TODO add your handling code here:
-
+        
+        
         System.out.println("chamada a: btnEntrar function");
 //        String retorno = textfield.getText();
 
@@ -267,16 +266,18 @@ public class TelaLogin extends javax.swing.JFrame {
         System.out.println(inputEmail);
         System.out.println(inputSenha);
 
+        
+       
+        
         if (inputEmail.equals("") || inputSenha.equals("")) {
             System.out.println("fix confirmacao email ou senha vazio");
             erroDigite.setVisible(true);
         } else {
             if (inputEmail.equals("email") && inputSenha.equals("senha")) {
-                System.out.println("3");
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
-                setValidacao(true);
-                telaPrincipal.setVisible(true);
-                dispose();
+                telaToken.setVisible(true);
+                
+                    
             } else {
                 System.out.println("fix confirmacao email ou senha incorreto");
                 System.out.println("4");

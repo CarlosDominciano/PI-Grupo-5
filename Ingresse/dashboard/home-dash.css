@@ -1,4 +1,6 @@
-body
+@import url(../variaveis.css);
+
+*
 {
     margin: 0;
     padding: 0;
@@ -13,7 +15,7 @@ body *
 {
     width: 100vw;
     height: 100vh;
-    background-image:linear-gradient(to bottom right, rgb(0, 0, 0), #000000, #3a084b, #7c0aa1);
+    background-image:linear-gradient(to bottom right, var(--clrBack), var(--clrGradi));
     display: flex;
     justify-content: center;
     align-items: center;

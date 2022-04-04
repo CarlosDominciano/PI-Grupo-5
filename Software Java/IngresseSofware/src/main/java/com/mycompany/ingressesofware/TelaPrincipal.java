@@ -382,7 +382,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnSair1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair1ActionPerformed
         // TODO add your handling code here:
-        telaLogin.setValidacao(false);
 
         telaLogin.setVisible(true);
         dispose();
