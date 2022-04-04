@@ -1,0 +1,377 @@
+body{
+    margin: 0;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+.main-dash{
+    width: 100vw;
+    height: 100vh;
+    background-image:linear-gradient(to bottom right, rgb(0, 0, 0), #000000, #3a084b, #7c0aa1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+
+.main-left{
+width: 70vw;
+}
+
+.main-rigth{
+    width: 30vw;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.lateral{
+    width: 90%;
+    display: flex;
+    flex-direction: column; 
+    justify-content: center;
+    align-items: center;
+    background-image:linear-gradient(to bottom left, #46105963, #46105963, #038C73);
+    border-radius: 10px;
+    padding:  10px 20px;
+    font-family: 'Roboto Mono', monospace;
+    margin: 0;
+}
+
+.lateral-card{
+    background-color: #038C73;
+    border-radius: 10px;
+    padding: 10px 10px;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 5px;
+}
+
+.lateral-card > span{
+    color: #2F1538;
+    letter-spacing: 3px;
+    font-weight: 800;
+}
+
+.lateral > h2{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.perfil{
+    width: 90%;
+    height: 30vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+}
+
+
+.perfil-usuario{
+    background-image:linear-gradient(to bottom left, #2F1538, #461059);
+    border-radius: 10px;
+    color: white;
+    padding: 10px 10px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    padding: 40px 30px;
+    width: 45%;
+    height: 60%;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+.perfil-notificacao{
+    background-image:linear-gradient(to bottom left, #038C73, #46105963);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    padding: 30px 30px;
+    color: white;
+    width: 45%;
+}
+
+.perfil-notificacao > img{
+    height: 60px;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.select-totem{
+    width: 90%;
+    height: 50vh;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    background-color: #7b0aa121;
+    border-radius: 10px;
+    padding: 10px 20px;
+    box-shadow: 10px 2px 10px 5px #7b0aa14b;
+}
+
+
+.alinhar-top{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 33%;
+}
+
+.alinha-bottom{
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    flex-direction: column;
+    width: 33%;
+}
+
+.totem-um{
+    width: 100%;
+    background-color: #038C73;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    padding: 40px 50px;
+    cursor: pointer;
+}
+
+.totem-um > span{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.totem-dois{
+    width: 100%;
+    background-color: #038C73;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    padding: 40px 50px;
+    cursor: pointer;
+}
+
+.totem-dois > span{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.totem-tres{
+    width: 100%;
+    background-color: #038C73;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    padding: 40px 50px;
+    cursor: pointer;
+}
+
+.totem-tres > span{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+}
+
+.totem-quatro{
+    width: 100%;
+    background-color: #038C73;
+    margin-bottom: 5px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    height: 100px;
+    padding: 40px 50px; 
+    cursor: pointer;
+}
+
+.totem-quatro > span{
+    color: white;
+    text-transform: uppercase;
+    font-weight: 800;
+    font-family: 'Roboto Mono', monospace;
+}
+
+
+@media screen and (max-width: 950px){
+ 
+.main-dash{
+    height: auto;
+}    
+
+   .select-totem{
+        display: block;
+        height: 100%;
+        width: 90%;
+        margin-left: 5px;
+    }
+
+.alinha-bottom{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+}
+
+.alinhar-top{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 10px;
+}
+
+.totem-um{
+    margin: 0;
+    width: 45%;
+    height: 100px;
+    padding: 40px 50px;
+}
+
+.totem-dois{
+    width: 45%;
+    height: 100px;
+    padding: 40px 50px;
+}
+
+.totem-tres{
+    margin: 0;
+    width: 45%;
+    height: 100px;
+    padding: 40px 50px;
+}
+
+.totem-quatro{
+    width: 45%;
+    height: 100px;
+    padding: 40px 50px;
+}
+
+.lateral{
+    width: 100%;
+}
+
+}
+
+@media only screen and (max-width: 600px){
+
+.main-dash{
+    height: auto;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+.main-left{
+    width: 100vw;
+    }
+    
+    .main-rigth{
+        width: 100vw;
+        align-items: center;
+        justify-content: center;
+        display: flex;
+    }
+
+.perfil{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+    margin: 20px;
+}
+
+.perfil-usuario{
+    margin-bottom: 20px;
+    width: 80%;
+}
+
+.perfil-notificacao{
+    width: 80%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.select-totem{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    height: auto;
+    margin: 10px;
+}
+
+.alinha-bottom{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0px;
+}
+
+.alinhar-top{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 0px;
+}
+
+.totem-um{
+    margin: 10px;
+    width: 100%;
+}
+
+.totem-dois{
+    margin: 10px;
+    width: 100%;
+}
+
+.totem-tres{
+    margin: 10px;
+    width: 100%;
+}
+
+.totem-quatro{
+    margin: 10px;
+    width: 100%;
+}
+
+.lateral{
+    width: 90%;
+}
+
+.cards{
+    display: flex;
+    flex-direction: column;
+}
+
+.perfil-notificacao{
+  height: 50px;
+}
+
+.perfil-notificacao > img{
+    height: 40px;
+    padding: 5px;
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+}
