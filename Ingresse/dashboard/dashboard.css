@@ -1,0 +1,128 @@
+@import url(../variaveis.css);
+
+*
+{
+    margin: 0;
+    padding: 0;
+}
+
+.header 
+{
+    padding: 1rem 0;
+    background-color: aqua;
+}
+
+.container 
+{
+    width: 90%;
+    margin: auto;
+    background-color: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.header .container .perfil 
+{
+    width: 50%;
+    padding: 2rem 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: #2f1538;
+    border-radius: 1rem;
+}
+
+.header .container .notification 
+{
+    width: 30%;
+    background-color: lime;
+    height: 1rem;
+}
+
+.titulo 
+{
+    padding: 1rem;
+    background-color: brown;
+}
+
+.titulo .container
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo .titulo-box
+{
+    background-color: aqua;
+    padding: 1rem 3rem;
+}
+
+.dashboards 
+{
+    padding: 1rem 0;
+    background-color: chartreuse;
+}
+
+.dashboards .container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: black;
+    padding: 1rem 0;
+}
+
+.box1 
+{
+    padding: 1rem 0;
+    background-color: cadetblue;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box2
+{
+    padding: 1rem 0;
+    background-color: rgb(33, 201, 17);
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+.dash 
+{
+    background: var(--clrDashBack);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.first 
+{
+    width: 30%;
+}
+
+.second
+{
+    width: 70%;
+}
+
+.third
+{
+    width: 60%;
+}
+
+.fourth
+{
+    width: 40%;
+}
+
