@@ -47,7 +47,7 @@
           <manifest>
             <addClasspath>true</addClasspath>
             <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>com.mycompany.ingressesofware.TelaPrincipal</mainClass>
+            <mainClass>com.mycompany.ingressesofware.TelaLogin</mainClass>
           </manifest>
         </archive>
       </configuration>
