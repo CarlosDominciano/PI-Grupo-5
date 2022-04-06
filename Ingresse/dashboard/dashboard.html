@@ -44,7 +44,7 @@
         <div class="container">
             <div class="box1">
                 <div class="dash first">
-
+                    <canvas class="line-chart1"></canvas>
                 </div>
                 <div class="dash second">
                     
@@ -62,5 +62,24 @@
     </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
 </body>
 </html>
+<script>
+    var context1 = document.getElementsByClassName("line-chart1");
+
+    //Type, Data, Options.
+    var chartGraph = new Chart(context1, {
+        type: "line",
+        data: {
+            labels: ["um", "dois", "tres"],
+            datasets: [{
+                label: "AOBA",
+                data: [5,1,8],
+                borderWidth: 4,
+                borderColor: 'rgba(70, 155, 244, 1)',
+                backgroundColor: 'red',
+            }]
+        }
+    });
+</script>
