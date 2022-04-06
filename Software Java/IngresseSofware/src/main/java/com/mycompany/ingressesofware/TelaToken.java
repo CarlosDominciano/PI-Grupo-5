@@ -6,6 +6,8 @@ package com.mycompany.ingressesofware;
 
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -18,7 +20,7 @@ public class TelaToken extends javax.swing.JFrame {
      */
     public TelaToken() {
         initComponents();
-         setTitle("Confirmação Token");
+        setTitle("Confirmação Token");
     }
 
     /**
@@ -143,7 +145,6 @@ public class TelaToken extends javax.swing.JFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        getAccessibleContext().setAccessibleName("asd");
         getAccessibleContext().setAccessibleDescription("asd");
         getAccessibleContext().setAccessibleParent(lblTokenSeguranca);
 
@@ -152,22 +153,42 @@ public class TelaToken extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Integer randomToken = ThreadLocalRandom.current().nextInt(5023, 10023);
-    
-    
+
+    Integer contadorErro = 0;
     private void btnConfirmacaoTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmacaoTokenActionPerformed
-        
+
         TelaPrincipal telaPrincipal = new TelaPrincipal();
-            if (randomToken.toString().equals(txtToken.getText())) {
-                telaPrincipal.setVisible(true);
-                dispose();
+        if (randomToken.toString().equals(txtToken.getText())) {
+            telaPrincipal.setVisible(true);
+            dispose();
+
+        } else {
+            if (contadorErro < 3) {
+                lblErro1.setText("O token está incorreto");
+             
+                contadorErro++;
+            }else if( contadorErro > 2 && contadorErro < 4) {
+                 contadorErro++;
+                lblErro1.setText("Falha, tente novamente");
                 
             } else {
-              lblErro1.setText("O token está incorreto");
+             //   contadorErro++;
+                dispose();
             }
+
+        }
     }//GEN-LAST:event_btnConfirmacaoTokenActionPerformed
 
-    private void txtTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTokenActionPerformed
+    void fechar() {
+        if (contadorErro > 2){
+        dispose();    
+        }
         
+
+    }
+
+    private void txtTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTokenActionPerformed
+
     }//GEN-LAST:event_txtTokenActionPerformed
 
     private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarCodigoActionPerformed
@@ -185,11 +206,13 @@ public class TelaToken extends javax.swing.JFrame {
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
+                     
                 }
             }
         } catch (ClassNotFoundException ex) {
@@ -202,16 +225,19 @@ public class TelaToken extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(TelaToken.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
+       
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new TelaToken().setVisible(true);
+                 
             }
         });
     }
-    
 
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmacaoToken;
     private javax.swing.JButton btnEnviarCodigo;
