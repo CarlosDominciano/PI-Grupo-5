@@ -11,5 +11,6 @@ import com.github.britooo.looca.api.core.Looca;
  * @author diego.silva@VALEMOBI.CORP
  */
 public class AppIngresse {
-    
+   
+  
 }
