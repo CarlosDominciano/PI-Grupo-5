@@ -47,15 +47,15 @@
                     <canvas class="line-chart1"></canvas>
                 </div>
                 <div class="dash second">
-                    
+                    <canvas class="line-chart2"></canvas>
                 </div>
             </div>
             <div class="box2">
                 <div class="dash third">
-
+                    <canvas class="line-chart3"></canvas>
                 </div>
                 <div class="dash fourth">
-                    
+                    <canvas class="line-chart4"></canvas>
                 </div>
             </div>
         </div>
@@ -67,15 +67,57 @@
 </html>
 <script>
     var context1 = document.getElementsByClassName("line-chart1");
+    var context2 = document.getElementsByClassName("line-chart2");
+    var context3 = document.getElementsByClassName("line-chart3");
+    var context4 = document.getElementsByClassName("line-chart4");
 
     //Type, Data, Options.
-    var chartGraph = new Chart(context1, {
+    var chartGraph1 = new Chart(context1, {
         type: "line",
         data: {
-            labels: ["um", "dois", "tres"],
+            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
             datasets: [{
                 label: "AOBA",
-                data: [5,1,8],
+                data: [5,4,8,7,2,5,9],
+                borderWidth: 4,
+                borderColor: 'rgba(70, 155, 244, 1)',
+                backgroundColor: 'red',
+            }]
+        }
+    });
+    var chartGraph2 = new Chart(context2, {
+        type: "line",
+        data: {
+            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
+            datasets: [{
+                label: "AOBA",
+                data: [5,4,8,7,2,5,9],
+                borderWidth: 4,
+                borderColor: 'rgba(70, 155, 244, 1)',
+                backgroundColor: 'red',
+            }]
+        }
+    });
+    var chartGraph3 = new Chart(context3, {
+        type: "line",
+        data: {
+            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
+            datasets: [{
+                label: "AOBA",
+                data: [5,4,8,7,2,5,9],
+                borderWidth: 4,
+                borderColor: 'rgba(70, 155, 244, 1)',
+                backgroundColor: 'red',
+            }]
+        }
+    });
+    var chartGraph4 = new Chart(context4, {
+        type: "bubble",
+        data: {
+            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
+            datasets: [{
+                label: "AOBA",
+                data: [5,4,8,7,2,5,9],
                 borderWidth: 4,
                 borderColor: 'rgba(70, 155, 244, 1)',
                 backgroundColor: 'red',
