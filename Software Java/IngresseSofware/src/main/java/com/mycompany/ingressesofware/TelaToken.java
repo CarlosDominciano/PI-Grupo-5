@@ -192,9 +192,10 @@ public class TelaToken extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTokenActionPerformed
 
     private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarCodigoActionPerformed
-        SlackIntegrationTest slackAlert = new SlackIntegrationTest();
-        slackAlert.sendMessageToSlack(randomToken.toString());
+        
+        SlackToken.sendToken(randomToken.toString());    
         lblErro1.setText("O Código foi enviado");
+     
     }//GEN-LAST:event_btnEnviarCodigoActionPerformed
 
     /**
