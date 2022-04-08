@@ -8,19 +8,22 @@ import com.github.seratch.jslack.Slack;
 import com.github.seratch.jslack.api.webhook.Payload;
 import com.github.seratch.jslack.api.webhook.WebhookResponse;
 
-public class SlackRelatorio {
 
-    private static String webHooksUrl = "https://hooks.slack.com/services/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";
-    private static String oAuthToken = "xoxb-3323550130833-3367665686275-gZDbk5ZJVh8Nen3GleJXN1Os";
-    private static String slackChannel = "relatoriomonitoramentochannel";
-
-
-
-    public static void sendRelatorio(String relatorio) {
+/**
+ *
+ * @author diego.silva@VALEMOBI.CORP
+ */
+public class SlackToken {
+    private static String webHooksUrl = "https://hooks.slack.com/services/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";
+    private static String oAuthToken = "xoxb-3323550130833-3367903589539-hgrH4kPiqxl7ns893aoiyJAu";
+    private static String slackChannel = "tokenchannel";
+    
+    
+    public static void sendToken(String token) {
 
         try {
             StringBuilder msgbuilder = new StringBuilder();
-            msgbuilder.append(relatorio);
+            msgbuilder.append(token);
 
             Payload payload = Payload.builder().channel(slackChannel).text(msgbuilder.toString()).build();
 
