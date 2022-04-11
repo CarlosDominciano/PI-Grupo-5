@@ -5,6 +5,9 @@
 
 package com.mycompany.ingressesofware;
 
+import com.mycompany.ingresse.coleta.dados.Componentes;
+import com.mycompany.ingresse.coleta.dados.Conexao;
+
 /**
  *
  * @author diego.silva@VALEMOBI.CORP
@@ -12,7 +15,9 @@ package com.mycompany.ingressesofware;
 public class IngresseSoftware {
 
     public static void main(String[] args) {
-        System.out.println("Hello World!");
+        Componentes comps = new Componentes();
+        Conexao connect = new Conexao();
         
+        System.out.println(comps.getData());
     }
 }

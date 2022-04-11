@@ -13,10 +13,5 @@ import java.util.List;
  */
 public class IngresseColetaDados {
 
-    public static void main(String[] args) {
-        Componentes comps = new Componentes();
-        Conexao connect = new Conexao();
-        
-        System.out.println(comps.getData());
-    }
+    
 }
