@@ -70,10 +70,10 @@ public class TelaLogin extends javax.swing.JFrame {
         painelGeralBackground = new javax.swing.JPanel();
         txtLogin = new javax.swing.JLabel();
         inputEmail = new javax.swing.JTextField();
-        inputSenha = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         btnEntrar = new javax.swing.JToggleButton();
+        inputSenha = new javax.swing.JPasswordField();
         jLabel5 = new javax.swing.JLabel();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
@@ -130,14 +130,6 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
-        inputSenha.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
-        inputSenha.setForeground(new java.awt.Color(97, 0, 120));
-        inputSenha.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                inputSenhaActionPerformed(evt);
-            }
-        });
-
         jLabel1.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("Senha: ");
@@ -156,6 +148,13 @@ public class TelaLogin extends javax.swing.JFrame {
             }
         });
 
+        inputSenha.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        inputSenha.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                inputSenhaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout painelGeralBackgroundLayout = new javax.swing.GroupLayout(painelGeralBackground);
         painelGeralBackground.setLayout(painelGeralBackgroundLayout);
         painelGeralBackgroundLayout.setHorizontalGroup(
@@ -165,15 +164,16 @@ public class TelaLogin extends javax.swing.JFrame {
                 .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGeralBackgroundLayout.createSequentialGroup()
                         .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel1)
-                            .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(inputSenha, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(inputEmail, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, painelGeralBackgroundLayout.createSequentialGroup()
-                                    .addGap(8, 8, 8)
-                                    .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addGap(0, 15, Short.MAX_VALUE))))
+                            .addComponent(inputEmail)
+                            .addComponent(inputSenha)
+                            .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
+                                .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel1)
+                                    .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
+                                        .addGap(8, 8, 8)
+                                        .addComponent(txtLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 489, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(0, 15, Short.MAX_VALUE)))
                         .addGap(42, 42, 42))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelGeralBackgroundLayout.createSequentialGroup()
                         .addComponent(btnEntrar, javax.swing.GroupLayout.PREFERRED_SIZE, 251, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -247,10 +247,6 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputEmailActionPerformed
 
-    private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_inputSenhaActionPerformed
-
     TelaToken telaToken = new TelaToken();
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         
@@ -288,6 +284,10 @@ public class TelaLogin extends javax.swing.JFrame {
         // criar logica email e senha == a this.email this.senha ()
 
     }//GEN-LAST:event_btnEntrarActionPerformed
+
+    private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_inputSenhaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -329,7 +329,7 @@ public class TelaLogin extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton btnEntrar;
     private javax.swing.JTextField inputEmail;
-    private javax.swing.JTextField inputSenha;
+    private javax.swing.JPasswordField inputSenha;
     private javax.swing.JDialog jDialog1;
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFrame jFrame1;

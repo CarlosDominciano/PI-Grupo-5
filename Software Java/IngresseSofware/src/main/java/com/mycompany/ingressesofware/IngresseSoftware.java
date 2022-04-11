@@ -17,7 +17,9 @@ public class IngresseSoftware {
     public static void main(String[] args) {
         Componentes comps = new Componentes();
         Conexao connect = new Conexao();
+        TelaLogin telaLogin = new TelaLogin();
         
         System.out.println(comps.getData());
+         telaLogin.setVisible(true);
     }
 }
