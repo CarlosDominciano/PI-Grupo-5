@@ -73,15 +73,15 @@
 
     //Type, Data, Options.
     var chartGraph1 = new Chart(context1, {
-        type: "line",
+        type: 'doughnut',
         data: {
-            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
+            labels: ["dois", "tres"],
             datasets: [{
-                label: "AOBA",
-                data: [5,4,8,7,2,5,9],
-                borderWidth: 4,
+                data: [5,9],
+                borderWidth: 1,
                 borderColor: 'rgba(70, 155, 244, 1)',
-                backgroundColor: 'red',
+                backgroundColor: ['yellow', 
+                                'red'],
             }]
         }
     });
@@ -99,7 +99,7 @@
         }
     });
     var chartGraph3 = new Chart(context3, {
-        type: "line",
+        type: "bar",
         data: {
             labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
             datasets: [{
@@ -112,7 +112,7 @@
         }
     });
     var chartGraph4 = new Chart(context4, {
-        type: "bubble",
+        type: "line",
         data: {
             labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
             datasets: [{
