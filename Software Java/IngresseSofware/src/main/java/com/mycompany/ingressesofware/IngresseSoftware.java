@@ -7,6 +7,7 @@ package com.mycompany.ingressesofware;
 
 import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
+import java.util.List;
 
 /**
  *
@@ -19,7 +20,5 @@ public class IngresseSoftware {
         Conexao connect = new Conexao();
         TelaLogin telaLogin = new TelaLogin();
         
-        System.out.println(comps.getData());
-         telaLogin.setVisible(true);
     }
 }
