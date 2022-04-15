@@ -136,3 +136,6 @@ Caused by: java.lang.IllegalStateException: The file is locked: nio:/home/isaque
 	at org.h2.mvstore.FileStore.open(FileStore.java:172)
 	at org.h2.mvstore.MVStore.<init>(MVStore.java:390)
 	... 28 more
+2022-04-12 19:53:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "FILIAL" not found; SQL statement:
+INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234') [42102-199]
