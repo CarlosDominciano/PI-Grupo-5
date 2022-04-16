@@ -17,10 +17,10 @@ public class Conexao {
     private JdbcTemplate jdbc;
     public Conexao(){
     this.dataSource = new BasicDataSource();
-    dataSource​.setDriverClassName("org.h2.Driver");
-    dataSource​.setUrl("jdbc:h2:file:./meu_banco");
-    dataSource​.setUsername("sa");
-    dataSource​.setPassword("");
+    dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+    dataSource​.setUrl("jdbc:sqlserver://ingresse-srv.database.windows.net:1433;database=ingresse-bd;user=ingresseAdmin@ingresse-srv;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+    dataSource​.setUsername("ingresseAdmin");
+    dataSource​.setPassword("2adsb#grupo5");
     this.jdbc = new JdbcTemplate(dataSource);
     }
 
