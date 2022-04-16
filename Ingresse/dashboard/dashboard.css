@@ -10,7 +10,7 @@
 
 body
 {
-    background-color: #270831;
+    background-image: linear-gradient(var(--clrBack), var(--clrGradi));
 }
 
 .header 
@@ -55,7 +55,7 @@ body
 
 .perfil span
 {
-    color: rgba(3, 140, 115, 1); 
+    color: var(--clrDetails); 
     margin-left: 2rem; 
     font-size: 2rem;
 }
@@ -63,7 +63,7 @@ body
 .header .container .notification 
 {
     width: 30%;
-    background-color: rgb(3, 140, 115);
+    background-color: var(--clrDetails); 
     padding: 2rem 1rem;
     border-radius: 1rem;
     display: flex;
@@ -157,11 +157,11 @@ body
 
 .third
 {
-    width: 50%;
+    width: 45%;
 }
 
 .fourth
 {
-    width: 40%;
+    width: 45%;
 }
 
