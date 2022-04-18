@@ -24,7 +24,6 @@ body
 {
     padding: 0.4rem 0;
     width: 100%;
-    border-bottom: 2px solid black;
 }
 
 .container 
@@ -52,6 +51,7 @@ body
     font-size: larger;
     border-radius: 0.1rem;
     border: unset;
+    cursor: pointer; 
 }
 
 .header .container .log-out:active
@@ -82,6 +82,7 @@ body
     font-size: larger;
     border-radius: 0.1rem;
     border: unset;
+    cursor: pointer;
 }
 
 .circle:active
@@ -134,7 +135,7 @@ body
 
 .cards
 {
-    background-color: #00aeff;
+    background-color: var(--clrDetails);
     width: 70%;
     height: 20%;
     margin: 1rem auto;
@@ -159,7 +160,9 @@ body
 
 .header-right
 {
-    width: 75%;
+    width: 70%;
+    height: 80%;
+    background-color: rgb(121, 54, 138);
 }
 
 .dashboards 
