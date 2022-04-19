@@ -31,7 +31,7 @@
             <artifactId>httpmime</artifactId>
             <version>4.5.13</version>
         </dependency>
-                 <!-- dependências do spring jdbc -->
+        <!-- dependências do spring jdbc -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-jdbc</artifactId>
@@ -49,26 +49,39 @@
             <version>1.4.199</version>
         </dependency>
         
-        
+        <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
+        <dependency>
+            <groupId>org.seleniumhq.selenium</groupId>
+            <artifactId>selenium-java</artifactId>
+            <version>3.14.0</version>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/junit/junit -->
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <version>4.13</version>
+            <type>jar</type>
+        </dependency>
         
     </dependencies>
     <build>
-  <plugins>
-    <plugin>
-      <!-- Build an executable JAR -->
-      <groupId>org.apache.maven.plugins</groupId>
-      <artifactId>maven-jar-plugin</artifactId>
-      <version>3.1.0</version>
-      <configuration>
-        <archive>
-          <manifest>
-            <addClasspath>true</addClasspath>
-            <classpathPrefix>lib/</classpathPrefix>
-            <mainClass>com.mycompany.ingressesofware.TelaLogin</mainClass>
-          </manifest>
-        </archive>
-      </configuration>
-    </plugin>
-  </plugins>
-</build>
+        <plugins>
+            <plugin>
+                <!-- Build an executable JAR -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <version>3.1.0</version>
+                <configuration>
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <mainClass>com.mycompany.ingressesofware.TelaLogin</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
 </project>

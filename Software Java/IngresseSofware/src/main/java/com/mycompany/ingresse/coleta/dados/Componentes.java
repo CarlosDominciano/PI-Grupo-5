@@ -4,12 +4,16 @@
  */
 package com.mycompany.ingresse.coleta.dados;
 
+import oshi.SystemInfo;
+import oshi.software.os.OperatingSystem;
+
 import com.github.britooo.looca.api.core.Looca;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+
 
 /**
  *
@@ -27,22 +31,30 @@ public class Componentes {
     private Double processamento;
     private Long memVolUso;
     private Long memVolLivre;
-    Looca componentes = new Looca();
+    private String hostname;
+    private Looca componentes = new Looca();
+    private final OperatingSystem os = new SystemInfo().getOperatingSystem();
 
     public Componentes() {
         this.processador = componentes.getProcessador().getIdentificador();
         this.ram = componentes.getMemoria().getTotal();
         this.disco = componentes.getGrupoDeDiscos().getTamanhoTotal();
         this.processos = componentes.getGrupoDeProcessos().getProcessos();
-        this.qtdProcessos = componentes.getGrupoDeProcessos().getTotalProcessos();
+        this.qtdProcessos = 
+                componentes.getGrupoDeProcessos().getTotalProcessos();
         this.servicosAtv = componentes.getGrupoDeServicos().getServicosAtivos();
         this.data = dataHora();
         this.processamento = componentes.getProcessador().getUso();
         this.memVolUso = componentes.getMemoria().getEmUso();
         this.memVolLivre = componentes.getMemoria().getDisponivel();
-
+        this.hostname = this.os.getNetworkParams().getHostName();
     }
 
+    public String getHostname() {
+        return hostname;
+    }
+
+    
     private String dataHora() {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();

@@ -7,6 +7,7 @@ package com.mycompany.ingressesofware;
 
 import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
+import java.util.List;
 
 /**
  *
@@ -18,8 +19,16 @@ public class IngresseSoftware {
         Componentes comps = new Componentes();
         Conexao connect = new Conexao();
         TelaLogin telaLogin = new TelaLogin();
+<<<<<<< HEAD
         
         System.out.println(comps.getData());
          telaLogin.setVisible(true);
+         
+         
+         
+=======
+        //connect.getJdbc().execute("INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234')");
+        System.out.println(comps.getHostname());
+>>>>>>> 36c88e459df7628e30dc3f065f03efbb4b8bf638
     }
 }
