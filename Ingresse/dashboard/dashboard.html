@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,52 +10,61 @@
     <title>Document</title>
 </head>
 <body>
-    <div class="header">
-        <div class="container">
-            <div class="perfil">
-                <div>
-                    <ion-icon name="person-outline"></ion-icon>
+    <div class="janela">
+        <div class="header">
+            <div class="container">
+                <button class="log-out">
+                    Log out
+                </button>
+                <div class="totens">
+                    <div onclick="mostrarTotem1()" class="totem">
+                        totem 1 
+                    </div>
+                    <div onclick="mostrarTotem2()" class="totem">
+                        totem 2
+                    </div>
+                    <div onclick="mostrarTotem3()" class="totem">
+                        totem 3
+                    </div>
+                    <div onclick="mostrarTotem4()" class="totem">
+                        totem 4
+                    </div>
                 </div>
-                <span>
-                    Nome do usuário
-                </span>
-            </div>
-            <div class="notification">
-                <div>
-                    <ion-icon name="chatbubbles-outline"></ion-icon>
-                </div>
-                <div>
-                    <ion-icon name="mail-outline"></ion-icon>
-                </div>
-                <div>
-                    <ion-icon name="notifications-outline"></ion-icon>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="titulo">
-        <div class="container">
-            <div class="titulo-box">
-                Dash
+                <button class="circle">
+                    log
+                </button>
             </div>
         </div>
-    </div>
-    <div class="dashboards">
-        <div class="container">
-            <div class="box1">
-                <div class="dash first">
-                    <canvas class="line-chart1"></canvas>
-                </div>
-                <div class="dash second">
-                    <canvas class="line-chart2"></canvas>
+        <div class="dash-informations">
+            <div class="header-left">
+                <div class="container">
+                    <!-- 
+                        Em um for no Back, programar div com
+                        a classe 'cards';
+                     -->
+                     <div class="cards"></div>
                 </div>
             </div>
-            <div class="box2">
-                <div class="dash third">
-                    <canvas class="line-chart3"></canvas>
-                </div>
-                <div class="dash fourth">
-                    <canvas class="line-chart4"></canvas>
+            <div class="header-right">
+                <div class="container">
+                    <div class="dashboards">
+                        <div class="box1">
+                            <div class="dash first">
+                                <canvas class="line-chart1"></canvas>
+                            </div>
+                            <div class="dash second">
+                                <canvas class="line-chart2"></canvas>
+                            </div>
+                        </div>
+                        <div class="box2">
+                            <div class="dash third">
+                                <canvas class="line-chart3"></canvas>
+                            </div>
+                             <div class="dash fourth">
+                                <canvas class="line-chart4"></canvas>
+                            </div> 
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -64,106 +72,6 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>
+    <script src="./dashboard.js"></script>
 </body>
 </html>
-<script>
-    var context1 = document.getElementsByClassName("line-chart1");
-    var context2 = document.getElementsByClassName("line-chart2");
-    var context3 = document.getElementsByClassName("line-chart3");
-    var context4 = document.getElementsByClassName("line-chart4");
-    var memUsada = (Math.random() *1000 +1).toFixed();
-    var memTotal = 1000;
-    var memLivre = memTotal - memUsada;
-    //Type, Data, Options.
-    var chartGraph1 = new Chart(context1, {
-        type: 'doughnut',
-        data: {
-            labels: ["Livre", "Usada"],
-            datasets: [{
-                data: [memLivre , memUsada],
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0,0.5)',
-                backgroundColor: ['rgba(0, 255, 0, 0.5)', 
-                                'rgba(0, 0, 255, 0.5)'],
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Armazenamento (GB)',
-                    color: 'white',
-                }
-            }
-        }
-    });
-    var chartGraph2 = new Chart(context2, {
-        type: "line",
-        data: {
-            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
-            datasets: [{
-                label: "AOBA",
-                data: [5,4,8,7,2,5,9],
-                borderWidth: 2,
-                borderColor: 'rgba(0,0,0, 0.5)',
-                backgroundColor: 'rgba(0, 0, 255, 0.5)',
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'RAM',
-                    color: 'white',
-                }
-            }
-        }
-    });
-
-    
-    var processos = Math.random() 
-    var chartGraph4 = new Chart(context4, {
-        type: "bar",
-        data: {
-            labels: [1,1,1,1,1,1,1,1],
-            datasets: [{
-                label: "AOBA",
-                data: [5,4,8,7,2,5,9],
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0, 0.5)',
-                backgroundColor: 'rgba(0,0, 255, 0.5)',
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'Processos',
-                    color: 'white',
-                }
-            }
-        }
-    });
-    var chartGraph3 = new Chart(context3, {
-        type: "line",
-        data: {
-            labels: ["um", "dois", "tres", "dois", "tres", "dois", "tres"],
-            datasets: [{
-                label: "AOBA",
-                data: [5,4,8,7,2,5,9],
-                borderWidth: 1,
-                borderColor: 'rgba(0,0,0, 0.5)',
-                backgroundColor: 'rgba(0, 0, 255, 0.5)',
-            }]
-        },
-        options: {
-            plugins: {
-                title: {
-                    display: true,
-                    text: 'CPU',
-                    color: 'white',
-                }
-            }
-        }
-    });
-</script>

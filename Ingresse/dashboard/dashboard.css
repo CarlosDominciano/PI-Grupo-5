@@ -10,12 +10,20 @@
 
 body
 {
+    overflow: hidden;
     background-image: linear-gradient(var(--clrBack), var(--clrGradi));
+}
+
+.janela
+{
+    width: 100vw;
+    height: 100vh;
 }
 
 .header 
 {
-    padding: 1rem 0;
+    padding: 0.4rem 0;
+    width: 100%;
 }
 
 .container 
@@ -25,89 +33,142 @@ body
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
 }
 
-.header .container .perfil 
+.header .container .log-out 
 {
-    width: 50%;
-    padding: 2rem 2rem;
+    width: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
-    background-color: #2f1538;
-    border-radius: 1rem;
+    background-color: var(--clrDetails);
+    border-radius: 0.1rem;
+    height: 5rem;
+    color: white;
+    font-weight: 600;
+    font-size: larger;
+    border-radius: 0.1rem;
+    border: unset;
+    cursor: pointer; 
 }
 
-.perfil div
+.header .container .log-out:active
 {
-    background-color: aliceblue; 
-    border-radius: 40rem; 
-    width: 6rem; 
-    height: 6rem;
-    font-size: 4rem;
+    background-color: var(--clrClickDetails);
+}
+
+.totens
+{
+    width: 60%;
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.circle
+{
+    width: 10%;
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    background-color: var(--clrDetails);
+    border-radius: 0.1rem;
+    height: 5rem;
+    color: white;
+    font-weight: 600;
+    font-size: larger;
+    border-radius: 0.1rem;
+    border: unset;
+    cursor: pointer;
 }
 
-.perfil span
+.circle:active
 {
-    color: var(--clrDetails); 
-    margin-left: 2rem; 
-    font-size: 2rem;
+    background-color: var(--clrClickDetails);
 }
 
-.header .container .notification 
+.header .container .totem 
 {
-    width: 30%;
-    background-color: var(--clrDetails); 
-    padding: 2rem 1rem;
-    border-radius: 1rem;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-items: center;
-}
-
-.notification div
-{
-    width: 3rem;
-    height: 3rem; 
-    border-radius: 4rem; 
-    background-color: aliceblue;
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    font-size: 2rem;
-}
-
-.titulo 
-{
+    width: 15%;
+    height: 1rem;
+    background-color: var(--clrRol1);
+    border: 0.3em solid var(--clrGradi);    
+    color: white;
+    font-weight: 600;
+    font-size: larger;
+    letter-spacing: 0.2rem;
     padding: 1rem;
-}
-
-.titulo .container
-{
+    border-radius: 0.1rem;
     display: flex;
     flex-direction: row;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
 }
 
-.titulo .titulo-box
+.dash-informations
 {
-    background-color: rgba(97, 0, 131, 1);
-    border-radius: 1rem;
-    padding: 1rem 4rem;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+}
+
+.header-left
+{
+    width: 25%;
+    height: 85%;
+    display: flex;
+}
+
+.header-left .container
+{
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    overflow-y: scroll;
+    flex-flow: wrap;
+}
+
+.cards
+{
+    background-color: var(--clrDetails);
+    width: 70%;
+    height: 20%;
+    margin: 1rem auto;
+}
+.header-left .container::-webkit-scrollbar 
+{
+    width: 5px;              
+}
+  
+.header-left .container::-webkit-scrollbar-track 
+{
+    background: var(--clrLogo);        
+}
+  
+.header-left .container::-webkit-scrollbar-thumb 
+{  
+    border-radius: 20px;      
+    border: 3px solid var(--clrRol1);  
+    background-color: var(--clrDetails);
+    animation: scrollBody 3s linear infinite;
+}
+
+.header-right
+{
+    width: 70%;
+    height: 80%;
+    background-color: rgb(121, 54, 138);
 }
 
 .dashboards 
 {
     padding: 1rem 0;
+    width: 100%;
 }
 
 .dashboards .container
@@ -127,6 +188,7 @@ body
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-weight: bolder;
 }
 
 .box2
@@ -138,11 +200,10 @@ body
     justify-content: space-between;
     align-items: center;
 }
-.dash 
+
+.dash
 {
-    background: var(--clrDashBack);
-    padding: 1rem 0;
-    border-radius: 10px;
+    margin-left: 1rem;
 }
 
 .first 
@@ -150,18 +211,17 @@ body
     width: 30%;
 }
 
-.second
+.second 
 {
     width: 60%;
 }
 
-.third
+.third 
 {
-    width: 45%;
+    width: 40%;
 }
 
-.fourth
+.fourth 
 {
-    width: 45%;
+    width: 40%;
 }
-
