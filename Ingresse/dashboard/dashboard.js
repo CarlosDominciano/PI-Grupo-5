@@ -3,10 +3,15 @@ var context2 = document.getElementsByClassName("line-chart2");
 var context3 = document.getElementsByClassName("line-chart3");
 var context4 = document.getElementsByClassName("line-chart4");
 
-
 var memUsada = (Math.random() *1000 +1).toFixed();
 var memTotal = 1000;
 var memLivre = memTotal - memUsada;
+
+var atualRam = (Math.random() *255 +1).toFixed();
+
+let cpu = (Math.random() * 100).toFixed();
+
+var processos = Math.random()
 
 var chartGraph1 = new Chart(context1, {
     type: 'doughnut',
@@ -32,15 +37,9 @@ var chartGraph1 = new Chart(context1, {
                     color: "white"
                 }
             }
-        },
-        tooltip: {
-            fontColor: "white"
-        },
-
+        }
     }
 });
-
-var atualRam = (Math.random() *255 +1).toFixed();
 
 var chartGraph2 = new Chart(context2, {
     type: "line",
@@ -61,12 +60,30 @@ var chartGraph2 = new Chart(context2, {
                 display: true,
                 text: 'RAM',
                 color: 'white',
+            },
+            legend: {
+                labels: {
+                    color: "white"
+                }
+            },
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color:'white', 
+                    fontSize:20,
+                    beginAtZero: true
+                }
+            },
+            y:{
+                ticks: {
+                    beginAtZero: true,
+                    color: 'white'
+                }
             }
         }
     }
 });
-
-let cpu = (Math.random() * 100).toFixed();
 
 var chartGraph3 = new Chart(context3, {
     type: "line",
@@ -87,11 +104,23 @@ var chartGraph3 = new Chart(context3, {
                 text: 'CPU',
                 color: 'white', 
             }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color:'white', 
+                    beginAtZero: true
+                }
+            },
+            y:{
+                ticks: {
+                    beginAtZero: true,
+                    color: 'white'
+                }
+            }
         }
     }
 });
-
-var processos = Math.random()
 
 var chartGraph4 = new Chart(context4, {
     type: "bar",
@@ -99,7 +128,7 @@ var chartGraph4 = new Chart(context4, {
         labels: [1,1,1,1,1,1,1,1],
         datasets: [{
             label: "AOBA",
-            data: [5,4,8,7,2,5,9],
+            data: [5,4,8,7,2,5,9,9],
             borderWidth: 1,
             borderColor: 'rgba(0,0,0, 0.5)',
             backgroundColor: 'rgba(0,0, 255, 0.5)',
@@ -111,6 +140,21 @@ var chartGraph4 = new Chart(context4, {
                 display: true,
                 text: 'Processos',
                 color: 'white',
+            }
+        },
+        scales: {
+            x: {
+                ticks: {
+                    color:'white', 
+                    fontSize:20,
+                    beginAtZero: true
+                }
+            },
+            y:{
+                ticks: {
+                    beginAtZero: true,
+                    color: 'white'
+                }
             }
         }
     }
@@ -236,5 +280,5 @@ setInterval(function() {
         mostrarTotem4()
     }
     console.log("aoba")
-}, 2000);
+}, 4000);
 
