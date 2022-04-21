@@ -25,13 +25,13 @@ public class IngresseSoftware {
         //System.out.println(comps.getHostname());
 
         System.out.println(comps.getData());
-        // telaLogin.setVisible(true);
+         telaLogin.setVisible(true);
 
         //connect.getJdbc().execute("INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234')");
         System.out.println(comps.getHostname());
         
-       // Selenium selenium = new Selenium();
+        Selenium selenium = new Selenium();
         
-       // selenium.automacaoSelenium();
+        selenium.automacaoSelenium();
     }
 }

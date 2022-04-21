@@ -25,25 +25,23 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     private Boolean validacao = false;
     private Conexao conecta = new Conexao();
+
     public Boolean getValidacao() {
         return validacao;
     }
 
-
     public TelaLogin() {
         initComponents();
-      
+
         this.setLocationRelativeTo(null);
 
 //        setExtendedState(MAXIMIZED_BOTH);
         setResizable(false);
         System.out.println();
-        
-//        InserirIcone(this);
-        
 
+//        InserirIcone(this);
     }
-    
+
 //    public void InserirIcone(JFrame frm){
 //     try{
 //         frm.setIconImage(Toolkit.getDefaultToolkit().getImage("/favicon.png"));
@@ -51,10 +49,9 @@ public class TelaLogin extends javax.swing.JFrame {
 //         System.out.println(ex.toString());
 //     }
 //    }
-        private void setIcon() {
+    private void setIcon() {
         setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getResource("/favicon.png")));
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -252,7 +249,9 @@ public class TelaLogin extends javax.swing.JFrame {
 
     TelaToken telaToken = new TelaToken();
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-              Boolean validacaoOpcao = false;
+        Boolean validacaoOpcao = false;
+        ErroDigite erroDigite = new ErroDigite();
+        ErroInvalido erroInvalido = new ErroInvalido();
         try {
             System.out.println("chamada a: btnEntrar function");
 //        String retorno = textfield.getText();
@@ -263,24 +262,30 @@ public class TelaLogin extends javax.swing.JFrame {
             System.out.println(inputSenha);
             List<Usuario> user = conecta.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", inputEmail), new BeanPropertyRowMapper<>(Usuario.class));
             Boolean permissao = user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente") ? true : false;
-            System.out.println(user);
+            //System.out.println(user);
             if (inputEmail.equals(user.get(0).getEmail_usuario()) && inputSenha.equals(user.get(0).getSenha()) && permissao) {
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
                 validacaoOpcao = true;
-                System.out.println("validacao = " + validacaoOpcao);
                 telaToken.setVisible(true);
+            } else {
+                if (validacaoOpcao) {
+                    System.out.println("fix confirmacao email ou senha vazio");
+                    erroDigite.setVisible(true);
+                } else {
+
+                    System.out.println("fix confirmacao email ou senha incorreto");
+                    erroInvalido.setVisible(true);
+
+                }
             }
 
         } catch (Exception e) {
-            
-            ErroDigite erroDigite = new ErroDigite();
-            ErroInvalido erroInvalido = new ErroInvalido();
 
             if (validacaoOpcao) {
                 System.out.println("fix confirmacao email ou senha vazio");
                 erroDigite.setVisible(true);
-            } else{
-                
+            } else {
+
                 System.out.println("fix confirmacao email ou senha incorreto");
                 erroInvalido.setVisible(true);
 
