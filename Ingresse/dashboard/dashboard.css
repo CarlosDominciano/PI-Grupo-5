@@ -169,7 +169,6 @@ body
 {
     padding: 1rem 0;
     width: 100%;
-    color: aliceblue;
 }
 
 .dashboards .container
@@ -189,6 +188,7 @@ body
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+    font-weight: bolder;
 }
 
 .box2
