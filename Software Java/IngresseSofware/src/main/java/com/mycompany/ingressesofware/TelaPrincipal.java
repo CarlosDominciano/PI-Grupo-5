@@ -82,6 +82,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         btnSair2 = new javax.swing.JToggleButton();
+        ativado = new javax.swing.JLabel();
         btnMonitorarTotens2 = new javax.swing.JToggleButton();
         jLabel6 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
@@ -95,7 +96,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         progres5 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
-        btnAdicionarTotem1 = new javax.swing.JToggleButton();
+        btnAddTotem = new javax.swing.JToggleButton();
         progres4 = new javax.swing.JProgressBar();
         jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
@@ -108,6 +109,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         btnIniciarMonitoramento = new javax.swing.JToggleButton();
         jPanel1 = new javax.swing.JPanel();
+        resultadoMenu = new javax.swing.JLabel();
+        btnIniciarMonitoramento1 = new javax.swing.JToggleButton();
 
         javax.swing.GroupLayout jDialog1Layout = new javax.swing.GroupLayout(jDialog1.getContentPane());
         jDialog1.getContentPane().setLayout(jDialog1Layout);
@@ -153,7 +156,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         txtNomeUsuario.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
         txtNomeUsuario.setForeground(new java.awt.Color(255, 255, 255));
-        txtNomeUsuario.setText("Monitoramento do totem: 1");
+        txtNomeUsuario.setText("Monitoramento do totem");
 
         jLabel9.setBackground(new java.awt.Color(255, 255, 255));
         jLabel9.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -175,15 +178,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        ativado.setFont(new java.awt.Font("Liberation Sans", 3, 18)); // NOI18N
+        ativado.setForeground(new java.awt.Color(204, 0, 0));
+        ativado.setText("Pausado...");
+
         javax.swing.GroupLayout painelGeralBackgroundLayout = new javax.swing.GroupLayout(painelGeralBackground);
         painelGeralBackground.setLayout(painelGeralBackgroundLayout);
         painelGeralBackgroundLayout.setHorizontalGroup(
             painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
-                .addComponent(jLabel9)
-                .addGap(80, 80, 80)
-                .addComponent(jLabel10)
+                .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addGap(80, 80, 80)
+                        .addComponent(jLabel10))
+                    .addComponent(ativado))
                 .addGap(167, 167, 167)
                 .addComponent(txtNomeUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -197,10 +207,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel9)
-                        .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
+                        .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(ativado))
                     .addComponent(txtNomeUsuario, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -261,13 +274,13 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Armazenamento usado:");
 
-        btnAdicionarTotem1.setBackground(new java.awt.Color(153, 0, 153));
-        btnAdicionarTotem1.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
-        btnAdicionarTotem1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdicionarTotem1.setText("Adicionar totem");
-        btnAdicionarTotem1.addActionListener(new java.awt.event.ActionListener() {
+        btnAddTotem.setBackground(new java.awt.Color(153, 0, 153));
+        btnAddTotem.setFont(new java.awt.Font("Liberation Sans", 0, 24)); // NOI18N
+        btnAddTotem.setForeground(new java.awt.Color(255, 255, 255));
+        btnAddTotem.setText("Adicionar totem");
+        btnAddTotem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdicionarTotem1ActionPerformed(evt);
+                btnAddTotemActionPerformed(evt);
             }
         });
 
@@ -306,7 +319,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                                 .addComponent(progres2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(progres5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(progres4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAdicionarTotem1, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)))
+                                .addComponent(btnAddTotem, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
@@ -336,7 +349,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progres4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnAdicionarTotem1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnAddTotem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(19, Short.MAX_VALUE))
         );
 
@@ -445,9 +458,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         );
 
         btnIniciarMonitoramento.setBackground(new java.awt.Color(153, 0, 153));
-        btnIniciarMonitoramento.setFont(new java.awt.Font("Liberation Sans", 0, 22)); // NOI18N
+        btnIniciarMonitoramento.setFont(new java.awt.Font("Liberation Sans", 0, 30)); // NOI18N
         btnIniciarMonitoramento.setForeground(new java.awt.Color(255, 255, 255));
-        btnIniciarMonitoramento.setText("Iniciar monitoramento");
+        btnIniciarMonitoramento.setText("Enviar relatório");
         btnIniciarMonitoramento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnIniciarMonitoramentoActionPerformed(evt);
@@ -456,23 +469,43 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
 
+        resultadoMenu.setFont(new java.awt.Font("Liberation Sans", 0, 36)); // NOI18N
+        resultadoMenu.setText("...");
+        resultadoMenu.setVerticalAlignment(javax.swing.SwingConstants.TOP);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 443, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(26, 26, 26)
+                .addComponent(resultadoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 355, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(15, 15, 15)
+                .addComponent(resultadoMenu, javax.swing.GroupLayout.PREFERRED_SIZE, 455, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
+
+        btnIniciarMonitoramento1.setBackground(new java.awt.Color(153, 0, 153));
+        btnIniciarMonitoramento1.setFont(new java.awt.Font("Liberation Sans", 0, 30)); // NOI18N
+        btnIniciarMonitoramento1.setForeground(new java.awt.Color(255, 255, 255));
+        btnIniciarMonitoramento1.setText("Iniciar monitoramento");
+        btnIniciarMonitoramento1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIniciarMonitoramento1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout painelLoginLayout = new javax.swing.GroupLayout(painelLogin);
         painelLogin.setLayout(painelLoginLayout);
         painelLoginLayout.setHorizontalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelLoginLayout.createSequentialGroup()
-                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(painelLoginLayout.createSequentialGroup()
                         .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(painelLoginLayout.createSequentialGroup()
@@ -491,10 +524,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(painelLoginLayout.createSequentialGroup()
                         .addGap(64, 64, 64)
                         .addComponent(jLabel6)
-                        .addGap(99, 99, 99)
-                        .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(23, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 401, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(65, Short.MAX_VALUE))
             .addComponent(painelGeralBackground, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelLoginLayout.createSequentialGroup()
+                    .addGap(420, 420, 420)
+                    .addComponent(btnIniciarMonitoramento1, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
+                    .addGap(484, 484, 484)))
         );
         painelLoginLayout.setVerticalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,18 +543,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
                         .addGap(26, 26, 26)
                         .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(176, 176, 176)
+                        .addGap(164, 164, 164)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(45, 45, 45)
                         .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(painelLoginLayout.createSequentialGroup()
+                    .addGap(624, 624, 624)
+                    .addComponent(btnIniciarMonitoramento1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(829, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -590,9 +633,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnSair2ActionPerformed
 
-    private void btnAdicionarTotem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAdicionarTotem1ActionPerformed
+    private void btnAddTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTotemActionPerformed
+            TelaAdicionarTotem addTotem = new TelaAdicionarTotem();
+            addTotem.setVisible(true);
+    }//GEN-LAST:event_btnAddTotemActionPerformed
 
     private void btnAdicionarTotem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem3ActionPerformed
         // TODO add your handling code here:
@@ -613,6 +657,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem7ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarTotem7ActionPerformed
+
+    private void btnIniciarMonitoramento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramento1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnIniciarMonitoramento1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -653,14 +701,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel ativado;
+    private javax.swing.JToggleButton btnAddTotem;
     private javax.swing.JToggleButton btnAdicionarTotem;
-    private javax.swing.JToggleButton btnAdicionarTotem1;
     private javax.swing.JToggleButton btnAdicionarTotem3;
     private javax.swing.JToggleButton btnAdicionarTotem4;
     private javax.swing.JToggleButton btnAdicionarTotem5;
     private javax.swing.JToggleButton btnAdicionarTotem6;
     private javax.swing.JToggleButton btnAdicionarTotem7;
     private javax.swing.JToggleButton btnIniciarMonitoramento;
+    private javax.swing.JToggleButton btnIniciarMonitoramento1;
     private javax.swing.JToggleButton btnMonitorarTotens2;
     private javax.swing.JToggleButton btnSair2;
     private javax.swing.JDialog jDialog1;
@@ -688,6 +738,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JProgressBar progres3;
     private javax.swing.JProgressBar progres4;
     private javax.swing.JProgressBar progres5;
+    private javax.swing.JLabel resultadoMenu;
     private javax.swing.JLabel txtNomeUsuario;
     // End of variables declaration//GEN-END:variables
 }

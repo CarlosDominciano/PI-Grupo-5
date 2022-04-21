@@ -20,6 +20,7 @@ public class TelaToken extends javax.swing.JFrame {
      */
     public TelaToken() {
         initComponents();
+        this.setLocationRelativeTo(null);
         setTitle("Confirmação Token");
     }
 
