@@ -5,11 +5,14 @@
 package com.mycompany.ingressesofware;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.mycompany.ingresse.coleta.dados.Conexao;
 import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JFrame;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
  *
@@ -21,7 +24,7 @@ public class TelaLogin extends javax.swing.JFrame {
      * Creates new form TelaLogin
      */
     private Boolean validacao = false;
-
+    private Conexao conecta = new Conexao();
     public Boolean getValidacao() {
         return validacao;
     }
@@ -249,39 +252,40 @@ public class TelaLogin extends javax.swing.JFrame {
 
     TelaToken telaToken = new TelaToken();
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
-        
-        
-        System.out.println("chamada a: btnEntrar function");
+              Boolean validacaoOpcao = false;
+        try {
+            System.out.println("chamada a: btnEntrar function");
 //        String retorno = textfield.getText();
 
-        ErroDigite erroDigite = new ErroDigite();
-        ErroInvalido erroInvalido = new ErroInvalido();
-
-        String inputEmail = this.inputEmail.getText();
-        String inputSenha = this.inputSenha.getText();
-        System.out.println(inputEmail);
-        System.out.println(inputSenha);
-
-        
-       
-        
-        if (inputEmail.equals("") || inputSenha.equals("")) {
-            System.out.println("fix confirmacao email ou senha vazio");
-            erroDigite.setVisible(true);
-        } else {
-            if (inputEmail.equals("email") && inputSenha.equals("senha")) {
+            String inputEmail = this.inputEmail.getText();
+            String inputSenha = this.inputSenha.getText();
+            System.out.println(inputEmail);
+            System.out.println(inputSenha);
+            List<Usuario> user = conecta.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", inputEmail), new BeanPropertyRowMapper<>(Usuario.class));
+            Boolean permissao = user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente") ? true : false;
+            System.out.println(user);
+            if (inputEmail.equals(user.get(0).getEmail_usuario()) && inputSenha.equals(user.get(0).getSenha()) && permissao) {
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
+                validacaoOpcao = true;
+                System.out.println("validacao = " + validacaoOpcao);
                 telaToken.setVisible(true);
+            }
+
+        } catch (Exception e) {
+            
+            ErroDigite erroDigite = new ErroDigite();
+            ErroInvalido erroInvalido = new ErroInvalido();
+
+            if (validacaoOpcao) {
+                System.out.println("fix confirmacao email ou senha vazio");
+                erroDigite.setVisible(true);
+            } else{
                 
-                    
-            } else {
                 System.out.println("fix confirmacao email ou senha incorreto");
-                System.out.println("4");
                 erroInvalido.setVisible(true);
+
             }
         }
-
-        // criar logica email e senha == a this.email this.senha ()
 
     }//GEN-LAST:event_btnEntrarActionPerformed
 
