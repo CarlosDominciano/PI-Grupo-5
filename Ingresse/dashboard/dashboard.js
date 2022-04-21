@@ -139,5 +139,102 @@ const mostrarTotem1 = () => {
     }
     dataCpu[dataCpu.length - 1] = cpu;
     chartGraph3.update();
+
+    contador = 0;
 }
+
+const mostrarTotem2 = () => {
+    memUsada = (Math.random() *1000 ).toFixed();
+    memLivre = memTotal - memUsada;
+    chartGraph1.data.datasets[0].data[1] = memUsada;
+    chartGraph1.data.datasets[0].data[0] = memLivre;
+    chartGraph1.update();
+
+    const dataRam = chartGraph2.data.datasets[0].data;
+    atualRam = (Math.random() *100).toFixed();
+    for (let i = 0; i <= dataRam.length - 2; i++) {
+        dataRam[i] = dataRam[i + 1];
+    }
+    dataRam[dataRam.length-1] = cpu;
+    chartGraph2.update();
+    
+
+    const dataCpu = chartGraph3.data.datasets[0].data;
+    cpu = (Math.random() *100).toFixed();
+    for (let i = 0; i <= dataCpu.length - 2; i++) {
+        dataCpu[i] = dataCpu[i + 1];
+    }
+    dataCpu[dataCpu.length - 1] = cpu;
+    chartGraph3.update();
+
+    contador = 1;
+}
+
+const mostrarTotem3 = () => {
+    memUsada = (Math.random() *1000 ).toFixed();
+    memLivre = memTotal - memUsada;
+    chartGraph1.data.datasets[0].data[1] = memUsada;
+    chartGraph1.data.datasets[0].data[0] = memLivre;
+    chartGraph1.update();
+
+    const dataRam = chartGraph2.data.datasets[0].data;
+    atualRam = (Math.random() *100).toFixed();
+    for (let i = 0; i <= dataRam.length - 2; i++) {
+        dataRam[i] = dataRam[i + 1];
+    }
+    dataRam[dataRam.length-1] = cpu;
+    chartGraph2.update();
+    
+
+    const dataCpu = chartGraph3.data.datasets[0].data;
+    cpu = (Math.random() *100).toFixed();
+    for (let i = 0; i <= dataCpu.length - 2; i++) {
+        dataCpu[i] = dataCpu[i + 1];
+    }
+    dataCpu[dataCpu.length - 1] = cpu;
+    chartGraph3.update();
+
+    contador = 2;
+}
+
+const mostrarTotem4 = () => {
+    memUsada = (Math.random() *1000 ).toFixed();
+    memLivre = memTotal - memUsada;
+    chartGraph1.data.datasets[0].data[1] = memUsada;
+    chartGraph1.data.datasets[0].data[0] = memLivre;
+    chartGraph1.update();
+
+    const dataRam = chartGraph2.data.datasets[0].data;
+    atualRam = (Math.random() *100).toFixed();
+    for (let i = 0; i <= dataRam.length - 2; i++) {
+        dataRam[i] = dataRam[i + 1];
+    }
+    dataRam[dataRam.length-1] = cpu;
+    chartGraph2.update();
+    
+
+    const dataCpu = chartGraph3.data.datasets[0].data;
+    cpu = (Math.random() *100).toFixed();
+    for (let i = 0; i <= dataCpu.length - 2; i++) {
+        dataCpu[i] = dataCpu[i + 1];
+    }
+    dataCpu[dataCpu.length - 1] = cpu;
+    chartGraph3.update();
+
+    contador = 3;
+}
+
+let contador = -1;
+setInterval(function() {
+    if (contador == 0){
+        mostrarTotem1()
+    } else if (contador == 1) {
+        mostrarTotem2()
+    } else if (contador == 2) {
+        mostrarTotem3()
+    } else if (contador == 3) {
+        mostrarTotem4()
+    }
+    console.log("aoba")
+}, 2000);
 

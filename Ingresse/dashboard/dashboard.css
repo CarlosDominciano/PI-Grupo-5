@@ -92,8 +92,8 @@ body
 
 .header .container .totem 
 {
-    width: 15%;
-    height: 1rem;
+    width: 20%;
+    height: 4rem;
     background-color: var(--clrRol1);
     border: 0.3em solid var(--clrGradi);    
     color: white;
@@ -106,6 +106,13 @@ body
     flex-direction: row;
     justify-content: space-evenly;
     align-items: center;
+    cursor: pointer;
+}
+
+.header .container .totem:active
+{
+    background-color: #342a42;
+    border-color: #26102c;
 }
 
 .dash-informations
