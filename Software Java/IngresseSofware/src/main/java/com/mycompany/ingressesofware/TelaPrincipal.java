@@ -148,7 +148,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelGeralBackgroundLayout.setHorizontalGroup(
             painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
-                .addGap(421, 421, 421)
+                .addGap(429, 429, 429)
                 .addComponent(txtNomeUsuario)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -156,8 +156,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             painelGeralBackgroundLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(painelGeralBackgroundLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(txtNomeUsuario)
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addComponent(txtNomeUsuario, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         btnMonitorarTotens2.setBackground(new java.awt.Color(153, 0, 153));

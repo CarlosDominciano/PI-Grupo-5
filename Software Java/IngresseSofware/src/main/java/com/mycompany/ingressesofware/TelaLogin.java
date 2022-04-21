@@ -255,7 +255,6 @@ public class TelaLogin extends javax.swing.JFrame {
             System.out.println(inputSenha);
             List<Usuario> user = conecta.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", inputEmail), new BeanPropertyRowMapper<>(Usuario.class));
             Boolean permissao = user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente") ? true : false;
-            //System.out.println(user);
             if (inputEmail.equals(user.get(0).getEmail_usuario()) && inputSenha.equals(user.get(0).getSenha()) && permissao) {
                 TelaPrincipal telaPrincipal = new TelaPrincipal();
                 validacaoOpcao = true;
