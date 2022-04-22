@@ -20,6 +20,7 @@ body
     height: 100vh;
 }
 
+/* Header */
 .header 
 {
     padding: 0.4rem 0;
@@ -67,7 +68,7 @@ body
     flex-direction: row;
 }
 
-.circle
+.back
 {
     width: 10%;
     display: flex;
@@ -85,7 +86,7 @@ body
     cursor: pointer;
 }
 
-.circle:active
+.back:active
 {
     background-color: var(--clrClickDetails);
 }
@@ -115,6 +116,7 @@ body
     border-color: #26102c;
 }
 
+/* Header left */
 .dash-informations
 {
     width: 100%;
@@ -165,6 +167,7 @@ body
     animation: scrollBody 3s linear infinite;
 }
 
+/* Header right */
 .header-right
 {
     width: 70%;
