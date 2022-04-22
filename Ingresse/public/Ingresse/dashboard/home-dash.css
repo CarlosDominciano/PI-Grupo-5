@@ -125,7 +125,6 @@ width: 70vw;
 .select-totem
 {
     width: 90%;
-    height: 50vh;
     display: flex;
     justify-content: space-evenly;
     align-items: center;
@@ -163,7 +162,7 @@ width: 70vw;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    align-items: center;
     padding: 40px 50px;
     cursor: pointer;
 }
@@ -176,6 +175,11 @@ width: 70vw;
     font-family: 'Roboto Mono', monospace;
 }
 
+.totem-um img{
+    margin-top: 5px;
+    width: 70px;
+}
+
 .totem-dois
 {
     width: 100%;
@@ -184,7 +188,7 @@ width: 70vw;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    align-items: center;
     padding: 40px 50px;
     cursor: pointer;
 }
@@ -205,7 +209,7 @@ width: 70vw;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 100px;
+    align-items: center;
     padding: 40px 50px;
     cursor: pointer;
 }
@@ -226,8 +230,8 @@ width: 70vw;
     border-radius: 10px;
     display: flex;
     flex-direction: column;
-    height: 100px;
-    padding: 40px 50px; 
+    align-items: center;
+    padding: 40px 50px;
     cursor: pointer;
 }
 
