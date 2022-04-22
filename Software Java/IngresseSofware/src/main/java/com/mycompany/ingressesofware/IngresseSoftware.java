@@ -20,8 +20,7 @@ public class IngresseSoftware {
         Componentes comps = new Componentes();
         Conexao connect = new Conexao();
         TelaLogin telaLogin = new TelaLogin();
-        TelaAdicionarTotem telaAddT = new TelaAdicionarTotem();
-        telaAddT.setVisible(true);
+       
         //connect.getJdbc().execute("INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234')");
         //System.out.println(connect.getJdbc().queryForList("SELECT * FROM filial"));
         //System.out.println(comps.getHostname());
