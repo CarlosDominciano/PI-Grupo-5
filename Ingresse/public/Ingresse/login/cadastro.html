@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cadastro</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet" />
+  <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon" />
+  <link rel="stylesheet" href="./cadastro.css" />
+</head>
+
+<body>
+  <!-- Header -->
+  <div class="header">
+    <div class="container">
+      <div class="logo">
+        <span class="icon">
+          <ion-icon name="ticket"></ion-icon>
+        </span>
+        <span class="text"> Ingresse </span>
+      </div>
+      <div class="navigation">
+        <ul>
+          <li class="list">
+            <a class="opcoes" href="../Index/index.html">Serviços</a>
+            <a class="opcoes" href="">Tecnologias</a>
+            <a class="opcoes" href="">Monitoria</a>
+            <a class="opcoes" href="../login/login.html">Sign-in</a>
+            <a class="atual">Sign-up</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Header -->
+  <!-- Cadastro -->
+  <div class="main-cadastro">
+    <div class="left-cadastro">
+      <h1>Faça cadastro e entre no nosso time!</h1>
+      <img src="../assets/design-team-animate (2).svg" class="left-cadastro-image" alt="cine animação" />
+    </div>
+    <div class="rigth-cadastro">
+      <div class="card-cadastro">
+        <h1>Cadastro</h1>
+        <div class="textfield">
+          <input type="text" id="usuarioId" nome="usuario" placeholder="Usuário" />
+        </div>
+        <div class="textfield">
+          <input type="tel" id="telefoneId" nome="telefone" placeholder="Telefone" />
+        </div>
+        <div class="textfield">
+          <input type="text" id="emailId" nome="email" placeholder="E-mail" />
+        </div>
+        <div class="textfield">
+          <input type="password" id="senhaId" nome="senha" placeholder="Senha" />
+        </div>
+        <div class="textfield">
+          <input type="password" id="confirmaSenhaId" nome="confirmaSenha" placeholder="Confirme senha" />
+        </div>
+        <button class="btn-login" onclick="cadastrar()">Ok</button>
+      </div>
+    </div>
+  </div>
+  <!-- End Cadastro -->
+  <!-- Footer -->
+  <div class="footer">
+    <div class="container">
+      <div class="box-left">
+        <span class="informacoes">
+          <span class="titulo">
+            Addrees:
+            <span class="conteudo">
+              Rua Haddock Lobo, 595 - São Paulo - SP, 01414-001
+            </span>
+          </span>
+          <span class="titulo">
+            Phone:
+            <span class="conteudo"> +55 11 96719-7958 </span>
+          </span>
+          <span class="titulo">
+            Email:
+            <span class="conteudo"> Ingresse@contato.com </span>
+          </span>
+          <span class="icon">
+            <ion-icon name="ticket"></ion-icon>
+            <span class="logo"> Ingresse </span>
+          </span>
+        </span>
+      </div>
+      <div class="box-right">
+        <span class="titulo"> PARA OFERTAS: </span>
+        <span class="conteudo">
+          <input placeholder="Digite seu email aqui" type="text" />
+          <button class="sign-up">Inscreva-se</button>
+        </span>
+        <span class="titulo"> Redes Sociais: </span>
+        <span class="conteudo">
+          <ion-icon name="logo-facebook"></ion-icon>
+          <ion-icon name="logo-twitter"></ion-icon>
+          <ion-icon name="logo-linkedin"></ion-icon>
+        </span>
+      </div>
+    </div>
+  </div>
+  <div class="copyright">
+    <div class="container">
+      <div class="titulo">TheBox Company © 2022 All Rights Reserved</div>
+    </div>
+  </div>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
+<script>
+
+  function cadastrar() {
+
+    var nomeVar = usuarioId.value;
+    var emailVar = emailId.value;
+    var telefoneVar = telefoneId.value;
+    var senhaVar = senhaId.value;
+    var confirmarVar = confirmaSenhaId.value;
+
+    if (nomeVar == "" || senhaVar == "" || confirmarVar == "" || 
+    telefoneVar == "" || emailVar == "") {
+
+      window.alert("Preencha todos os campos para prosseguir!");
+      if (nomeVar == "") {
+        alert('nome está em branco');
+      }
+      if (senhaVar == "") {
+        alert('senha está em branco');
+      }
+      if (confirmarVar == "") {
+        alert('confirmacao Senha está em branco');
+      }
+      if (telefoneVar == "") {
+        alert('o telefone está em branco');
+      }
+      if (emailVar == "") {
+        alert('o email está em branco');
+      }
+      return false;
+    }
+
+    if (senhaVar != confirmarVar) {
+      window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+      return false;
+    }
+
+    fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: {
+            "Content-Type": "application/json"
+        },
+      body: JSON.stringify({
+            email: emailVar,
+            senha: senhaVar,
+            nome: nomeVar,
+            telefone: telefoneVar,
+            confirmar: confirmarVar
+        })
+    }).then(function (resposta) {
+
+      console.log("resposta: ", resposta);
+
+      if (resposta.ok) {
+        window.alert("Cadastro realizado com sucesso!");
+        window.location = "login.html";
+        console.log("Cadastro certo !!")
+      } else {
+        throw ("Houve um erro ao tentar realizar o cadastro!");
+      }
+    }).catch(function (resposta) {
+      console.log(`#ERRO: ${resposta}`);
+    });
+
+    return false;
+  }
+
+</script>
