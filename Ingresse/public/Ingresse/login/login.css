@@ -414,6 +414,12 @@ h5
     background-color: var(--clrClickDetails);
 }
 
+.conteudo ion-icon:hover
+{
+    cursor: pointer;
+    color: var(--clrClickDetails);
+}
+
 /* Copyright */
 .copyright
 {

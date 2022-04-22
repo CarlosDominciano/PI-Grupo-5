@@ -137,6 +137,22 @@ body
     margin: auto;
 }
 
+.imagem-carousel
+{
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.imagem-carousel img
+{
+    
+    width: 100%;
+}
+
 .background-full .texto-carousel
 {
     height: 80%;
@@ -924,6 +940,12 @@ body::-webkit-scrollbar-thumb
 .footer .container .box-right .conteudo button:active
 {
     background-color: var(--clrClickDetails);
+}
+
+.conteudo ion-icon:hover
+{
+    cursor: pointer;
+    color: var(--clrClickDetails);
 }
 
 /* Copyright */
