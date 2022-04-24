@@ -36,8 +36,8 @@ public class IngresseSoftware {
         //Selenium selenium = new Selenium();
         
         //selenium.automacaoSelenium();
-        //TelaPrincipal telaPrincipal = new TelaPrincipal(usando);
-        //telaPrincipal.setVisible(true);
+//        TelaPrincipal telaPrincipal = new TelaPrincipal(usando);
+//        telaPrincipal.setVisible(true);
         //Double result = comps.getDisco().doubleValue()/1000000000;
         //Double result2 = (double) (Math.round(result*1.0/1.0));
         //System.out.println(comps.getDataTotem());

@@ -62,7 +62,7 @@ public class Componentes {
         this.temp = componentes.getTemperatura().getTemperatura();
         this.idProcessador = componentes.getProcessador().getId();
         this.qtdServicos = componentes.getGrupoDeServicos().getTotalDeServicos();
-    }
+           }
 
     public String getHostname() {
         return hostname;

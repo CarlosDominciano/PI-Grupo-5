@@ -128,15 +128,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
         progres3 = new javax.swing.JProgressBar();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        progres2 = new javax.swing.JProgressBar();
-        jLabel8 = new javax.swing.JLabel();
         progres5 = new javax.swing.JProgressBar();
         jLabel2 = new javax.swing.JLabel();
         btnAddTotem = new javax.swing.JToggleButton();
-        progres4 = new javax.swing.JProgressBar();
-        jLabel11 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         btnAdicionarTotem = new javax.swing.JToggleButton();
         btnProcessos = new javax.swing.JToggleButton();
@@ -286,22 +280,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Memoria em uso: ");
 
-        jLabel5.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel5.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Velocidade:");
-
-        jLabel7.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setText("Ghz:");
-
-        progres2.setStringPainted(true);
-
-        jLabel8.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel8.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setText("Processamento:");
-
         progres5.setStringPainted(true);
 
         jLabel2.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
@@ -318,13 +296,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        progres4.setStringPainted(true);
-
-        jLabel11.setBackground(new java.awt.Color(255, 255, 255));
-        jLabel11.setFont(new java.awt.Font("Liberation Sans", 1, 15)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Memória em disco total: ");
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -335,35 +306,22 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addComponent(jLabel1)
-                                .addGap(56, 56, 56)
-                                .addComponent(jLabel5)
-                                .addGap(62, 62, 62)
-                                .addComponent(jLabel7)))
-                        .addContainerGap(71, Short.MAX_VALUE))
+                            .addComponent(jLabel1))
+                        .addContainerGap(213, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel11)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel2)
-                                .addComponent(jLabel8)
-                                .addComponent(progres3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progres1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progres2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progres5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(progres4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnAddTotem, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE)))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel2)
+                            .addComponent(progres3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(progres1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(progres5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnAddTotem, javax.swing.GroupLayout.DEFAULT_SIZE, 301, Short.MAX_VALUE))
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(36, 36, 36)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel5)
-                    .addComponent(jLabel7))
+                .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progres1, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -371,20 +329,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progres3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel8)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(progres2, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(12, 12, 12)
                 .addComponent(jLabel2)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(progres5, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel11)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(progres4, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(36, 36, 36)
                 .addComponent(btnAddTotem, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(19, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
 
         jPanel3.setBackground(new java.awt.Color(97, 0, 120));
@@ -491,7 +441,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     .addComponent(btnProcessos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdicionarTotem8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnAdicionarTotem9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -514,7 +464,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 .addComponent(btnAdicionarTotem9, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnAdicionarTotem8, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
 
         btnIniciarMonitoramento.setBackground(new java.awt.Color(153, 0, 153));
@@ -545,57 +495,57 @@ public class TelaPrincipal extends javax.swing.JFrame {
         painelLogin.setLayout(painelLoginLayout);
         painelLoginLayout.setHorizontalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(painelGeralBackground, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(painelLoginLayout.createSequentialGroup()
                 .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(painelLoginLayout.createSequentialGroup()
-                                .addGap(26, 26, 26)
-                                .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(painelLoginLayout.createSequentialGroup()
-                                .addGap(22, 22, 22)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(painelLoginLayout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.DEFAULT_SIZE, 372, Short.MAX_VALUE)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addGroup(painelLoginLayout.createSequentialGroup()
-                                        .addGap(28, 28, 28)
-                                        .addComponent(btnIniciarMonitoramento1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(painelLoginLayout.createSequentialGroup()
-                                        .addGap(18, 18, 18)
-                                        .addComponent(jScrollPane1))))))
+                        .addGap(26, 26, 26)
+                        .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addGap(64, 64, 64)
+                        .addGap(22, 22, 22)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addGap(50, 50, 50)
                         .addComponent(jLabel6)))
+                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 667, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addGap(18, 18, 18)
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(painelLoginLayout.createSequentialGroup()
+                                .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 372, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(28, 28, 28)
+                                .addComponent(btnIniciarMonitoramento1, javax.swing.GroupLayout.PREFERRED_SIZE, 347, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(painelLoginLayout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 357, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(22, Short.MAX_VALUE))
-            .addComponent(painelGeralBackground, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         painelLoginLayout.setVerticalGroup(
             painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painelLoginLayout.createSequentialGroup()
                 .addComponent(painelGeralBackground, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29)
-                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
+                        .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
                         .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnIniciarMonitoramento1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(255, 255, 255)
+                            .addComponent(btnIniciarMonitoramento1, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnIniciarMonitoramento, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 239, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(painelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(painelLoginLayout.createSequentialGroup()
+                        .addGap(324, 324, 324)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 658, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(painelLoginLayout.createSequentialGroup()
-                        .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(45, 45, 45)
+                        .addGap(724, 724, 724)
                         .addComponent(btnMonitorarTotens2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -614,139 +564,149 @@ public class TelaPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void btnIniciarMonitoramento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramento1ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            enviarRelatorio();}else{}
+    }//GEN-LAST:event_btnIniciarMonitoramento1ActionPerformed
+
     private void btnIniciarMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramentoActionPerformed
         if(totemCadastrado){
-        ativadoDesativado.setForeground(Color.GREEN);
-        ativadoDesativado.setText("Ativado...");
-        AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+            ativadoDesativado.setForeground(Color.GREEN);
+            ativadoDesativado.setText("Ativado...");
+            AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
 
-        Integer porcentagem1 = comps.getProcessamento().intValue();
-        Integer porcentagem2 = ThreadLocalRandom.current().nextInt(0, 101);
-        Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
-        Integer porcentagem4 = ThreadLocalRandom.current().nextInt(0, 101);
-        Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
+            Integer porcentagem1 = comps.getProcessamento().intValue();
+            Integer porcentagem2 = ThreadLocalRandom.current().nextInt(0, 101);
+            Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
+            Integer porcentagem4 = ThreadLocalRandom.current().nextInt(0, 101);
+            Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
 
-        progres1.setValue(porcentagem1);
-        progres2.setValue(porcentagem2);
-        progres3.setValue(porcentagem3);
-        progres4.setValue(porcentagem4);
-        progres5.setValue(porcentagem5);
+            progres1.setValue(porcentagem1);
+            progres3.setValue(porcentagem3);
+            progres5.setValue(porcentagem5);
 
-        slackAlert.sendMessageToSlack("Alert system");
-        timer.scheduleAtFixedRate(new TimerTask(){
-            @Override public void run(){
-                enviarRelatorio(logAtual);
+            //slackAlert.sendMessageToSlack("Alert system");
+            timer.scheduleAtFixedRate(new TimerTask(){
+                @Override public void run(){
+                    enviarRelatorio(logAtual);
+                }
+            }, 1000, minuto * 3);
+
+            if (porcentagem1 > 95) {
+                alertaMonitora.setVisible(true);
+                alertaMonitora.textoAlertaMonitoramento1();
+
+            } else if (porcentagem2 > 95) {
+                alertaMonitora.setVisible(true);
+                alertaMonitora.textoAlertaMonitoramento2();
+
+            } else if (porcentagem3 > 95) {
+                alertaMonitora.setVisible(true);
+                alertaMonitora.textoAlertaMonitoramento3();
+
+            } else if (porcentagem4 > 95) {
+                alertaMonitora.setVisible(true);
+                alertaMonitora.textoAlertaMonitoramento4();
+
+            } else if (porcentagem5 > 95) {
+                alertaMonitora.setVisible(true);
+                alertaMonitora.textoAlertaMonitoramento5();
             }
-        }, 1000, minuto * 3);
-
-        if (porcentagem1 > 95) {
-            alertaMonitora.setVisible(true);
-            alertaMonitora.textoAlertaMonitoramento1();
-
-        } else if (porcentagem2 > 95) {
-            alertaMonitora.setVisible(true);
-            alertaMonitora.textoAlertaMonitoramento2();
-
-        } else if (porcentagem3 > 95) {
-            alertaMonitora.setVisible(true);
-            alertaMonitora.textoAlertaMonitoramento3();
-
-        } else if (porcentagem4 > 95) {
-            alertaMonitora.setVisible(true);
-            alertaMonitora.textoAlertaMonitoramento4();
-
-        } else if (porcentagem5 > 95) {
-            alertaMonitora.setVisible(true);
-            alertaMonitora.textoAlertaMonitoramento5();
-        }
         }else{}
-        
- 
+
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
 
-    private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
+    private void btnAdicionarTotem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem9ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            txtMenu.setText(comps.getProcessador().toString());
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
+    }//GEN-LAST:event_btnAdicionarTotem9ActionPerformed
 
+    private void btnAdicionarTotem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem8ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            txtMenu.setText(comps.getServicosAtv().toString());
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
+    }//GEN-LAST:event_btnAdicionarTotem8ActionPerformed
 
-    }//GEN-LAST:event_btnMonitorarTotens2ActionPerformed
+    private void btnAdicionarTotem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem7ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            Long result = comps.getMemVolUso()/1000000000;
+            txtMenu.setText(result.toString()+" GB");
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
+    }//GEN-LAST:event_btnAdicionarTotem7ActionPerformed
+
+    private void btnAdicionarTotem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem6ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            txtMenu.setText(comps.getQtdProcessos().toString()+" Processos");
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
+    }//GEN-LAST:event_btnAdicionarTotem6ActionPerformed
+
+    private void btnAdicionarTotem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem5ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            txtMenu.setText(comps.getProcessamento().toString()+"% da capacidade da CPU");
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
+    }//GEN-LAST:event_btnAdicionarTotem5ActionPerformed
+
+    private void btnAdicionarTotem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem4ActionPerformed
+        // TODO add your handling code here:
+        if(totemCadastrado){
+            Long result = comps.getDisco()/1000000000;
+            txtMenu.setText(result.toString()+" GB");
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
+    }//GEN-LAST:event_btnAdicionarTotem4ActionPerformed
+
+    private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
+        if(totemCadastrado){
+            txtMenu.setText(comps.getProcessos().toString());
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }
+        else{}
+
+    }//GEN-LAST:event_btnProcessosActionPerformed
 
     private void btnAdicionarTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotemActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-        Long result = comps.getRam()/1000000000;
-        txtMenu.setText(result.intValue()+" GB");
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+            Long result = comps.getRam()/1000000000;
+            txtMenu.setText(result.intValue()+" GB");
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{
-        
-        }
 
+        }
     }//GEN-LAST:event_btnAdicionarTotemActionPerformed
 
     private void btnAddTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTotemActionPerformed
         if(totemCadastrado == false){
-        Double discoDouble = (double) (Math.round((comps.getDisco()/1000000000)*1.0/1.0));
-        Double ramDouble = (double) (Math.round((comps.getRam()/1000000000)*1.0/1.0));
-        //connect.getJdbc().execute(String.format("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES %d,%.1f,%.1f,%s,%s,%s", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador()));
-        connect.getJdbc().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES (?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador());
-        telaLogin.setVisible(true);
-        dispose();
+            Double discoDouble = (double) (Math.round((comps.getDisco()/1000000000)*1.0/1.0));
+            Double ramDouble = (double) (Math.round((comps.getRam()/1000000000)*1.0/1.0));
+            //connect.getJdbc().execute(String.format("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES %d,%.1f,%.1f,%s,%s,%s", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador()));
+            connect.getJdbc().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES (?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador());
+            telaLogin.setVisible(true);
+            dispose();
         }
         else{
-        
+
         }
         //TelaAdicionarTotem addTotem = new TelaAdicionarTotem();
         //addTotem.setVisible(true);
     }//GEN-LAST:event_btnAddTotemActionPerformed
 
-    private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
-        if(totemCadastrado){
-        txtMenu.setText(comps.getProcessos().toString());
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }
-        else{}
-      
+    private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
 
-    }//GEN-LAST:event_btnProcessosActionPerformed
-
-    private void btnAdicionarTotem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem4ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-        Long result = comps.getDisco()/1000000000;
-        txtMenu.setText(result.toString()+" GB");
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }else{}
-    }//GEN-LAST:event_btnAdicionarTotem4ActionPerformed
-
-    private void btnAdicionarTotem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem5ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-         txtMenu.setText(comps.getProcessamento().toString()+"% da capacidade da CPU");
-         logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }else{}
-    }//GEN-LAST:event_btnAdicionarTotem5ActionPerformed
-
-    private void btnAdicionarTotem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem6ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-        txtMenu.setText(comps.getQtdProcessos().toString()+" Processos");
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }else{}
-    }//GEN-LAST:event_btnAdicionarTotem6ActionPerformed
-
-    private void btnAdicionarTotem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem7ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-        Long result = comps.getMemVolUso()/1000000000;
-        txtMenu.setText(result.toString()+" GB");
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }else{}
-    }//GEN-LAST:event_btnAdicionarTotem7ActionPerformed
-
-    private void btnIniciarMonitoramento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramento1ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-        enviarRelatorio();}else{}
-    }//GEN-LAST:event_btnIniciarMonitoramento1ActionPerformed
+    }//GEN-LAST:event_btnMonitorarTotens2ActionPerformed
 
     private void btnSair2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair2ActionPerformed
         // TODO add your handling code here:
@@ -756,23 +716,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
         telaLogin.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSair2ActionPerformed
-
-    private void btnAdicionarTotem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem8ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-        txtMenu.setText(comps.getServicosAtv().toString());
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }else{}
-
-    }//GEN-LAST:event_btnAdicionarTotem8ActionPerformed
-
-    private void btnAdicionarTotem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem9ActionPerformed
-        // TODO add your handling code here:
-        if(totemCadastrado){
-        txtMenu.setText(comps.getProcessador().toString());
-        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-        }else{}
-    }//GEN-LAST:event_btnAdicionarTotem9ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -830,15 +773,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JDialog jDialog2;
     private javax.swing.JFrame jFrame1;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -847,9 +786,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel painelGeralBackground;
     private javax.swing.JPanel painelLogin;
     private javax.swing.JProgressBar progres1;
-    private javax.swing.JProgressBar progres2;
     private javax.swing.JProgressBar progres3;
-    private javax.swing.JProgressBar progres4;
     private javax.swing.JProgressBar progres5;
     private javax.swing.JTextArea txtMenu;
     private javax.swing.JLabel txtNomeUsuario;

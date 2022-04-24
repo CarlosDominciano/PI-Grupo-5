@@ -1,4 +1,4 @@
-CREATE DATABASE ingresse;
+CREATE DATABASE ingresse-bd;
 
 USE ingresse;
 
