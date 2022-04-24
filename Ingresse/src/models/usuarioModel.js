@@ -2,7 +2,7 @@ var database = require("../database/config");
 
 function cadastrar(nome, email, senha, telefone) {
   var instrucao = `
-    INSERT INTO usuario(nome, email, senha, telefone) VALUES
+    INSERT INTO usuario(nome, email_usuario, senha, telefone) VALUES
     ('${nome}', '${email}', '${senha}', '${telefone}');
     `;
   console.log("cadastrando Usuários");
@@ -11,7 +11,7 @@ function cadastrar(nome, email, senha, telefone) {
 
 function login(email, senha) {
   var instrucao = `
-    SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}'
+    SELECT * FROM usuario WHERE email_usuario = '${email}' AND senha = '${senha}'
   `;
   console.assert("Logando usuario");
   return database.executar(instrucao);

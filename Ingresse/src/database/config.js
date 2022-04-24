@@ -1,12 +1,12 @@
-var mysql = require("mysql2");
-var sql = require("mysql2");
+var mysql = require('mysql2');
+var sql = require('mssql');
 
 // (NUVEM)
 var sqlServerConfig = {
-    user: "",
-    password: "",
-    database: "",
-    server: "",
+    user: "ingresseAdmin",
+    password: "2adsb#grupo5",
+    database: "ingresse-bd",
+    server: "ingresse-srv.database.windows.net",
     pool: {
         max: 10,
         min: 0,
