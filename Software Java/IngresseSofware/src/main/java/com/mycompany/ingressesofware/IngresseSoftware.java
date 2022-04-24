@@ -20,6 +20,8 @@ public class IngresseSoftware {
         Componentes comps = new Componentes();
         Conexao connect = new Conexao();
         TelaLogin telaLogin = new TelaLogin();
+        telaLogin.setVisible(true);
+        //Usuario usando = new Usuario(3,"Jose Silva","Jose@gmail.com","suporte",1,"teste");
        
         //connect.getJdbc().execute("INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234')");
         //System.out.println(connect.getJdbc().queryForList("SELECT * FROM filial"));
@@ -34,8 +36,10 @@ public class IngresseSoftware {
         //Selenium selenium = new Selenium();
         
         //selenium.automacaoSelenium();
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
-        telaPrincipal.setVisible(true);
-        
+        //TelaPrincipal telaPrincipal = new TelaPrincipal(usando);
+        //telaPrincipal.setVisible(true);
+        //Double result = comps.getDisco().doubleValue()/1000000000;
+        //Double result2 = (double) (Math.round(result*1.0/1.0));
+        //System.out.println(comps.getDataTotem());
     }
 }

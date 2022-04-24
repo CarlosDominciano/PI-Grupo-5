@@ -14,11 +14,14 @@ import java.util.logging.Logger;
  * @author carlos.dominciano@VALEMOBI.CORP
  */
 public class TelaToken extends javax.swing.JFrame {
-
+    
+    
+    Usuario sessao;
     /**
      * Creates new form TelaToken
      */
-    public TelaToken() {
+    public TelaToken(Usuario sessao) {
+        this.sessao = sessao;
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("Confirmação Token");
@@ -158,7 +161,7 @@ public class TelaToken extends javax.swing.JFrame {
     Integer contadorErro = 0;
     private void btnConfirmacaoTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmacaoTokenActionPerformed
 
-        TelaPrincipal telaPrincipal = new TelaPrincipal();
+        TelaPrincipal telaPrincipal = new TelaPrincipal(sessao);
         if (randomToken.toString().equals(txtToken.getText())) {
             telaPrincipal.setVisible(true);
             dispose();

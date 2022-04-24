@@ -13,7 +13,16 @@ public class Usuario {
     private String nome;
     private String email_usuario;
     private String tipo_acesso;
+    private Integer fkFilial;
     private String senha;
+    
+    public Integer getFkFilial() {
+        return fkFilial;
+    }
+
+    public void setFkFilial(Integer fkFilial) {
+        this.fkFilial = fkFilial;
+    }
 
     public String getSenha() {
         return senha;
@@ -30,14 +39,17 @@ public class Usuario {
     
     public Usuario(){}
 
-    public Usuario(Integer idUsuario, String nome, String email_usuario, String tipo_acesso, String senha) {
+    public Usuario(Integer idUsuario, String nome, String email_usuario, String tipo_acesso, Integer fkFilial, String senha) {
         this.idUsuario = idUsuario;
         this.nome = nome;
         this.email_usuario = email_usuario;
         this.tipo_acesso = tipo_acesso;
+        this.fkFilial = fkFilial;
         this.senha = senha;
     }
 
+
+    
     public Integer getIdUsuario() {
         return idUsuario;
     }

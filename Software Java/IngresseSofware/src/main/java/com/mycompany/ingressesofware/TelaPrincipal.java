@@ -4,13 +4,17 @@
  */
 package com.mycompany.ingressesofware;
 
+import com.google.gson.Gson;
 import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
 import java.awt.Color;
+import java.util.Date;
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
  *
@@ -21,10 +25,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     TelaLogin telaLogin = new TelaLogin();
     Componentes comps = new Componentes();
     Conexao connect = new Conexao();
-
+    List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s'",comps.getIdProcessador()), new BeanPropertyRowMapper<>(Totem.class));
+    Boolean totemCadastrado = verificacaoTotem.isEmpty() ? false : true;
     SlackIntegrationTest slackAlert = new SlackIntegrationTest();
     Boolean seguranca;
+    Usuario sessao;
+    Relatorio logAtual;
 
+    
+            
     void metodoValidacao() {
         Boolean seguranca = telaLogin.getValidacao();
         if (seguranca == true) {
@@ -34,11 +43,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
             slackAlert.sendMessageToSlack("Alerta tentativa de invasão.");
         }
     }
-
+    
     /**
      * Creates new form TelaLogin
      */
-    public TelaPrincipal() {
+    public TelaPrincipal(Usuario sessao) {
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -58,6 +67,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }
         initComponents();
         this.setLocationRelativeTo(null);
+        this.sessao = sessao;
 
 //        setExtendedState(MAXIMIZED_BOTH);
         ativadoDesativado.setForeground(Color.RED);
@@ -67,6 +77,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
        
     }
 
+    Relatorio gerarNovoRelatorio(Totem vinculo, Componentes compos){
+        String processos = new Gson().toJson(compos.getProcessos());
+        String servicos = new Gson().toJson(compos.getServicosAtv());
+        Relatorio log = new Relatorio(vinculo.getIdTotem(), compos.getProcessamento().intValue(), compos.regraTres(compos.getMemVolUso(), compos.getRam()), compos.regraTres(compos.getDiscoUso(), compos.getDisco()), compos.getQtdProcessos(), compos.getQtdServicos(), compos.getTemp(), servicos, processos);
+        return log;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -581,15 +597,17 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIniciarMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramentoActionPerformed
+        if(totemCadastrado){
         ativadoDesativado.setForeground(Color.GREEN);
         ativadoDesativado.setText("Ativado...");
         AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
 
-        Integer porcentagem1 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem1 = comps.getProcessamento().intValue();
         Integer porcentagem2 = ThreadLocalRandom.current().nextInt(0, 101);
-        Integer porcentagem3 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
         Integer porcentagem4 = ThreadLocalRandom.current().nextInt(0, 101);
-        Integer porcentagem5 = ThreadLocalRandom.current().nextInt(0, 101);
+        Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
 
         progres1.setValue(porcentagem1);
         progres2.setValue(porcentagem2);
@@ -619,6 +637,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             alertaMonitora.setVisible(true);
             alertaMonitora.textoAlertaMonitoramento5();
         }
+        }else{}
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
 
     private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
@@ -628,45 +647,77 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnAdicionarTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotemActionPerformed
         // TODO add your handling code here:
-        txtMenu.setText(comps.getMemVolLivre().toString());     
+        if(totemCadastrado){
+        txtMenu.setText(comps.getMemVolLivre().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{
+        
+        }
 
     }//GEN-LAST:event_btnAdicionarTotemActionPerformed
 
     private void btnAddTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTotemActionPerformed
-        TelaAdicionarTotem addTotem = new TelaAdicionarTotem();
-        addTotem.setVisible(true);
+        if(totemCadastrado == false){
+        Double discoDouble = (double) (Math.round((comps.getDisco()/1000000000)*1.0/1.0));
+        Double ramDouble = (double) (Math.round((comps.getRam()/1000000000)*1.0/1.0));
+        //connect.getJdbc().execute(String.format("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES %d,%.1f,%.1f,%s,%s,%s", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador()));
+        connect.getJdbc().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES (?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador());
+        telaLogin.setVisible(true);
+        dispose();
+        }
+        else{
+        
+        }
+        //TelaAdicionarTotem addTotem = new TelaAdicionarTotem();
+        //addTotem.setVisible(true);
     }//GEN-LAST:event_btnAddTotemActionPerformed
 
     private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
-
+        if(totemCadastrado){
         txtMenu.setText(comps.getProcessos().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }
+        else{}
       
 
     }//GEN-LAST:event_btnProcessosActionPerformed
 
     private void btnAdicionarTotem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem4ActionPerformed
         // TODO add your handling code here:
+        if(totemCadastrado){
         txtMenu.setText(comps.getDisco().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
     }//GEN-LAST:event_btnAdicionarTotem4ActionPerformed
 
     private void btnAdicionarTotem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem5ActionPerformed
         // TODO add your handling code here:
+        if(totemCadastrado){
          txtMenu.setText(comps.getProcessamento().toString());
+         logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
     }//GEN-LAST:event_btnAdicionarTotem5ActionPerformed
 
     private void btnAdicionarTotem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem6ActionPerformed
         // TODO add your handling code here:
+        if(totemCadastrado){
         txtMenu.setText(comps.getQtdProcessos().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
     }//GEN-LAST:event_btnAdicionarTotem6ActionPerformed
 
     private void btnAdicionarTotem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem7ActionPerformed
         // TODO add your handling code here:
+        if(totemCadastrado){
         txtMenu.setText(comps.getMemVolUso().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
     }//GEN-LAST:event_btnAdicionarTotem7ActionPerformed
 
     private void btnIniciarMonitoramento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramento1ActionPerformed
         // TODO add your handling code here:
-
+        if(totemCadastrado){
+        connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getServicos(),logAtual.getProcessos(),logAtual.getDataHora());}else{}
     }//GEN-LAST:event_btnIniciarMonitoramento1ActionPerformed
 
     private void btnSair2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair2ActionPerformed
@@ -680,13 +731,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnAdicionarTotem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem8ActionPerformed
         // TODO add your handling code here:
+        if(totemCadastrado){
         txtMenu.setText(comps.getServicosAtv().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
 
     }//GEN-LAST:event_btnAdicionarTotem8ActionPerformed
 
     private void btnAdicionarTotem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem9ActionPerformed
         // TODO add your handling code here:
+        if(totemCadastrado){
         txtMenu.setText(comps.getProcessador().toString());
+        logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}
     }//GEN-LAST:event_btnAdicionarTotem9ActionPerformed
 
     /**
@@ -726,7 +783,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 //            }
 //        });
 //    }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel ativadoDesativado;
     private javax.swing.JToggleButton btnAddTotem;

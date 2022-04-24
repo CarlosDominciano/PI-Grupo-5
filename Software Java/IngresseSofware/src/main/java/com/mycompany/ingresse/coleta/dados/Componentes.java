@@ -8,11 +8,17 @@ import oshi.SystemInfo;
 import oshi.software.os.OperatingSystem;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.Volume;
+import oshi.SystemInfo;
+import oshi.hardware.HWDiskStore;
+import oshi.hardware.HardwareAbstractionLayer;
 import java.time.format.DateTimeFormatter;
+import oshi.software.os.OSFileStore;
 import java.util.List;
 import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.time.Instant;
 
 
 /**
@@ -21,6 +27,9 @@ import java.text.SimpleDateFormat;
  */
 public class Componentes {
 
+    private String idProcessador;
+    private Long discoUso;
+    private Double temp;
     private String processador;
     private Long ram;
     private Long disco;
@@ -32,6 +41,7 @@ public class Componentes {
     private Long memVolUso;
     private Long memVolLivre;
     private String hostname;
+    private Integer qtdServicos;
     private Looca componentes = new Looca();
     private final OperatingSystem os = new SystemInfo().getOperatingSystem();
 
@@ -48,10 +58,39 @@ public class Componentes {
         this.memVolUso = componentes.getMemoria().getEmUso();
         this.memVolLivre = componentes.getMemoria().getDisponivel();
         this.hostname = this.os.getNetworkParams().getHostName();
+        this.discoUso = calcDisco();
+        this.temp = componentes.getTemperatura().getTemperatura();
+        this.idProcessador = componentes.getProcessador().getId();
+        this.qtdServicos = componentes.getGrupoDeServicos().getTotalDeServicos();
     }
 
     public String getHostname() {
         return hostname;
+    }
+    
+    private Long calcDisco(){
+        List<Volume> vols = componentes.getGrupoDeDiscos().getVolumes();
+        Long calc = 000L;
+        for (Volume vol : vols) {
+            calc = calc + vol.getDisponivel();
+        }
+        return disco - calc;
+    }
+
+    public Long getDiscoUso() {
+        return discoUso;
+    }
+
+    public void setDiscoUso(Long discoUso) {
+        this.discoUso = discoUso;
+    }
+
+    public Integer getQtdServicos() {
+        return qtdServicos;
+    }
+
+    public void setQtdServicos(Integer qtdServicos) {
+        this.qtdServicos = qtdServicos;
     }
 
     
@@ -59,6 +98,22 @@ public class Componentes {
         DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss");
         Date date = new Date();
         return dateFormat.format(date);
+    }
+
+    public String getIdProcessador() {
+        return idProcessador;
+    }
+
+    public void setIdProcessador(String idProcessador) {
+        this.idProcessador = idProcessador;
+    }
+
+    public Double getTemp() {
+        return temp;
+    }
+
+    public void setTemp(Double temp) {
+        this.temp = temp;
     }
 
     public String getProcessador() {
@@ -90,6 +145,12 @@ public class Componentes {
         Date date = new Date();
         return dateFormat.format(date);
     }
+    
+    public String getDataTotem() {
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        Date date = new Date();
+        return dateFormat.format(date);
+    }
 
     public Double getProcessamento() {
         return processamento;
@@ -101,6 +162,10 @@ public class Componentes {
 
     public Long getMemVolLivre() {
         return memVolLivre;
+    }
+    public Integer regraTres(Long valorMenor, Long valorTotal){
+        Long result = (valorMenor*100/valorTotal);
+        return Integer.valueOf(result.toString());
     }
     
     

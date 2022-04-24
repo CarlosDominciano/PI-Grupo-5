@@ -240,7 +240,7 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputEmailActionPerformed
 
-    TelaToken telaToken = new TelaToken();
+    
     private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
         Boolean validacaoOpcao = false;
         ErroDigite erroDigite = new ErroDigite();
@@ -256,7 +256,7 @@ public class TelaLogin extends javax.swing.JFrame {
             List<Usuario> user = conecta.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", inputEmail), new BeanPropertyRowMapper<>(Usuario.class));
             Boolean permissao = user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente") ? true : false;
             if (inputEmail.equals(user.get(0).getEmail_usuario()) && inputSenha.equals(user.get(0).getSenha()) && permissao) {
-                TelaPrincipal telaPrincipal = new TelaPrincipal();
+                TelaToken telaToken = new TelaToken(user.get(0));
                 validacaoOpcao = true;
                 telaToken.setVisible(true);
             } else {
