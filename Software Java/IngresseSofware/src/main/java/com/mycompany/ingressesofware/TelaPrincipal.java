@@ -10,6 +10,8 @@ import com.mycompany.ingresse.coleta.dados.Conexao;
 import java.awt.Color;
 import java.util.Date;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,8 +33,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Boolean seguranca;
     Usuario sessao;
     Relatorio logAtual;
+    Timer timer = new Timer();
+    private Long segundo = 1000L;
+    private Long minuto = segundo * 60;
+    private Long hora = minuto * 60;
 
-    
             
     void metodoValidacao() {
         Boolean seguranca = telaLogin.getValidacao();
@@ -74,14 +79,27 @@ public class TelaPrincipal extends javax.swing.JFrame {
         ativadoDesativado.setText("Pausado...");
         setResizable(false);
         lblHostname.setText(comps.getHostname().toString());
+        if(totemCadastrado){
+        txtNomeUsuario.setText(String.format("Monitoramento do Totem Nº %d", verificacaoTotem.get(0).getIdTotem()));
+        }
        
     }
-
+    
     Relatorio gerarNovoRelatorio(Totem vinculo, Componentes compos){
         String processos = new Gson().toJson(compos.getProcessos());
         String servicos = new Gson().toJson(compos.getServicosAtv());
         Relatorio log = new Relatorio(vinculo.getIdTotem(), compos.getProcessamento().intValue(), compos.regraTres(compos.getMemVolUso(), compos.getRam()), compos.regraTres(compos.getDiscoUso(), compos.getDisco()), compos.getQtdProcessos(), compos.getQtdServicos(), compos.getTemp(), servicos, processos);
         return log;
+    }
+    
+    void enviarRelatorio(Relatorio relat){
+      relat = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+      connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", relat.getFkTotem(),relat.getPctgProcessador(),relat.getPctgMemoriaUso(),relat.getPctgDiscoUso(),relat.getQtdProcessos(),relat.getQtdServicos(),relat.getTemp(),relat.getServicos(),relat.getProcessos(),relat.getDataHora());
+
+    }
+    void enviarRelatorio(){
+      connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getServicos(),logAtual.getProcessos(),logAtual.getDataHora());
+
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -616,6 +634,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
         progres5.setValue(porcentagem5);
 
         slackAlert.sendMessageToSlack("Alert system");
+        timer.scheduleAtFixedRate(new TimerTask(){
+            @Override public void run(){
+                enviarRelatorio(logAtual);
+            }
+        }, 1000, minuto * 3);
 
         if (porcentagem1 > 95) {
             alertaMonitora.setVisible(true);
@@ -638,6 +661,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
             alertaMonitora.textoAlertaMonitoramento5();
         }
         }else{}
+        
+ 
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
 
     private void btnMonitorarTotens2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitorarTotens2ActionPerformed
@@ -648,7 +673,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotemActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-        txtMenu.setText(comps.getMemVolLivre().toString());
+        Long result = comps.getRam()/1000000000;
+        txtMenu.setText(result.intValue()+" GB");
         logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{
         
@@ -685,7 +711,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem4ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-        txtMenu.setText(comps.getDisco().toString());
+        Long result = comps.getDisco()/1000000000;
+        txtMenu.setText(result.toString()+" GB");
         logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem4ActionPerformed
@@ -693,7 +720,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem5ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-         txtMenu.setText(comps.getProcessamento().toString());
+         txtMenu.setText(comps.getProcessamento().toString()+"% da capacidade da CPU");
          logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem5ActionPerformed
@@ -701,7 +728,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem6ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-        txtMenu.setText(comps.getQtdProcessos().toString());
+        txtMenu.setText(comps.getQtdProcessos().toString()+" Processos");
         logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem6ActionPerformed
@@ -709,7 +736,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem7ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-        txtMenu.setText(comps.getMemVolUso().toString());
+        Long result = comps.getMemVolUso()/1000000000;
+        txtMenu.setText(result.toString()+" GB");
         logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem7ActionPerformed
@@ -717,7 +745,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnIniciarMonitoramento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramento1ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-        connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getServicos(),logAtual.getProcessos(),logAtual.getDataHora());}else{}
+        enviarRelatorio();}else{}
     }//GEN-LAST:event_btnIniciarMonitoramento1ActionPerformed
 
     private void btnSair2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair2ActionPerformed
