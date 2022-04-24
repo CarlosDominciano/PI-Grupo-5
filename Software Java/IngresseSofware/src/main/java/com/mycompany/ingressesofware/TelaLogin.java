@@ -10,6 +10,8 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
 import javax.swing.JFrame;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -25,6 +27,10 @@ public class TelaLogin extends javax.swing.JFrame {
      */
     private Boolean validacao = false;
     private Conexao conecta = new Conexao();
+    private Timer timer = new Timer();
+    private Long segundo = 1000L;
+    private Long minuto = segundo * 60;
+    private Long hora = minuto * 60;
 
     public Boolean getValidacao() {
         return validacao;
@@ -259,6 +265,14 @@ public class TelaLogin extends javax.swing.JFrame {
                 TelaToken telaToken = new TelaToken(user.get(0));
                 validacaoOpcao = true;
                 telaToken.setVisible(true);
+                timer.scheduleAtFixedRate(new TimerTask(){
+                @Override public void run(){
+                if(telaToken.getFecharLogin()){
+                dispose();
+            
+                }
+                }
+                }, segundo * 5, segundo * 30);
             } else {
                 if (validacaoOpcao) {
                     System.out.println("fix confirmacao email ou senha vazio");
@@ -285,7 +299,7 @@ public class TelaLogin extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnEntrarActionPerformed
-
+    
     private void inputSenhaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_inputSenhaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_inputSenhaActionPerformed

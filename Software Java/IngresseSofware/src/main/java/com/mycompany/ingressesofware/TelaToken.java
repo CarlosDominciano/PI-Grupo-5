@@ -4,19 +4,28 @@
  */
 package com.mycompany.ingressesofware;
 
+import com.mycompany.ingresse.coleta.dados.Componentes;
+import com.mycompany.ingresse.coleta.dados.Conexao;
+import java.util.List;
 import java.util.Objects;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 
 /**
  *
  * @author carlos.dominciano@VALEMOBI.CORP
  */
 public class TelaToken extends javax.swing.JFrame {
+
+    public Boolean getFecharLogin() {
+        return fecharLogin;
+    }
     
     
-    Usuario sessao;
+    private Usuario sessao;
+    private Boolean fecharLogin;
     /**
      * Creates new form TelaToken
      */
@@ -25,6 +34,7 @@ public class TelaToken extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("Confirmação Token");
+        this.fecharLogin = false;
     }
 
     /**
@@ -160,14 +170,23 @@ public class TelaToken extends javax.swing.JFrame {
 
     Integer contadorErro = 0;
     private void btnConfirmacaoTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmacaoTokenActionPerformed
-
+        Conexao connect = new Conexao();
+        Componentes comps = new Componentes();
         TelaPrincipal telaPrincipal = new TelaPrincipal(sessao);
-        if (randomToken.toString().equals(txtToken.getText())) {
+        List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s'",comps.getIdProcessador()), new BeanPropertyRowMapper<>(Totem.class));
+        
+        if (randomToken.toString().equals(txtToken.getText()) && (verificacaoTotem.isEmpty()||verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial())) 
+        {
             telaPrincipal.setVisible(true);
             dispose();
+            fecharLogin = true;
+            //System.out.println(verificacaoTotem.isEmpty() == false && 
+                    //verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial());
+            
 
         } else {
-            if (contadorErro < 3) {
+           if(randomToken.toString().equals(txtToken.getText()) == false){
+               if (contadorErro < 3) {
                 lblErro1.setText("O token está incorreto");
              
                 contadorErro++;
@@ -175,11 +194,32 @@ public class TelaToken extends javax.swing.JFrame {
                  contadorErro++;
                 lblErro1.setText("Falha, tente novamente");
                 
-            } else {
+            } else{
+             //   contadorErro++;
+                dispose();
+                
+            }
+           }
+            if(verificacaoTotem.isEmpty() == false && verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial()){
+            
+             if(randomToken.toString().equals(txtToken.getText()) == false){
+               if (contadorErro < 3) {
+                lblErro1.setText("O token está incorreto");
+             
+                contadorErro++;
+            }else if( contadorErro > 2 && contadorErro < 4) {
+                 contadorErro++;
+                lblErro1.setText("Falha, tente novamente");
+                
+            } else{
              //   contadorErro++;
                 dispose();
             }
-
+            }
+            }else{
+           
+            System.out.println("Caiu aqui");
+            }
         }
     }//GEN-LAST:event_btnConfirmacaoTokenActionPerformed
 
@@ -191,6 +231,7 @@ public class TelaToken extends javax.swing.JFrame {
 
     }
 
+    
     private void txtTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTokenActionPerformed
 
     }//GEN-LAST:event_txtTokenActionPerformed
