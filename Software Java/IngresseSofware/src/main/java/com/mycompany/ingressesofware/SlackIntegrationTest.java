@@ -15,6 +15,7 @@ import com.github.seratch.jslack.api.webhook.WebhookResponse;
 public class SlackIntegrationTest {
    
     private static String webHooksUrl = "https://hooks.slack.com/services/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";
+    
     private static String oAuthToken = "xoxb-3323550130833-3324392115842-2vohjUMgFbpUMEc5WNRQnTCn";
     private static String slackChannel = "alertachannel";
     

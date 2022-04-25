@@ -10,8 +10,8 @@ import com.github.seratch.jslack.api.webhook.WebhookResponse;
 
 public class SlackRelatorio {
 
-    private static String webHooksUrl = "https://hooks.slack.com/services/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";
-    private static String oAuthToken = "xoxb-3323550130833-3433128763203-mgMJi0sW6EGMFKSfAz4ZHKU7";
+    private static String webHooksUrl = "https://hooks.slack.com/services/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";
+    private static String oAuthToken = "xoxb-3323550130833-3433128763203-SIll44HhZpJxjHick4ra8kUB";
     private static String slackChannel = "relatorio";
 
 

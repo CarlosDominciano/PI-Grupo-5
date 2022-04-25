@@ -114,20 +114,20 @@ public class AlertaMonitoramento extends javax.swing.JFrame {
         return lblAlerta;
     }
      public void textoAlertaMonitoramento1(){
-         lblAlerta.setText("Limite de temperatura foi atingido");
+         lblAlerta.setText("Cpu atingiu 80%");
      }
      public void textoAlertaMonitoramento2(){
-         lblAlerta.setText("Atenção o limite de CPU foi atingido");
+         lblAlerta.setText("");
         
      }
      public void textoAlertaMonitoramento3(){
-         lblAlerta.setText("Limite de Memoria foi atingido");
+         lblAlerta.setText("Memória ram atingiu 80%");
      }
      public void textoAlertaMonitoramento4(){
          lblAlerta.setText("Limite de processamento foi atingido");
      }
      public void textoAlertaMonitoramento5(){
-         lblAlerta.setText("Limite de armazenamento foi atingido");
+         lblAlerta.setText("Armazenamento atingiu 80%");
      }
 
     private void btnAlertaMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaMonitoramentoActionPerformed

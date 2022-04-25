@@ -621,7 +621,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 }
             }, 1000, minuto * 3);
 
-            if (porcentagem1 > 80) {
+            if (porcentagem1 > 2) {
                 alertaMonitora.setVisible(true);
                 alertaMonitora.textoAlertaMonitoramento1();
 
