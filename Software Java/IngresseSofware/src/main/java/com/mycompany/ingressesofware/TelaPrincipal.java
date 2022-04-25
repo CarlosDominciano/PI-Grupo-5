@@ -32,6 +32,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s'",comps.getIdProcessador()), new BeanPropertyRowMapper<>(Totem.class));
     Boolean totemCadastrado = verificacaoTotem.isEmpty() ? false : true;
     SlackIntegrationTest slackAlert = new SlackIntegrationTest();
+    SlackRelatorio slackRelatorio = new SlackRelatorio();
     Boolean seguranca;
     Usuario sessao;
     Relatorio logAtual;
@@ -92,7 +93,26 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     void enviarRelatorio(){
       connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getServicos(),logAtual.getProcessos(),logAtual.getDataHora());
-      slackAlert.sendMessageToSlack(String.format("Sistema: %s\n Processador: %s\n Memória em uso: %s\n Disco em uso: %s\n Quantidade de processos: %s\n %s Quantidade de serviços: %s\n Serviços: %s\n %s Processos: %s ", looca.getSistema().toString(),logAtual.getDataHora().toString(),logAtual.getPctgProcessador().toString(),logAtual.getPctgMemoriaUso().toString(),logAtual.getPctgDiscoUso().toString(),logAtual.getQtdProcessos().toString(),logAtual.getQtdServicos().toString(),logAtual.getTemp().toString(),logAtual.getServicos().toString(),logAtual.getProcessos().toString()));
+      slackRelatorio.sendRelatorio(String.format("%s\n"
+              + "_____________________\n"
+              + "Relatório do totem:\n\n "
+              + "Sistema: %s\n "
+              + "Processador: %s\n "
+              + "Processador em uso: %s\n "
+              + "Memória em uso: %s\n "
+              + "Disco em uso: %s\n "
+              + "Quantidade de processos: %s\n "
+              + "Quantidade de serviços: %s\n " 
+              + "Temperatura: %s ",
+              logAtual.getDataHora().toString(),
+              looca.getSistema().toString(),
+              looca.getProcessador().toString(),
+              logAtual.getPctgProcessador().toString(),
+              logAtual.getPctgMemoriaUso().toString(),
+              logAtual.getPctgDiscoUso().toString(),
+              logAtual.getQtdProcessos().toString(),
+              logAtual.getQtdServicos().toString(),
+              logAtual.getTemp().toString()));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -621,15 +641,16 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(totemCadastrado){
          
-            txtMenu.setText(looca.getSistema().toString());
+            txtMenu.setText(looca.getProcessador().toString());
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+            
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem9ActionPerformed
 
     private void btnSistemaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSistemaActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-            txtMenu.setText(comps.getServicosAtv().toString());
+            txtMenu.setText(looca.getSistema().toString());
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnSistemaActionPerformed
@@ -681,7 +702,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(totemCadastrado){
             Long result = comps.getRam()/1000000000;
-            txtMenu.setText(result.intValue()+" GB");
+            txtMenu.setText(result.intValue()+" GB Ram");
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{
 
@@ -718,7 +739,11 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSair2ActionPerformed
 
     private void btnAdicionarTotem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem10ActionPerformed
-        // TODO add your handling code here:
+      // TODO add your handling code here:
+        if(totemCadastrado){
+            txtMenu.setText(comps.getServicosAtv().toString());
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+        }else{}        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarTotem10ActionPerformed
 
     /**
