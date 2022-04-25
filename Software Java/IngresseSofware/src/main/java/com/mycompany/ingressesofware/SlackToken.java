@@ -14,8 +14,8 @@ import com.github.seratch.jslack.api.webhook.WebhookResponse;
  * @author diego.silva@VALEMOBI.CORP
  */
 public class SlackToken {
-    private static String webHooksUrl = "https://hooks.slack.com/services/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";
-    private static String oAuthToken = "xoxp-3323550130833-3296337572615-3435456757794-d88efd095b9c6649bacf5630a273f9fa";
+    private static String webHooksUrl = "https://hooks.slack.com/services/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";
+    private static String oAuthToken = "xoxp-3323550130833-3296337572615-3421540740759-f65f00d1ab0e2c201e0d5aa5184e9b0e";
     private static String slackChannel = "tokenchannel";
     
     
