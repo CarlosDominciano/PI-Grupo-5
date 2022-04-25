@@ -21,6 +21,13 @@ public class IngresseSoftware {
         Componentes comps = new Componentes();
         Conexao connect = new Conexao();
         TelaLogin telaLogin = new TelaLogin();
+        SlackIntegrationTest slackAlert = new SlackIntegrationTest();
+        SlackRelatorio slackRelatorio = new SlackRelatorio();
+        SlackToken slackToken = new SlackToken();
+        
+        slackAlert.sendMessageToSlack("Iniciando...");
+        slackRelatorio.sendRelatorio("Iniciando...");
+        slackToken.sendToken("Iniciando...");
         telaLogin.setVisible(true);
         //Usuario usando = new Usuario(3,"Jose Silva","Jose@gmail.com","suporte",1,"teste");
        
