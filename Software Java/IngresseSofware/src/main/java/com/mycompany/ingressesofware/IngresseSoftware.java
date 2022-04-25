@@ -5,6 +5,7 @@
 
 package com.mycompany.ingressesofware;
 
+import com.github.britooo.looca.api.core.Looca;
 import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
 import java.text.ParseException;
@@ -29,10 +30,12 @@ public class IngresseSoftware {
 
         System.out.println(comps.getData());
         //telaLogin.setVisible(true);
+          System.out.println("temperatura: " + comps.getTemp());
 
         //connect.getJdbc().execute("INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234')");
         System.out.println(comps.getHostname());
-        
+         Looca looca = new Looca();
+        System.out.println(looca.getSistema());
         //Selenium selenium = new Selenium();
         
         //selenium.automacaoSelenium();
