@@ -46,5 +46,21 @@ public class IngresseSoftware {
         //Double result = comps.getDisco().doubleValue()/1000000000;
         //Double result2 = (double) (Math.round(result*1.0/1.0));
         //System.out.println(comps.getDataTotem());
+        
+        // teste de stress
+//        for (int i = 0; i < 10000000; i++) {
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//            System.out.println(i);
+//
+//        }
     }
 }
