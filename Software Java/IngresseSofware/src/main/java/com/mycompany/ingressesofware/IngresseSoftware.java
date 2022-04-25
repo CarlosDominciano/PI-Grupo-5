@@ -10,6 +10,7 @@ import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
 import java.text.ParseException;
 import java.util.List;
+import java.util.Scanner;
 
 /**
  *
@@ -28,7 +29,19 @@ public class IngresseSoftware {
         slackAlert.sendMessageToSlack("Iniciando...");
         slackRelatorio.sendRelatorio("Iniciando...");
         slackToken.sendToken("Iniciando...");
-        telaLogin.setVisible(true);
+        Scanner leitor = new Scanner(System.in);
+        
+        System.out.println("Como você deseja para fazer a monitoria?\n"
+                + "1 - Interface gráfica\n"
+                + "2 - Terminal\n"
+                + "Digite sua escolha: ");
+        Integer changeTerminalOrSwing = leitor.nextInt();
+        if (changeTerminalOrSwing == 1){
+            telaLogin.setVisible(true);
+        } else {
+            System.out.println("executando monitoria...");
+        }
+        
         //Usuario usando = new Usuario(3,"Jose Silva","Jose@gmail.com","suporte",1,"teste");
        
         //connect.getJdbc().execute("INSERT INTO filial(email_corporativo,senha,cnpj) VALUES ('empresa@gmail.com','abobrinha','12345678901234')");
