@@ -621,16 +621,19 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 }
             }, 1000, minuto * 3);
 
-            if (porcentagem1 > 2) {
+            if (porcentagem1 > 1) {
                 alertaMonitora.setVisible(true);
+                slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
                 alertaMonitora.textoAlertaMonitoramento1();
 
             } else if (porcentagem3 > 80) {
                 alertaMonitora.setVisible(true);
+                slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
                 alertaMonitora.textoAlertaMonitoramento3();
 
             } else if (porcentagem5 > 80) {
                 alertaMonitora.setVisible(true);
+                slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
                 alertaMonitora.textoAlertaMonitoramento5();
             }
         }else{}

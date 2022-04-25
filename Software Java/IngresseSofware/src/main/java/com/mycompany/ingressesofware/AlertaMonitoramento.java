@@ -114,7 +114,7 @@ public class AlertaMonitoramento extends javax.swing.JFrame {
         return lblAlerta;
     }
      public void textoAlertaMonitoramento1(){
-         lblAlerta.setText("Cpu atingiu 80%");
+         lblAlerta.setText("O processamento (Cpu) atingiu 50%");
      }
      public void textoAlertaMonitoramento2(){
          lblAlerta.setText("");
@@ -124,7 +124,7 @@ public class AlertaMonitoramento extends javax.swing.JFrame {
          lblAlerta.setText("Memória ram atingiu 80%");
      }
      public void textoAlertaMonitoramento4(){
-         lblAlerta.setText("Limite de processamento foi atingido");
+         lblAlerta.setText("");
      }
      public void textoAlertaMonitoramento5(){
          lblAlerta.setText("Armazenamento atingiu 80%");
