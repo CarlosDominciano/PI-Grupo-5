@@ -29,7 +29,7 @@
         </div>
         <div class="box">
             <div class="cardUm" onclick="Modal.openCadastro()">Adicionar funcionario</div>
-            <div class="cardDois" onclick="Modal.openAtualizar()">Atualizar funcionarios</div>
+            <!-- <div class="cardDois" onclick="Modal.openAtualizar()">Atualizar funcionarios</div> -->
             <div class="cardTres" onclick="Modal.openDeletar()">Remover funcionario</div>
             <div class="cardQuatro" onclick="Modal.openListar()">Listar funcionarios</div>
         </div>
@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-
+<!-- 
     <div class="modal-overlay3">
         <div class="modal">
             <img src="../assets/Exit.png" class="btn-fecha" onclick="Modal.closeAtualiza()" alt="Fechar">
@@ -110,8 +110,8 @@
                 <button class="btn-confirma" onclick="atualizarFuncionario()">Ok</button>
             </div>
         </div>
-    </div>
-
+    </div> -->
+<!-- Start of ingresse Zendesk Widget script --><script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2a8aa125-f0f2-454f-965c-1a8aa772c495"> </script><!-- End of ingresse Zendesk Widget script -->
 </body>
 
 </html>
@@ -287,10 +287,10 @@
                 for (let i = 0; i <= len; i++) {
                     let arquivo = data[i];
 
-                    aparece.innerHTML += (`Nome: ${arquivo.nome},
-                                          Telefone: ${arquivo.telefone}, 
-                                          Email: ${arquivo.email},
-                                          ID: ${arquivo.id_usuario}<br>`);
+                    aparece.innerHTML += (`<span style="color: #2F1538;">Nome:</span> ${arquivo.nome},
+                    <span style="color: #2F1538;">Cargo:</span> ${arquivo.tipo_acesso}, 
+                    <span style="color: #2F1538;">Email:</span> ${arquivo.email_usuario},
+                    <span style="color: #9d48ce;">ID:</span> ${arquivo.idUsuario}<br>`);
                 }
             });
         }).catch(function (error) {
