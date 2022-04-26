@@ -8,6 +8,7 @@ import oshi.SystemInfo;
 import oshi.software.os.OperatingSystem;
 
 import com.github.britooo.looca.api.core.Looca;
+import com.github.britooo.looca.api.group.discos.Disco;
 import com.github.britooo.looca.api.group.discos.Volume;
 import oshi.SystemInfo;
 import oshi.hardware.HWDiskStore;
@@ -42,6 +43,7 @@ public class Componentes {
     private Long memVolLivre;
     private String hostname;
     private Integer qtdServicos;
+    private String serialDisco;
     private Looca componentes = new Looca();
     private final OperatingSystem os = new SystemInfo().getOperatingSystem();
 
@@ -62,11 +64,22 @@ public class Componentes {
         this.temp = componentes.getTemperatura().getTemperatura();
         this.idProcessador = componentes.getProcessador().getId();
         this.qtdServicos = componentes.getGrupoDeServicos().getTotalDeServicos();
+        this.serialDisco = componentes.getGrupoDeDiscos().getDiscos().get(0).getSerial();
     }
 
     public String getHostname() {
         return hostname;
     }
+
+    public String getSerialDisco() {
+        return serialDisco;
+    }
+
+    public void setSerialDisco(String serialDisco) {
+        this.serialDisco = serialDisco;
+    }
+    
+    
     
     private Long calcDisco(){
         List<Volume> vols = componentes.getGrupoDeDiscos().getVolumes();

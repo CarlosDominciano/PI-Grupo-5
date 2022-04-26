@@ -18,6 +18,15 @@ public class Totem {
     private String processador;
     private Date dataCompra;
     private String idProcessador;
+    private String serialDisco;
+
+    public String getSerialDisco() {
+        return serialDisco;
+    }
+
+    public void setSerialDisco(String serialDisco) {
+        this.serialDisco = serialDisco;
+    }
 
     public Totem() {
     }

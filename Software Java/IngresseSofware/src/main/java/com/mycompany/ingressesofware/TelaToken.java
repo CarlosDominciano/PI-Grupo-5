@@ -4,12 +4,10 @@
  */
 package com.mycompany.ingressesofware;
 
-import com.github.britooo.looca.api.core.Looca;
 import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
 import java.util.List;
 import java.util.Objects;
-import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -24,10 +22,10 @@ public class TelaToken extends javax.swing.JFrame {
     public Boolean getFecharLogin() {
         return fecharLogin;
     }
-
+    
+    
     private Usuario sessao;
     private Boolean fecharLogin;
-
     /**
      * Creates new form TelaToken
      */
@@ -169,182 +167,80 @@ public class TelaToken extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     Integer randomToken = ThreadLocalRandom.current().nextInt(5023, 10023);
-      Conexao connect = new Conexao();
-            SlackRelatorio slackRelatorio = new SlackRelatorio();
-            Relatorio logAtual;
-            Looca looca = new Looca();
 
     Integer contadorErro = 0;
-    void menuTerminal(Usuario sessao) {
-        String escolhaUser = "";
-        Scanner changeMonitoringOrRelatory = new Scanner(System.in);
-        System.out.println("1 - Iniciar monitoramento");
-        System.out.println("2 - enviar relatório");
-        System.out.println("Escolha: ");
-        escolhaUser = changeMonitoringOrRelatory.nextLine();
-
-        if (escolhaUser.equals("1")) {
-            System.out.println("Iniciando monitoramento...");
-            
-        } else if (escolhaUser.equals("2")) {
-            System.out.println("Enviando relatório...");
-          
-
-
-            System.out.println("Enviando relatório...");
-              connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getServicos(),logAtual.getProcessos(),logAtual.getDataHora());
-      slackRelatorio.sendRelatorio(String.format("%s\n"
-              + "_____________________\n"
-              + "Relatório do totem:\n\n "
-              + "Sistema: %s\n "
-              + "Processador: %s\n "
-              + "Processador em uso: %s\n "
-              + "Memória em uso: %s\n "
-              + "Disco em uso: %s\n "
-              + "Quantidade de processos: %s\n "
-              + "Quantidade de serviços: %s\n " 
-              + "Temperatura: %s ",
-              logAtual.getDataHora().toString(),
-              looca.getSistema().toString(),
-              looca.getProcessador().toString(),
-              logAtual.getPctgProcessador().toString(),
-              logAtual.getPctgMemoriaUso().toString(),
-              logAtual.getPctgDiscoUso().toString(),
-              logAtual.getQtdProcessos().toString(),
-              logAtual.getQtdServicos().toString(),
-              logAtual.getTemp().toString()));
-        } else {
-            System.out.println("Digite uma opção válida");
-            menuTerminal(sessao);
-        }
-    }
-
-    void tokenTerminal(String tokenT) {
-        Conexao connect = new Conexao();
-        Componentes comps = new Componentes();
-        Scanner leitorT = new Scanner(System.in);
-
-        TelaPrincipal telaPrincipal = new TelaPrincipal(sessao);
-        List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s'", comps.getIdProcessador()), new BeanPropertyRowMapper<>(Totem.class));
-        SlackToken.sendToken(randomToken.toString());
-        System.out.println("Digite seu token: ");
-        tokenT = leitorT.nextLine();
-
-        if (randomToken.toString().equals(tokenT.toString()) && (verificacaoTotem.isEmpty() || verificacaoTotem.get(0).getFkFilial() == sessao.getFkFilial())) {
-            menuTerminal(sessao);
-            // metodo iniciar monitoramento + enviar relatório.
-        } else {
-            if (randomToken.toString().equals(tokenT.toString()) == false) {
-                if (contadorErro < 3) {
-                     tokenTerminal(tokenT);
-                    System.out.println("O token está incorreto");
-
-                    contadorErro++;
-                } else if (contadorErro > 2 && contadorErro < 4) {
-                    contadorErro++;
-                    tokenTerminal(tokenT);
-                    System.out.println("Falha, tente novamente");
-
-                } else {
-                    tokenTerminal(tokenT);
-                    contadorErro++;
-
-                }
-            }
-            if (verificacaoTotem.isEmpty() == false && verificacaoTotem.get(0).getFkFilial() == sessao.getFkFilial()) {
-
-                if (randomToken.toString().equals(tokenT.toString()) == false) {
-                    if (contadorErro < 3) {
-                        tokenTerminal(tokenT);
-                        System.out.println("O token está incorreto");
-
-                        contadorErro++;
-                    } else if (contadorErro > 2 && contadorErro < 4) {
-                        contadorErro++;
-                        tokenTerminal(tokenT);
-                        System.out.println("Falha, tente novamente");
-
-                    } else {
-                        //   contadorErro++;
-                        System.out.println("Falha, você excedeu o número de tentativas");
-                    }
-                }
-            } else {
-                 tokenTerminal(tokenT);
-                System.out.println("Falha no usuario ou senha");
-            }
-        }
-
-    }
     private void btnConfirmacaoTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmacaoTokenActionPerformed
         Conexao connect = new Conexao();
         Componentes comps = new Componentes();
         TelaPrincipal telaPrincipal = new TelaPrincipal(sessao);
-        List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s'", comps.getIdProcessador()), new BeanPropertyRowMapper<>(Totem.class));
-
-        if (randomToken.toString().equals(txtToken.getText()) && (verificacaoTotem.isEmpty() || verificacaoTotem.get(0).getFkFilial() == sessao.getFkFilial())) {
+        List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s'",comps.getIdProcessador(),comps.getSerialDisco()), new BeanPropertyRowMapper<>(Totem.class));
+        
+        if (randomToken.toString().equals(txtToken.getText()) && (verificacaoTotem.isEmpty()||verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial())) 
+        {
             telaPrincipal.setVisible(true);
             dispose();
             fecharLogin = true;
             //System.out.println(verificacaoTotem.isEmpty() == false && 
-            //verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial());
+                    //verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial());
+            
 
         } else {
-            if (randomToken.toString().equals(txtToken.getText()) == false) {
-                if (contadorErro < 3) {
-                    lblErro1.setText("O token está incorreto");
-
-                    contadorErro++;
-                } else if (contadorErro > 2 && contadorErro < 4) {
-                    contadorErro++;
-                    lblErro1.setText("Falha, tente novamente");
-
-                } else {
-                    //   contadorErro++;
-                    dispose();
-
-                }
+           if(randomToken.toString().equals(txtToken.getText()) == false){
+               if (contadorErro < 3) {
+                lblErro1.setText("O token está incorreto");
+             
+                contadorErro++;
+            }else if( contadorErro > 2 && contadorErro < 4) {
+                 contadorErro++;
+                lblErro1.setText("Falha, tente novamente");
+                
+            } else{
+             //   contadorErro++;
+                dispose();
+                
             }
-            if (verificacaoTotem.isEmpty() == false && verificacaoTotem.get(0).getFkFilial() == sessao.getFkFilial()) {
-
-                if (randomToken.toString().equals(txtToken.getText()) == false) {
-                    if (contadorErro < 3) {
-                        lblErro1.setText("O token está incorreto");
-
-                        contadorErro++;
-                    } else if (contadorErro > 2 && contadorErro < 4) {
-                        contadorErro++;
-                        lblErro1.setText("Falha, tente novamente");
-
-                    } else {
-                        //  contadorErro++;
-                        dispose();
-                    }
-                }
-            } else {
-
-                System.out.println("Falha!!!");
+           }
+            if(verificacaoTotem.isEmpty() == false && verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial()){
+            
+             if(randomToken.toString().equals(txtToken.getText()) == false){
+               if (contadorErro < 3) {
+                lblErro1.setText("O token está incorreto");
+             
+                contadorErro++;
+            }else if( contadorErro > 2 && contadorErro < 4) {
+                 contadorErro++;
+                lblErro1.setText("Falha, tente novamente");
+                
+            } else{
+             //   contadorErro++;
+                dispose();
+            }
+            }
+            }else{
+           
+            System.out.println("Caiu aqui");
             }
         }
     }//GEN-LAST:event_btnConfirmacaoTokenActionPerformed
 
     void fechar() {
-        if (contadorErro > 2) {
-            dispose();
+        if (contadorErro > 2){
+        dispose();    
         }
+        
 
     }
 
-
+    
     private void txtTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTokenActionPerformed
 
     }//GEN-LAST:event_txtTokenActionPerformed
 
     private void btnEnviarCodigoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEnviarCodigoActionPerformed
-
-        SlackToken.sendToken(randomToken.toString());
+        
+        SlackToken.sendToken(randomToken.toString());    
         lblErro1.setText("O Código foi enviado");
-
+     
     }//GEN-LAST:event_btnEnviarCodigoActionPerformed
 
     /**
@@ -387,6 +283,7 @@ public class TelaToken extends javax.swing.JFrame {
 //        });
 //    }
 
+ 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnConfirmacaoToken;
     private javax.swing.JButton btnEnviarCodigo;
