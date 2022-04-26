@@ -10,6 +10,7 @@ import java.awt.Image;
 import java.awt.Toolkit;
 import java.net.URL;
 import java.util.List;
+import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ThreadLocalRandom;
@@ -31,7 +32,7 @@ public class TelaLogin extends javax.swing.JFrame {
     private Long segundo = 1000L;
     private Long minuto = segundo * 60;
     private Long hora = minuto * 60;
-
+ boolean repeticaoLogin = true;
     public Boolean getValidacao() {
         return validacao;
     }
@@ -246,13 +247,13 @@ public class TelaLogin extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_inputEmailActionPerformed
 
-    
-    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+    public void entradaLogin() {
         Boolean validacaoOpcao = false;
         ErroDigite erroDigite = new ErroDigite();
         ErroInvalido erroInvalido = new ErroInvalido();
+       
         try {
-            System.out.println("chamada a: btnEntrar function");
+            //System.out.println("chamada a: btnEntrar function");
 //        String retorno = textfield.getText();
 
             String inputEmail = this.inputEmail.getText();
@@ -265,13 +266,14 @@ public class TelaLogin extends javax.swing.JFrame {
                 TelaToken telaToken = new TelaToken(user.get(0));
                 validacaoOpcao = true;
                 telaToken.setVisible(true);
-                timer.scheduleAtFixedRate(new TimerTask(){
-                @Override public void run(){
-                if(telaToken.getFecharLogin()){
-                dispose();
-            
-                }
-                }
+                timer.scheduleAtFixedRate(new TimerTask() {
+                    @Override
+                    public void run() {
+                        if (telaToken.getFecharLogin()) {
+                            dispose();
+
+                        }
+                    }
                 }, segundo * 5, segundo * 30);
             } else {
                 if (validacaoOpcao) {
@@ -290,6 +292,7 @@ public class TelaLogin extends javax.swing.JFrame {
             if (validacaoOpcao) {
                 System.out.println("fix confirmacao email ou senha vazio");
                 erroDigite.setVisible(true);
+                
             } else {
 
                 System.out.println("fix confirmacao email ou senha incorreto");
@@ -297,6 +300,79 @@ public class TelaLogin extends javax.swing.JFrame {
 
             }
         }
+    }
+
+    public void entradaTerminalLogin(String loginEmail, String loginSenha) {
+        Boolean validacaoOpcao = false;
+        ErroDigite erroDigite = new ErroDigite();
+        ErroInvalido erroInvalido = new ErroInvalido();
+        String tokenDigitado = "";
+        try {
+
+//      
+//            System.out.println(loginEmail);
+//            System.out.println(loginSenha);
+            List<Usuario> user = conecta.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", loginEmail), new BeanPropertyRowMapper<>(Usuario.class));
+            Boolean permissao = user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente") ? true : false;
+
+            if (loginEmail.equals(user.get(0).getEmail_usuario()) && loginSenha.equals(user.get(0).getSenha()) && permissao) {
+                TelaToken telaToken = new TelaToken(user.get(0));
+                validacaoOpcao = true;
+                repeticaoLogin = false;
+            
+                
+                  System.out.println("O Código foi enviado");
+            Scanner leitor = new Scanner(System.in);
+                telaToken.tokenTerminal(tokenDigitado);
+                
+            } else {
+                if (validacaoOpcao) {
+                    System.out.println("Email ou senha inválido");
+                    repeticaoLogin = true;
+
+                } else {
+                    
+                    System.out.println("Email ou senha inválido");
+                     repeticaoLogin = true;
+
+                }
+            }
+
+        } catch (Exception e) {
+
+            if (validacaoOpcao) {
+
+                System.out.println("Email ou senha inválido");
+                repeticaoLogin = true;
+            } else {
+
+                System.out.println("Senha ou email inválido");
+                repeticaoLogin = true;
+            }
+        }
+    }
+
+  public void acessar(String loginDigitado, String senhaDigitada){
+        System.out.println("executando monitoria...");
+               Scanner leitor2 = new Scanner(System.in);
+                Scanner leitor3 = new Scanner(System.in);
+                       
+            while (repeticaoLogin) {
+                System.out.println("Digite seu login: ");
+                loginDigitado = leitor3.nextLine().trim();
+                System.out.println("Digite sua senha: ");
+                senhaDigitada = leitor2.nextLine().trim();
+                
+                entradaTerminalLogin(loginDigitado, senhaDigitada);
+                
+            }
+    }
+
+
+    private void btnEntrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEntrarActionPerformed
+        
+        entradaLogin();
+
 
     }//GEN-LAST:event_btnEntrarActionPerformed
     

@@ -114,6 +114,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
               logAtual.getQtdServicos().toString(),
               logAtual.getTemp().toString()));
     }
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -639,7 +642,48 @@ public class TelaPrincipal extends javax.swing.JFrame {
         }else{}
 
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
+    public void iniciarMonitoramentoTerminal(){
+         if(totemCadastrado){
+          
+             System.out.println("Iniciado...");
+            AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
 
+            Integer porcentagem1 = comps.getProcessamento().intValue();
+            Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
+            Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
+            
+             System.out.println(comps.getHostname().toString());
+             System.out.println("Seja bem vindo :)");
+             System.out.println("Processamento:" + porcentagem1 +"%");
+             System.out.println("Memória ram em uso:" + porcentagem3 +"%");
+             System.out.println("Disco em uso: " + porcentagem5 +"%");
+
+
+            //slackAlert.sendMessageToSlack("Alert system");
+            timer.scheduleAtFixedRate(new TimerTask(){
+                @Override public void run(){
+                    enviarRelatorio(logAtual);
+                }
+            }, 1000, minuto * 3);
+
+            if (porcentagem1 > 2) {
+               
+                slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 2%");
+                alertaMonitora.textoAlertaMonitoramento1();
+
+            } else if (porcentagem3 > 80) {
+              
+                slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
+                alertaMonitora.textoAlertaMonitoramento3();
+
+            } else if (porcentagem5 > 80) {
+             
+                slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
+                alertaMonitora.textoAlertaMonitoramento5();
+            }
+        }else{}
+    }
     private void btnAdicionarTotem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem9ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
