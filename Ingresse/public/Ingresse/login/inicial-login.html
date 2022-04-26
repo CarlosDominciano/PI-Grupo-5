@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Acesse ao seu email</title>
+
+    <link rel="stylesheet" href="./login.css">
+    <link rel="stylesheet" href="inicial-login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
+
+</head>
+
+<body>
+    <div class="main-login">
+        <div class="left-login">
+            <div class="logo" onclick="index()">
+                <span class="icon">
+                    <ion-icon name="ticket"></ion-icon>
+                </span>
+                <span class="text">
+                    Ingresse
+                </span>
+            </div>
+            <h1>Seja bem-vindo !!</h1>
+            <img src="../assets/film-rolls-animate.svg" class="left-login-image" alt="cine animação" />
+        </div>
+
+        <div class="rigth-login">
+            <div class="retorno" onclick="index()">
+                <img src="../assets/seta.png">
+                <span>Retorno ao inicio</span>
+            </div>
+            <div class="card-login">
+                <div class="btn-entrar">
+                    <button class="btn-empresa" onclick="empresa()"> Você é uma empresa? </button>
+                    <button class="btn-funcionario" onclick="funcionario()"> Você é um funcionario(a)? </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- End Login -->
+
+    <div class="copyright">
+        <div class="container">
+            <div class="titulo">
+                TheBox Company © 2022 All Rights Reserved
+            </div>
+        </div>
+    </div>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>
+<script>
+
+    function index() {
+        window.location.href = "../index.html";
+    }
+
+    function empresa() {
+        window.location.href = "./login-empresa.html";
+    }
+
+    function funcionario() {
+        window.location.href = "./login-funcionario.html";
+    }
+</script>

@@ -12,5 +12,16 @@ router.post("/login", function (req, res) {
   usuarioController.login(req, res);
 });
 
+router.post("/excluir", function (req, res) {
+  usuarioController.excluir(req, res);
+});
+
+router.get("/listar", function (req, res) {
+  usuarioController.listar(req, res);
+});
+
+router.post("/editar", function (req, res) {
+  usuarioController.editar(req, res);
+});
 
 module.exports = router;

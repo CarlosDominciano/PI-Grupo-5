@@ -20,30 +20,30 @@
     <div class="left-cadastro">
       <div class="logo" onclick="index()">
         <span class="icon">
-            <ion-icon name="ticket"></ion-icon>
+          <ion-icon name="ticket"></ion-icon>
         </span>
         <span class="text">
-            Ingresse
+          Ingresse
         </span>
-    </div>
+      </div>
       <h1>Faça cadastro e entre no nosso time!</h1>
       <img src="../assets/design-team-animate (2).svg" class="left-cadastro-image" alt="cine animação" />
     </div>
     <div class="rigth-cadastro">
-      <div class="retorno" onclick="index()">
+      <div class="retorno" onclick="retorno()">
         <img src="../assets/seta.png">
-        <span>Retorno ao inicio</span>
-    </div>
+        <span>Retorno</span>
+      </div>
       <div class="card-cadastro">
         <h1>Cadastro</h1>
         <div class="textfield">
-          <input type="text" id="usuarioId" nome="usuario" placeholder="Usuário" />
+          <input type="text" id="empresaId" nome="empresa" placeholder="Nome da empresa" />
         </div>
         <div class="textfield">
-          <input type="tel" id="telefoneId" nome="telefone" placeholder="Telefone" />
+          <input type="tel" id="cnpjId" nome="cnpj" placeholder="CNPJ" />
         </div>
         <div class="textfield">
-          <input type="text" id="emailId" nome="email" placeholder="E-mail" />
+          <input type="text" id="emailId" nome="email" placeholder="E-mail corporativo" />
         </div>
         <div class="textfield">
           <input type="password" id="senhaId" nome="senha" placeholder="Senha" />
@@ -68,23 +68,27 @@
 </html>
 <script>
 
-function index(){
-        window.location.href = "../index.html";
-    }
+  function index() {
+    window.location.href = "../index.html";
+  }
+
+  function retorno() {
+    window.location.href = "./inicial-login.html";
+  }
 
   function cadastrar() {
 
-    var nomeVar = usuarioId.value;
+    var empresaVar = empresaId.value;
     var emailVar = emailId.value;
-    var telefoneVar = telefoneId.value;
+    var cnpjVar = cnpjId.value;
     var senhaVar = senhaId.value;
     var confirmarVar = confirmaSenhaId.value;
 
-    if (nomeVar == "" || senhaVar == "" || confirmarVar == "" || 
-    telefoneVar == "" || emailVar == "") {
+    if (empresaVar == "" || senhaVar == "" || confirmarVar == "" ||
+    cnpjVar == "" || emailVar == "") {
 
       window.alert("Preencha todos os campos para prosseguir!");
-      if (nomeVar == "") {
+      if (empresaVar == "") {
         alert('nome está em branco');
       }
       if (senhaVar == "") {
@@ -93,7 +97,7 @@ function index(){
       if (confirmarVar == "") {
         alert('confirmacao Senha está em branco');
       }
-      if (telefoneVar == "") {
+      if (cnpjVar == "") {
         alert('o telefone está em branco');
       }
       if (emailVar == "") {
@@ -107,25 +111,25 @@ function index(){
       return false;
     }
 
-    fetch("/usuarios/cadastrar", {
+    fetch("/empresas/cadastrar", {
       method: "POST",
       headers: {
-            "Content-Type": "application/json"
-        },
+        "Content-Type": "application/json"
+      },
       body: JSON.stringify({
-            email: emailVar,
-            senha: senhaVar,
-            nome: nomeVar,
-            telefone: telefoneVar,
-            confirmar: confirmarVar
-        })
+        email: emailVar,
+        senha: senhaVar,
+        empresa: empresaVar,
+        cnpj: cnpjVar,
+        confirmar: confirmarVar
+      })
     }).then(function (resposta) {
 
       console.log("resposta: ", resposta);
 
       if (resposta.ok) {
         window.alert("Cadastro realizado com sucesso!");
-        window.location = "login.html";
+        window.location = "login-empresa.html";
         console.log("Cadastro certo !!")
       } else {
         throw ("Houve um erro ao tentar realizar o cadastro!");

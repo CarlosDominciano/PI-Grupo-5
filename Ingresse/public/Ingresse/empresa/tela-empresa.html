@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@200&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./tela-empresa.css">
+    <link rel="shortcut icon" href="../assets/icon.png" type="image/x-icon">
+    <title>...</title>
+</head>
+
+<body>
+
+    <div class="main">
+        <div class="notificacao">
+            <div class="perfil">
+                <div class="logo" onclick="index()">
+                    <span class="icon">
+                        <img src="../assets/icon.png" alt="">
+                    </span>
+                    <span class="text">
+                        Ingresse
+                    </span>
+                </div>
+                <div class="deslogar" onclick="deslogar()">Sair</div>
+            </div>
+        </div>
+        <div class="box">
+            <div class="cardUm" onclick="Modal.openCadastro()">Adicionar funcionario</div>
+            <div class="cardDois" onclick="Modal.openAtualizar()">Atualizar funcionarios</div>
+            <div class="cardTres" onclick="Modal.openDeletar()">Remover funcionario</div>
+            <div class="cardQuatro" onclick="Modal.openListar()">Listar funcionarios</div>
+        </div>
+    </div>
+
+    <div class="modal-overlay">
+        <div class="modal">
+            <img src="../assets/Exit.png" class="btn-fecha" onclick="Modal.closeCadastro()" alt="Fechar">
+            <div class="card-cadastro">
+                <h1>Cadastro funcionario</h1>
+                <div class="textfield">
+                    <input type="text" id="usuarioId" nome="usuario" placeholder="Usuário" />
+                </div>
+                <div class="textfield">
+                    <input type="tel" id="tipoAcessoId" nome="tipoAcesso" placeholder="Cargo" />
+                </div>
+                <div class="textfield">
+                    <input type="text" id="emailId" nome="email" placeholder="E-mail" />
+                </div>
+                <div class="textfield">
+                    <input type="password" id="senhaId" nome="senha" placeholder="Senha" />
+                </div>
+                <div class="textfield">
+                    <input type="password" id="confirmaSenhaId" nome="confirmaSenha" placeholder="Confirme senha" />
+                </div>
+                <button class="btn-confirma" onclick="cadastrarFuncionario()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay1">
+        <div class="modal">
+            <img src="../assets/Exit.png" class="btn-fecha" onclick="Modal.closeDeletar()" alt="Fechar">
+            <div class="card-cadastro">
+                <h1>Remover funcionario</h1>
+                <div class="textfield">
+                    <input type="text" id="emailDeleta" nome="emailDeleta" placeholder="E-mail" />
+                </div>
+                <button class="btn-confirma" onclick="deletarFuncionario()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay2">
+        <div class="modal">
+            <img src="../assets/Exit.png" class="btn-fecha" onclick="Modal.closeListar()" alt="Fechar">
+            <div class="card-cadastro">
+                <h1 class="h1-lista">Listar funcionarios</h1>
+                <div id="aparece" class="texto-lista"></div>
+
+                <button class="btn-confirma" id="btn_ver" onclick="listarFuncionario()">Ver</button>
+                <button class="btn-confirma" id="btn_ok" style="display: none;"
+                    onclick="Modal.closeListar()">Fechar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-overlay3">
+        <div class="modal">
+            <img src="../assets/Exit.png" class="btn-fecha" onclick="Modal.closeAtualiza()" alt="Fechar">
+            <div class="card-cadastro">
+                <h1>Atualizar funcionario</h1>
+                <div class="textfield">
+                    <input id="idAtualizar" nome="id" placeholder="ID" />
+                </div>
+                <div class="textfield">
+                    <input type="text" id="usuarioAtualizar" nome="usuario" placeholder="Usuário" />
+                </div>
+                <div class="textfield">
+                    <input type="tel" id="tipoAcessoAtualizar" nome="tipoAcesso" placeholder="Cargo" />
+                </div>
+                <div class="textfield">
+                    <input type="text" id="emailAtualizar" nome="email" placeholder="E-mail" />
+                </div>
+                <div class="textfield">
+                    <input type="password" id="senhaAtualizar" nome="senha" placeholder="Senha" />
+                </div>
+                <button class="btn-confirma" onclick="atualizarFuncionario()">Ok</button>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+<script>    
+
+    const Modal = {
+        openCadastro() {
+            document
+                .querySelector('.modal-overlay')
+                .classList
+                .add('active')
+
+        },
+        closeCadastro() {
+            document
+                .querySelector('.modal-overlay')
+                .classList
+                .remove('active')
+        },
+        openDeletar() {
+            document
+                .querySelector('.modal-overlay1')
+                .classList
+                .add('active')
+
+        },
+        closeDeletar() {
+            document
+                .querySelector('.modal-overlay1')
+                .classList
+                .remove('active')
+        },
+        openListar() {
+            document
+                .querySelector('.modal-overlay2')
+                .classList
+                .add('active')
+
+        },
+        closeListar() {
+            document
+                .querySelector('.modal-overlay2')
+                .classList
+                .remove('active')
+        },
+        openAtualizar() {
+            document
+                .querySelector('.modal-overlay3')
+                .classList
+                .add('active')
+
+        },
+        closeAtualiza() {
+            document
+                .querySelector('.modal-overlay3')
+                .classList
+                .remove('active')
+        }
+    }
+
+    function cadastrarFuncionario() {
+        Modal.closeCadastro();
+
+        var nomeVar = usuarioId.value;
+        var emailVar = emailId.value;
+        var tipoAcessoVar = tipoAcessoId.value;
+        var senhaVar = senhaId.value;
+        var confirmarVar = confirmaSenhaId.value;
+
+        if (nomeVar == "" || senhaVar == "" || confirmarVar == "" ||
+        tipoAcessoVar == "" || emailVar == "") {
+
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (nomeVar == "") {
+                alert('nome está em branco');
+            }
+            if (senhaVar == "") {
+                alert('senha está em branco');
+            }
+            if (confirmarVar == "") {
+                alert('confirmacao Senha está em branco');
+            }
+            if (tipoAcessoVar == "") {
+                alert('o tipoAcesso está em branco');
+            }
+            if (emailVar == "") {
+                alert('o email está em branco');
+            }
+            return false;
+        }
+
+        if (senhaVar != confirmarVar) {
+            window.alert("As senhas inseridas devem ser iguais para prosseguir!");
+            return false;
+        }
+
+        fetch("/usuarios/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: emailVar,
+                senha: senhaVar,
+                nome: nomeVar,
+                tipoAcesso: tipoAcessoVar,
+                confirmar: confirmarVar
+            })
+        }).then(function (resposta) {
+
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+                window.alert("Cadastro realizado com sucesso!");
+                console.log("Cadastro certo !!")
+            } else {
+                throw ("Houve um erro ao tentar realizar o cadastro!");
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        return false;
+    }
+
+    function deletarFuncionario() {
+
+        var emailDeletarVar = emailDeleta.value;
+
+        if (emailDeletarVar == "") {
+            alert("Insira um email para ser deletado !")
+        }
+
+        fetch('/usuarios/excluir', {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: emailDeletarVar
+            })
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+
+                if (resposta.ok) {
+                    alert("Usuario excluido !");
+                    Modal.closeDeletar();
+
+                } else {
+                    alert('Houve um erro ao excluir!');
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        return false;
+    }
+
+    function listarFuncionario() {
+
+
+        fetch("/usuarios/listar", {
+            method: "GET",
+        }).then(function (resposta) {
+
+
+            resposta.json().then(function (data) {
+
+                let len = data.length;
+
+                for (let i = 0; i <= len; i++) {
+                    let arquivo = data[i];
+
+                    aparece.innerHTML += (`Nome: ${arquivo.nome},
+                                          Telefone: ${arquivo.telefone}, 
+                                          Email: ${arquivo.email},
+                                          ID: ${arquivo.id_usuario}<br>`);
+                }
+            });
+        }).catch(function (error) {
+            console.error(`ERROR`, error);
+        });
+
+        btn_ver.style.display = 'none';
+        btn_ok.style.display = 'block';
+
+    }
+
+    function atualizarFuncionario() {
+
+        var idVar = idAtualizar.value;
+        var nomeVar = usuarioAtualizar.value;
+        var tipoAcessoVar = tipoAcessoAtualizar.value;
+        var emailVar = emailAtualizar.value;
+        var senhaVar = senhaAtualizar.value;
+
+        if (
+            idVar == "" || nomeVar == "" || tipoAcessoVar == "" ||
+            emailVar == "" || senhaVar == ""
+        ) {
+            window.alert("Preencha todos os campos para prosseguir!");
+            if (idVar == "") {
+                alert("o id está em branco");
+                return false;
+            }
+            if (nomeVar == "") {
+                alert("nome está em branco");
+                return false;
+            }
+            if (tipoAcessoVar == "") {
+                alert("Insira um telefone");
+                return false;
+            }
+            if (emailVar == "") {
+                alert("email está vazio");
+                return false;
+            }
+            if (senhaVar == "") {
+                alert("senha está em branco");
+                return false;
+            }
+
+            if (emailVar.indexOf("@") && emailVar.indexOf(".com")) {
+                alert("email incorreto!!");
+                return false;
+            }
+            return false;
+        }
+        
+        fetch('/usuarios/editar', {
+      method: "POST",
+      headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                id: idVar,
+                email: emailVar,
+                senha: senhaVar,
+                nome: nomeVar,
+                tipoAcesso: tipoAcessoVar
+            })
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
+
+        if (resposta.ok) {
+            alert("Operação Editada!");
+
+        } else {
+            alert('Houve um erro ao editar!');
+          throw "Houve um erro ao tentar realizar a edição!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+      });
+    }
+
+    function deslogar() {
+        window.location.href = "../login/inicial-login.html"
+    }
+
+</script>

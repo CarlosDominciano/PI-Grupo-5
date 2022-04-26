@@ -24,14 +24,14 @@
                     Ingresse
                 </span>
             </div>
-            <h1>Seja bem-vindo, vamos vê como está o seu totem hoje??</h1>
-            <img src="../assets/atm-machine-animate.svg" class="left-login-image" alt="cine animação" />
+            <h1>Olá, vamos vê a atualização do dia??</h1>
+            <img src="../assets/company-animate.svg" class="left-login-image" alt="cine animação" />
         </div>
 
         <div class="rigth-login">
-            <div class="retorno" onclick="index()">
+            <div class="retorno" onclick="retorno()">
                 <img src="../assets/seta.png">
-                <span>Retorno ao inicio</span>
+                <span>Retorno</span>
             </div>
             <div class="card-login">
                 <h1>Login</h1>
@@ -52,7 +52,7 @@
         </div>
     </div>
     <!-- End Login -->
-    
+
     <div class="copyright">
         <div class="container">
             <div class="titulo">
@@ -67,8 +67,12 @@
 </html>
 <script>
 
-function index(){
+    function index() {
         window.location.href = "../index.html";
+    }
+
+    function retorno() {
+        window.location.href = "./inicial-login.html";
     }
 
     function login() {
@@ -86,48 +90,48 @@ function index(){
             }
             return false;
         }
-        
-        fetch("/usuarios/login", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            email: emailVar,
-            senha: senhaVar
+
+        fetch("/empresas/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                email: emailVar,
+                senha: senhaVar
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+
+                    setTimeout(function () {
+                        window.location = "../empresa/tela-empresa.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+                alert("Houve erro ao entrar")
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
         })
-    }).then(function (resposta) {
-        console.log("ESTOU NO THEN DO entrar()!")
 
-        if (resposta.ok) {
-            console.log(resposta);
-
-            resposta.json().then(json => {
-                console.log(json);
-                console.log(JSON.stringify(json));
-
-                setTimeout(function () {
-                    window.location = "../dashboard/home-dashboard.html";
-                }, 1000); // apenas para exibir o loading
-
-            });
-
-        } else {
-
-            console.log("Houve um erro ao tentar realizar o login!");
-            alert("Houve erro ao entrar")
-
-            resposta.text().then(texto => {
-                console.error(texto);
-                
-            });
-        }
-
-    }).catch(function (erro) {
-        console.log(erro);
-    })
-
-    return false;
-}
+        return false;
+    }
 
 </script>

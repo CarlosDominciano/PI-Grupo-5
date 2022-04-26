@@ -2,6 +2,7 @@ var mysql = require('mysql2');
 var sql = require('mssql');
 
 // (NUVEM)
+
 var sqlServerConfig = {
     user: "ingresseAdmin",
     password: "2adsb#grupo5",
@@ -17,7 +18,9 @@ var sqlServerConfig = {
     },
 };
 
+
 // (LOCAL)
+/*
 var mySqlConfig = {
     host: "localhost",
     user: "hanna",
@@ -25,6 +28,7 @@ var mySqlConfig = {
     database: "ingresse",
     port: "3306",
 };
+*/
 
 function executar(instrucao) {
     if (process.env.AMBIENTE_PROCESSO == "producao") {
