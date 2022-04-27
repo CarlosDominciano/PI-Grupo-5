@@ -110,6 +110,8 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
 
+                    localStorage.ID_FILIAL = json[0].idFilial
+
                     setTimeout(function () {
                         window.location = "../empresa/tela-empresa.html";
                     }, 1000); // apenas para exibir o loading

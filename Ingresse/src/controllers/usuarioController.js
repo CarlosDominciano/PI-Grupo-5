@@ -5,6 +5,7 @@ function cadastrar(req, res) {
   var email = req.body.email;
   var senha = req.body.senha;
   var tipoAcesso = req.body.tipoAcesso;
+  var empresa = req.body.empresa;
 
   if (nome == undefined) {
     res.status(400).send("Seu nome está undefined!");
@@ -14,9 +15,11 @@ function cadastrar(req, res) {
     res.status(400).send("Sua senha está undefined!");
   } else if (tipoAcesso == undefined) {
     res.status(400).send("Seu tipoAcesso está undefined!");
+  }else if (empresa == undefined) {
+    res.status(400).send("Seu empresa está undefined!");
   } else {
 
-    usuarioModel.cadastrar(nome, email, senha, tipoAcesso)
+    usuarioModel.cadastrar(nome, email, senha, tipoAcesso, empresa)
       .then(
         function (resultado) {
           res.json(resultado);

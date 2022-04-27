@@ -86,7 +86,7 @@
             </div>
         </div>
     </div>
-<!-- 
+    <!-- 
     <div class="modal-overlay3">
         <div class="modal">
             <img src="../assets/Exit.png" class="btn-fecha" onclick="Modal.closeAtualiza()" alt="Fechar">
@@ -111,11 +111,14 @@
             </div>
         </div>
     </div> -->
-<!-- Start of ingresse Zendesk Widget script --><script id="ze-snippet" src="https://static.zdassets.com/ekr/snippet.js?key=2a8aa125-f0f2-454f-965c-1a8aa772c495"> </script><!-- End of ingresse Zendesk Widget script -->
+    <!-- Start of ingresse Zendesk Widget script -->
+    <script id="ze-snippet"
+        src="https://static.zdassets.com/ekr/snippet.js?key=2a8aa125-f0f2-454f-965c-1a8aa772c495"> </script>
+    <!-- End of ingresse Zendesk Widget script -->
 </body>
 
 </html>
-<script>    
+<script>
 
     const Modal = {
         openCadastro() {
@@ -180,9 +183,10 @@
         var tipoAcessoVar = tipoAcessoId.value;
         var senhaVar = senhaId.value;
         var confirmarVar = confirmaSenhaId.value;
+        var fkFilialVar = localStorage.ID_FILIAL;
 
         if (nomeVar == "" || senhaVar == "" || confirmarVar == "" ||
-        tipoAcessoVar == "" || emailVar == "") {
+            tipoAcessoVar == "" || emailVar == "") {
 
             window.alert("Preencha todos os campos para prosseguir!");
             if (nomeVar == "") {
@@ -218,7 +222,8 @@
                 senha: senhaVar,
                 nome: nomeVar,
                 tipoAcesso: tipoAcessoVar,
-                confirmar: confirmarVar
+                confirmar: confirmarVar,
+                empresa: fkFilialVar
             })
         }).then(function (resposta) {
 
@@ -232,6 +237,7 @@
             }
         }).catch(function (resposta) {
             console.log(`#ERRO: ${resposta}`);
+            alert("Email já existente !")
         });
 
         return false;
@@ -283,14 +289,24 @@
             resposta.json().then(function (data) {
 
                 let len = data.length;
+                let encontreiUsuario = false;
 
                 for (let i = 0; i <= len; i++) {
                     let arquivo = data[i];
 
-                    aparece.innerHTML += (`<span style="color: #2F1538;">Nome:</span> ${arquivo.nome},
+                    if (arquivo?.fkFilial == localStorage.ID_FILIAL) {
+                        encontreiUsuario = true;
+                        aparece.innerHTML += (`<span style="color: #2F1538;">Nome:</span> ${arquivo.nome},
                     <span style="color: #2F1538;">Cargo:</span> ${arquivo.tipo_acesso}, 
                     <span style="color: #2F1538;">Email:</span> ${arquivo.email_usuario},
                     <span style="color: #9d48ce;">ID:</span> ${arquivo.idUsuario}<br>`);
+
+                    }
+                    console.log("arq", arquivo)
+                }
+
+                if (encontreiUsuario == false) {
+                    alert("Nenhum funcionario encontrado! :(");
                 }
             });
         }).catch(function (error) {
@@ -342,10 +358,10 @@
             }
             return false;
         }
-        
+
         fetch('/usuarios/editar', {
-      method: "POST",
-      headers: {
+            method: "POST",
+            headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
@@ -355,21 +371,21 @@
                 nome: nomeVar,
                 tipoAcesso: tipoAcessoVar
             })
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
 
-        if (resposta.ok) {
-            alert("Operação Editada!");
+                if (resposta.ok) {
+                    alert("Operação Editada!");
 
-        } else {
-            alert('Houve um erro ao editar!');
-          throw "Houve um erro ao tentar realizar a edição!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
+                } else {
+                    alert('Houve um erro ao editar!');
+                    throw "Houve um erro ao tentar realizar a edição!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
     }
 
     function deslogar() {
