@@ -103,6 +103,11 @@ var chartGraph3 = new Chart(context3, {
                 display: true,
                 text: 'CPU',
                 color: 'white', 
+            },
+            legend: {
+                labels: {
+                    color: "white"
+                }
             }
         },
         scales: {
@@ -122,43 +127,43 @@ var chartGraph3 = new Chart(context3, {
     }
 });
 
-var chartGraph4 = new Chart(context4, {
-    type: "bar",
-    data: {
-        labels: [1,1,1,1,1,1,1,1],
-        datasets: [{
-            label: "AOBA",
-            data: [5,4,8,7,2,5,9,9],
-            borderWidth: 1,
-            borderColor: 'rgba(0,0,0, 0.5)',
-            backgroundColor: 'rgba(0,0, 255, 0.5)',
-        }]
-    },
-    options: {
-        plugins: {
-            title: {
-                display: true,
-                text: 'Processos',
-                color: 'white',
-            }
-        },
-        scales: {
-            x: {
-                ticks: {
-                    color:'white', 
-                    fontSize:20,
-                    beginAtZero: true
-                }
-            },
-            y:{
-                ticks: {
-                    beginAtZero: true,
-                    color: 'white'
-                }
-            }
-        }
-    }
-});
+// var chartGraph4 = new Chart(context4, {
+//     type: "bar",
+//     data: {
+//         labels: [1,1,1,1,1,1,1,1],
+//         datasets: [{
+//             label: "AOBA",
+//             data: [5,4,8,7,2,5,9,9],
+//             borderWidth: 1,
+//             borderColor: 'rgba(0,0,0, 0.5)',
+//             backgroundColor: 'rgba(0,0, 255, 0.5)',
+//         }]
+//     },
+//     options: {
+//         plugins: {
+//             title: {
+//                 display: true,
+//                 text: 'Processos',
+//                 color: 'white',
+//             }
+//         },
+//         scales: {
+//             x: {
+//                 ticks: {
+//                     color:'white', 
+//                     fontSize:20,
+//                     beginAtZero: true
+//                 }
+//             },
+//             y:{
+//                 ticks: {
+//                     beginAtZero: true,
+//                     color: 'white'
+//                 }
+//             }
+//         }
+//     }
+// });
 
 const mostrarTotem1 = () => {
     memUsada = (Math.random() *1000 ).toFixed();
