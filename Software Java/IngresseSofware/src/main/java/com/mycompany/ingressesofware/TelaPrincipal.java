@@ -621,7 +621,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
                 @Override public void run(){
                     enviarRelatorio(logAtual);
                 }
-            }, minuto * 3, minuto * 3);
+            }, segundo, minuto * 3);
 
             if (porcentagem1 > 1) {
                 alertaMonitora.setVisible(true);
