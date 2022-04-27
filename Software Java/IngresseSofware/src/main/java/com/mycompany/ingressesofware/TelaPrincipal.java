@@ -89,12 +89,12 @@ public class TelaPrincipal extends javax.swing.JFrame {
     
     void enviarRelatorio(Relatorio relat){
       relat = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-      connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", relat.getFkTotem(),relat.getPctgProcessador(),relat.getPctgMemoriaUso(),relat.getPctgDiscoUso(),relat.getQtdProcessos(),relat.getQtdServicos(),relat.getTemp(),relat.getServicos(),relat.getProcessos(),relat.getDataHora());
+      connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", relat.getFkTotem(),relat.getPctgProcessador(),relat.getPctgMemoriaUso(),relat.getPctgDiscoUso(),relat.getQtdProcessos(),relat.getQtdServicos(),relat.getTemp(),relat.getDataHora());
 
     }
     void enviarRelatorio(){
       logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-      connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,servicos,processos,data_hora) VALUES (?,?,?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getServicos(),logAtual.getProcessos(),logAtual.getDataHora());
+      connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getDataHora());
       slackRelatorio.sendRelatorio(String.format("%s\n"
               + "_____________________\n"
               + "Relatório do totem:\n\n "

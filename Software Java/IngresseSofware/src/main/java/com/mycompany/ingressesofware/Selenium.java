@@ -116,7 +116,7 @@ public class Selenium {
             
               if (dias <= 7 && dias > 0) {
                   System.out.println("Faltam " + dias + " dias para a estreia de " + listaFilmeEstreia.get(i));
-                  System.out.println("Estréia " + listaDataEstreia.get(i) + " - " + diaDaSemana);
+                  System.out.println("Estréia " + listaDataEstreia.get(i));
                 
                  
             }

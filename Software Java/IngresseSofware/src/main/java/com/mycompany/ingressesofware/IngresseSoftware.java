@@ -58,9 +58,9 @@ public class IngresseSoftware {
         //System.out.println(looca.getSistema());
         
       
-        //Selenium selenium = new Selenium();
+        Selenium selenium = new Selenium();
         
-        //selenium.automacaoSelenium();
+        selenium.automacaoSelenium();
 //        TelaPrincipal telaPrincipal = new TelaPrincipal(usando);
 //        telaPrincipal.setVisible(true);
         //Double result = comps.getDisco().doubleValue()/1000000000;
