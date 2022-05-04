@@ -29,7 +29,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Componentes comps = new Componentes();
     Looca looca = new Looca();
     Conexao connect = new Conexao();
-    List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s'",comps.getIdProcessador(), comps.getSerialDisco()), new BeanPropertyRowMapper<>(Totem.class));
+    List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(), comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
     Boolean totemCadastrado = verificacaoTotem.isEmpty() ? false : true;
     SlackIntegrationTest slackAlert = new SlackIntegrationTest();
     SlackRelatorio slackRelatorio = new SlackRelatorio();
@@ -722,7 +722,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
             Double discoDouble = (double) (Math.round((comps.getDisco()/1000000000)*1.0/1.0));
             Double ramDouble = (double) (Math.round((comps.getRam()/1000000000)*1.0/1.0));
             //connect.getJdbc().execute(String.format("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES %d,%.1f,%.1f,%s,%s,%s", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador()));
-            connect.getJdbc().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador, serial_disco) VALUES (?,?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador(), comps.getSerialDisco());
+            connect.getJdbc().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador, serial_disco, hostname) VALUES (?,?,?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador(), comps.getSerialDisco(),comps.getHostname());
             telaLogin.setVisible(true);
             dispose();
         }

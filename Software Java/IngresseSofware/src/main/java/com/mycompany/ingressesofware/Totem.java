@@ -19,6 +19,15 @@ public class Totem {
     private Date dataCompra;
     private String idProcessador;
     private String serialDisco;
+    private String hostname; 
+
+    public String getHostname() {
+        return hostname;
+    }
+
+    public void setHostname(String hostname) {
+        this.hostname = hostname;
+    }
 
     public String getSerialDisco() {
         return serialDisco;

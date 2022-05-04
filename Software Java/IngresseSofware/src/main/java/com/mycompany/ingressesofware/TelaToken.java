@@ -173,7 +173,7 @@ public class TelaToken extends javax.swing.JFrame {
         Conexao connect = new Conexao();
         Componentes comps = new Componentes();
         TelaPrincipal telaPrincipal = new TelaPrincipal(sessao);
-        List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s'",comps.getIdProcessador(),comps.getSerialDisco()), new BeanPropertyRowMapper<>(Totem.class));
+        List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(),comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
         
         if (randomToken.toString().equals(txtToken.getText()) && (verificacaoTotem.isEmpty()||verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial())) 
         {
