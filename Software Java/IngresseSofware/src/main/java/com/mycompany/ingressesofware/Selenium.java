@@ -15,6 +15,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import com.mycompany.ingresse.coleta.dados.Conexao;
 
 /**
  *
@@ -23,7 +24,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 public class Selenium {
         List<String> listaDataEstreia = new ArrayList();
         List<String> listaFilmeEstreia = new ArrayList();
-        
+        Conexao connect = new Conexao();
     void automacaoSelenium() throws ParseException {
         System.setProperty("webdriver.chrome.driver", "chromedriver");
         WebDriver driver = new ChromeDriver();
@@ -117,7 +118,7 @@ public class Selenium {
               if (dias <= 7 && dias > 0) {
                   System.out.println("Faltam " + dias + " dias para a estreia de " + listaFilmeEstreia.get(i));
                   System.out.println("Estréia " + listaDataEstreia.get(i));
-                
+                connect.getJdbc().update("INSERT INTO lancamento_futuro(nomeFilme,dataFilme,dias_para_lancamento) VALUES (?,?,?)",listaFilmeEstreia.get(i),listaDataEstreia.get(i),dias);
                  
             }
            
