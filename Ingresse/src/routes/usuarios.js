@@ -20,6 +20,10 @@ router.get("/listar", function (req, res) {
   usuarioController.listar(req, res);
 });
 
+router.get("/notificar", function (req, res) {
+  usuarioController.notificar(req, res);
+});
+
 router.post("/editar", function (req, res) {
   usuarioController.editar(req, res);
 });

@@ -29,6 +29,12 @@ function listar(){
   return database.executar(instrucao);
 }
 
+function notificar(){
+  var instrucao =
+  `SELECT * FROM lancamento_futuro;`
+  return database.executar(instrucao);
+}
+
 function editar(nome, email, telefone, senha, id) {
   var instrucao = 
 `UPDATE usuario SET nome = '${nome}' WHERE id_usuario = ${id};`;
@@ -48,10 +54,13 @@ database.executar(instrucao);
 
 }
 
+
+
 module.exports = {
   cadastrar,
   login,
   excluir,
   listar,
+  notificar,
   editar
 };
