@@ -20,6 +20,7 @@ import java.util.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.ArrayList;
 
 
 /**
@@ -49,30 +50,29 @@ public class Componentes {
 
     public Componentes() {
         this.processador = componentes.getProcessador().getIdentificador();
-        this.ram = componentes.getMemoria().getTotal();
-        this.disco = componentes.getGrupoDeDiscos().getTamanhoTotal();
-        this.processos = componentes.getGrupoDeProcessos().getProcessos();
-        this.qtdProcessos = 
-                componentes.getGrupoDeProcessos().getTotalProcessos();
-        this.servicosAtv = componentes.getGrupoDeServicos().getServicosAtivos();
+        this.ram = 0L;
+        this.disco = 0L;
+        this.processos = new ArrayList();
+        this.qtdProcessos = 0;
+        this.servicosAtv = new ArrayList();
         this.data = dataHora();
-        this.processamento = componentes.getProcessador().getUso();
-        this.memVolUso = componentes.getMemoria().getEmUso();
-        this.memVolLivre = componentes.getMemoria().getDisponivel();
+        this.processamento = 0.0;
+        this.memVolUso = 0L;
+        this.memVolLivre = 0L;
         this.hostname = this.os.getNetworkParams().getHostName();
-        this.discoUso = calcDisco();
-        this.temp = componentes.getTemperatura().getTemperatura();
+        this.discoUso = 0L;
+        this.temp = 0.0;
         this.idProcessador = componentes.getProcessador().getId();
-        this.qtdServicos = componentes.getGrupoDeServicos().getTotalDeServicos();
+        this.qtdServicos = 0;
         this.serialDisco = componentes.getGrupoDeDiscos().getDiscos().get(0).getSerial();
     }
 
     public String getHostname() {
-        return hostname;
+        return this.hostname;
     }
 
     public String getSerialDisco() {
-        return serialDisco;
+        return this.serialDisco;
     }
 
     public void setSerialDisco(String serialDisco) {
@@ -87,11 +87,11 @@ public class Componentes {
         for (Volume vol : vols) {
             calc = calc + vol.getDisponivel();
         }
-        return disco - calc;
+        return getDisco() - calc;
     }
 
     public Long getDiscoUso() {
-        return discoUso;
+        return calcDisco();
     }
 
     public void setDiscoUso(Long discoUso) {
@@ -99,7 +99,7 @@ public class Componentes {
     }
 
     public Integer getQtdServicos() {
-        return qtdServicos;
+        return componentes.getGrupoDeServicos().getTotalDeServicos();
     }
 
     public void setQtdServicos(Integer qtdServicos) {
@@ -114,7 +114,7 @@ public class Componentes {
     }
 
     public String getIdProcessador() {
-        return idProcessador;
+        return this.idProcessador;
     }
 
     public void setIdProcessador(String idProcessador) {
@@ -122,7 +122,7 @@ public class Componentes {
     }
 
     public Double getTemp() {
-        return temp;
+        return componentes.getTemperatura().getTemperatura();
     }
 
     public void setTemp(Double temp) {
@@ -130,27 +130,27 @@ public class Componentes {
     }
 
     public String getProcessador() {
-        return processador;
+        return this.processador;
     }
 
     public Long getRam() {
-        return ram;
+        return componentes.getMemoria().getTotal();
     }
 
     public Long getDisco() {
-        return disco;
+        return componentes.getGrupoDeDiscos().getTamanhoTotal();
     }
 
     public List getProcessos() {
-        return processos;
+        return componentes.getGrupoDeProcessos().getProcessos();
     }
 
     public Integer getQtdProcessos() {
-        return qtdProcessos;
+        return componentes.getGrupoDeProcessos().getTotalProcessos();
     }
 
     public List getServicosAtv() {
-        return servicosAtv;
+        return componentes.getGrupoDeServicos().getServicosAtivos();
     }
 
     public String getData() {
@@ -166,15 +166,15 @@ public class Componentes {
     }
 
     public Double getProcessamento() {
-        return processamento;
+        return componentes.getProcessador().getUso();
     }
 
     public Long getMemVolUso() {
-        return memVolUso;
+        return componentes.getMemoria().getEmUso();
     }
 
     public Long getMemVolLivre() {
-        return memVolLivre;
+        return componentes.getMemoria().getDisponivel();
     }
     public Integer regraTres(Long valorMenor, Long valorTotal){
         Long result = (valorMenor*100/valorTotal);

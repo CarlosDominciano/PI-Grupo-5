@@ -40,6 +40,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private Long segundo = 1000L;
     private Long minuto = segundo * 60;
     private Long hora = minuto * 60;
+    private Boolean autorizar = false;
 
            
     
@@ -80,18 +81,55 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
     
     Relatorio gerarNovoRelatorio(Totem vinculo, Componentes compos){
-        compos = new Componentes();
-        String processos = new Gson().toJson(compos.getProcessos());
-        String servicos = new Gson().toJson(compos.getServicosAtv());
-        Relatorio log = new Relatorio(vinculo.getIdTotem(), compos.getProcessamento().intValue(), compos.regraTres(compos.getMemVolUso(), compos.getRam()), compos.regraTres(compos.getDiscoUso(), compos.getDisco()), compos.getQtdProcessos(), compos.getQtdServicos(), compos.getTemp(), servicos, processos);
+        Relatorio log = new Relatorio(vinculo.getIdTotem(), compos.getProcessamento().intValue(), compos.regraTres(compos.getMemVolUso(), compos.getRam()), compos.regraTres(compos.getDiscoUso(), compos.getDisco()), compos.getQtdProcessos(), compos.getQtdServicos(), compos.getTemp());
         return log;
     }
     
     void enviarRelatorio(Relatorio relat){
-      relat = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
       connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", relat.getFkTotem(),relat.getPctgProcessador(),relat.getPctgMemoriaUso(),relat.getPctgDiscoUso(),relat.getQtdProcessos(),relat.getQtdServicos(),relat.getTemp(),relat.getDataHora());
 
     }
+     
+    void autoMonitorar(Boolean autorizado){
+        
+        if(autorizado){
+        timer.scheduleAtFixedRate(new TimerTask(){
+                @Override public void run(){
+                    AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+                    Integer porcentagem1 = comps.getProcessamento().intValue();
+                    Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
+                    Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
+                    
+                    logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+                    enviarRelatorio(logAtual);
+                    
+                    progres1.setValue(porcentagem1);
+                    progres3.setValue(porcentagem3);
+                    progres5.setValue(porcentagem5);
+                    if (porcentagem1 > 1) {
+                        alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
+                        alertaMonitora.textoAlertaMonitoramento1();
+
+                } 
+                    if (porcentagem3 > 80) {
+                    alertaMonitora.setVisible(true);
+                    slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
+                    alertaMonitora.textoAlertaMonitoramento3();
+
+                } 
+                if (porcentagem5 > 80) {
+                    alertaMonitora.setVisible(true);
+                    slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
+                    alertaMonitora.textoAlertaMonitoramento5();
+                    }
+                }
+            }, segundo, minuto);
+        }
+        
+        
+    }
+    
     void enviarRelatorio(){
       logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
       connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getDataHora());
@@ -604,36 +642,34 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(totemCadastrado){
             ativadoDesativado.setForeground(Color.GREEN);
             ativadoDesativado.setText("Ativado...");
-            comps = new Componentes();
             AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
-
             Integer porcentagem1 = comps.getProcessamento().intValue();
             Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
             Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
+            
+            if(autorizar == false){
+                autorizar = true;
+                autoMonitorar(autorizar);
+            }
 
             progres1.setValue(porcentagem1);
             progres3.setValue(porcentagem3);
             progres5.setValue(porcentagem5);
 
             //slackAlert.sendMessageToSlack("Alert system");
-            timer.scheduleAtFixedRate(new TimerTask(){
-                @Override public void run(){
-                    enviarRelatorio(logAtual);
-                }
-            }, segundo, minuto * 3);
+
 
             if (porcentagem1 > 1) {
                 alertaMonitora.setVisible(true);
                 slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
                 alertaMonitora.textoAlertaMonitoramento1();
 
-            } else if (porcentagem3 > 80) {
+            } if (porcentagem3 > 80) {
                 alertaMonitora.setVisible(true);
                 slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
                 alertaMonitora.textoAlertaMonitoramento3();
 
-            } else if (porcentagem5 > 80) {
+            } if (porcentagem5 > 80) {
                 alertaMonitora.setVisible(true);
                 slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
                 alertaMonitora.textoAlertaMonitoramento5();
@@ -663,7 +699,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem7ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-            comps = new Componentes();
             Long result = comps.getMemVolUso()/1000000000;
             txtMenu.setText(result.toString()+" GB");
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
@@ -673,7 +708,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem6ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-            comps = new Componentes();
             txtMenu.setText(comps.getQtdProcessos().toString()+" Processos");
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
@@ -698,7 +732,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
         if(totemCadastrado){
-            comps = new Componentes();
             txtMenu.setText(comps.getProcessos().toString());
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }
@@ -749,7 +782,6 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnAdicionarTotem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdicionarTotem10ActionPerformed
       // TODO add your handling code here:
         if(totemCadastrado){
-            comps = new Componentes();
             txtMenu.setText(comps.getServicosAtv().toString());
             logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}        // TODO add your handling code here:

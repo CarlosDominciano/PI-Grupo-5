@@ -20,12 +20,10 @@ public class Relatorio {
     private Integer qtdProcessos;
     private Integer qtdServicos;
     private Double temp;
-    private String servicos;
-    private String processos;
     private Date dataHora;
     private DateFormat format;
 
-    public Relatorio(Integer fkTotem, Integer pctgProcessador, Integer pctgMemoriaUso, Integer pctgDiscoUso, Integer qtdProcessos, Integer qtdServicos, Double temp, String servicos, String processos) {
+    public Relatorio(Integer fkTotem, Integer pctgProcessador, Integer pctgMemoriaUso, Integer pctgDiscoUso, Integer qtdProcessos, Integer qtdServicos, Double temp) {
         this.fkTotem = fkTotem;
         this.pctgProcessador = pctgProcessador;
         this.pctgMemoriaUso = pctgMemoriaUso;
@@ -33,8 +31,6 @@ public class Relatorio {
         this.qtdProcessos = qtdProcessos;
         this.qtdServicos = qtdServicos;
         this.temp = temp;
-        this.servicos = servicos;
-        this.processos = processos;
         this.format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.dataHora = new Date();
     }
@@ -96,22 +92,6 @@ public class Relatorio {
         this.temp = temp;
     }
 
-    public String getServicos() {
-        return servicos;
-    }
-
-    public void setServicos(String servicos) {
-        this.servicos = servicos;
-    }
-
-    public String getProcessos() {
-        return processos;
-    }
-
-    public void setProcessos(String processos) {
-        this.processos = processos;
-    }
-
     public String getDataHora() {
         return format.format(dataHora);
     }
@@ -122,8 +102,8 @@ public class Relatorio {
 
     @Override
     public String toString() {
-        return "Relatorio{" + "fkTotem=" + fkTotem + ", pctgProcessador=" + pctgProcessador + ", pctgMemoriaUso=" + pctgMemoriaUso + ", pctgDiscoUso=" + pctgDiscoUso + ", qtdProcessos=" + qtdProcessos + ", qtdServicos=" + qtdServicos + ", temp=" + temp + ", servicos=" + servicos + ", processos=" + processos + ", dataHora=" + dataHora + '}';
+        return "Relatorio{" + "fkTotem=" + fkTotem + ", pctgProcessador=" + pctgProcessador + ", pctgMemoriaUso=" + pctgMemoriaUso + ", pctgDiscoUso=" + pctgDiscoUso + ", qtdProcessos=" + qtdProcessos + ", qtdServicos=" + qtdServicos + ", temp=" + temp + ", dataHora=" + dataHora + ", format=" + format + '}';
     }
-    
+
     
 }
