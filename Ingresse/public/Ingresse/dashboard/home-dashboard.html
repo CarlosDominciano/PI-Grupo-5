@@ -11,7 +11,7 @@
     />
     <title>Inicio Dashboard</title>
   </head>
-  <body>
+  <body onload="notificar()">
     <div class="main-dash">
       <div class="main-rigth">
         <div class="lateral">
@@ -57,13 +57,14 @@
           <div class="perfil-notificacao">
             <img src="../assets/img_dash/msg.png" alt="" />
             <img src="../assets/img_dash/carta.png" alt="" />
-            <img src="../assets/img_dash/sino.png" onclick="Modalnotificacao.openNotificar(), notificar()" alt="" />
-
+            <img src="../assets/img_dash/sino.png" onclick="Modalnotificacao.openNotificar(), notNotify()"  alt="" />
+            <img style="display: none" id="bolinha" src="../assets/bolinha-vermelha.png" alt="" />
+            
             <div class="modal">
               <div class="modal-tecnologias">
                 <div>
                   <img class="exit-modal" onclick="Modalnotificacao.closeNotificar()" src="../assets/Exit.png">
-                  <div id="aparece"></div>
+                  <div style="color: #ffffff" id="aparece"><span>Sem estréia prevista</span></div>
                 </div>
               </div>
           </div>
@@ -99,6 +100,7 @@
   </body>
 </html>
 <script>
+
   const Modalnotificacao = {
       
     openNotificar()
@@ -131,28 +133,32 @@ fetch("/usuarios/notificar", {
         let len = data.length;
         let encontreiNotificacao = false;
 
+     
         for (let i = 0; i <= len; i++) {
             let arquivo = data[i];
 
-            
+          
                 encontreiNotificacao = true;
-                aparece.innerHTML += (`
-                // <span style="color: #2F1538;">ID:</span> ${arquivo.idLancamento},
+                aparece.innerHTML += (`<span style="color: #2F1538;">ID:</span> ${arquivo.idLancamento},
             <span style="color: #2F1538;">Nome:</span> ${arquivo.nomeFilme}, 
             <span style="color: #2F1538;">Lançamento em: :</span> ${arquivo.dataFilme},
             <span style="color: #9d48ce;">faltam apenas:</span> ${arquivo.dias_para_lancamento} <br>`);
-
+            document.getElementById("bolinha").style.display = "block";
             
             console.log("arq", arquivo)
         }
-
         if (encontreiNotificacao == false) {
-            alert("Nenhum funcionario encontrado! :(");
-        }
+                    //alert("Nenhum funcionario encontrado! :(");
+        } 
+        
     });
 }).catch(function (error) {
     console.error(`ERROR`, error);
 });
 
+}
+
+function notNotify(){
+  document.getElementById("bolinha").style.display = "none";
 }
 </script>

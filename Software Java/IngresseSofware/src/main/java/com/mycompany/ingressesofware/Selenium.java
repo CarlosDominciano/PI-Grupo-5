@@ -47,6 +47,7 @@ public class Selenium {
         for (WebElement data : dataFilme) {
 
             if (data.getText().contains(".0")
+                    && !data.getText().contains("a")
                     || data.getText().contains(".1")
                     && !data.getText().contains("a")
                     && !data.getText().contains("e")) {
