@@ -21,6 +21,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.util.ArrayList;
+import java.util.logging.Level;
 
 
 /**
@@ -180,8 +181,6 @@ public class Componentes {
         Long result = (valorMenor*100/valorTotal);
         return Integer.valueOf(result.toString());
     }
-    
-    
 
     @Override
     public String toString() {
