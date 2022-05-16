@@ -22,6 +22,7 @@ public class IngresseSoftware {
         Componentes comps = new Componentes();
         Conexao connect = new Conexao();
         TelaLogin telaLogin = new TelaLogin();
+        TelaLoginVM telaLoginVm = new TelaLoginVM();   
         SlackIntegrationTest slackAlert = new SlackIntegrationTest();
         SlackRelatorio slackRelatorio = new SlackRelatorio();
         SlackToken slackToken = new SlackToken();
@@ -34,12 +35,19 @@ public class IngresseSoftware {
         System.out.println("Como você deseja acessar o ingresseSoftware?\n"
                 + "1 - Interface gráfica\n"
                 + "2 - Terminal\n"
+                + "3 - Executando na vm (menos recurso)\n"
                 + "Digite sua escolha: ");
         Integer changeTerminalOrSwing = leitor.nextInt();
         if (changeTerminalOrSwing == 1){
             telaLogin.setVisible(true);
+        } else if(changeTerminalOrSwing == 2) {
+            System.out.println("executando monitoria terminal...");
+        } else if(changeTerminalOrSwing == 3){
+            System.out.println("executando monitoria vm...");
+            telaLoginVm.setVisible(true);
+            
         } else {
-            System.out.println("executando monitoria...");
+            System.out.println("Digite um numero válido");
         }
         
         //Usuario usando = new Usuario(3,"Jose Silva","Jose@gmail.com","suporte",1,"teste");
