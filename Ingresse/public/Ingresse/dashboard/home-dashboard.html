@@ -12,6 +12,7 @@
     <title>Inicio Dashboard</title>
   </head>
   <body onload="notificar()">
+    <audio id="notifyAudio" src="../assets/img_dash/notify.mp3" type="audio/mpeg"></audio>
     <div class="main-dash">
       <div class="main-rigth">
         <div class="lateral">
@@ -64,7 +65,7 @@
               <div class="modal-tecnologias">
                 <div>
                   <img class="exit-modal" onclick="Modalnotificacao.closeNotificar()" src="../assets/Exit.png">
-                  <div style="color: #ffffff" id="aparece"><span>Sem estréia prevista</span></div>
+                  <div style="color: #ffffff" id="aparece">Novas estréias em breve.</div>
                 </div>
               </div>
           </div>
@@ -144,10 +145,12 @@ fetch("/usuarios/notificar", {
             <span style="color: #2F1538;">Lançamento em: :</span> ${arquivo.dataFilme},
             <span style="color: #9d48ce;">faltam apenas:</span> ${arquivo.dias_para_lancamento} <br>`);
             document.getElementById("bolinha").style.display = "block";
-            
+            startAudioNotify()
             console.log("arq", arquivo)
+            
         }
         if (encontreiNotificacao == false) {
+         
                     //alert("Nenhum funcionario encontrado! :(");
         } 
         
@@ -156,6 +159,15 @@ fetch("/usuarios/notificar", {
     console.error(`ERROR`, error);
 });
 
+}
+
+
+var notifyStart = document.getElementById('notifyAudio')
+function startAudioNotify(){
+    notifyStart.currentTime = 0
+    notifyStart.play()
+  
+   
 }
 
 function notNotify(){
