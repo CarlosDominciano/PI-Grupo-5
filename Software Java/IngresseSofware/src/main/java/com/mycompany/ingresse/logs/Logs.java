@@ -30,13 +30,13 @@ public class Logs {
     }
 
     private void gerar_Log(String nivel, String texto) throws IOException {
-        diretorio = new File("C:\\PI-Grupo-5");
+       // diretorio = new File("C:\\PI-Grupo-5");
         if (!diretorio.exists()) {
             diretorio.mkdir();
         }
         dataAtual = LocalDateTime.now();
         this.nome_arquivo = "Ingresse" + dataAtual.getDayOfMonth() + "_" + dataAtual.getMonthValue() + "_" + dataAtual.getYear();
-        arquivo = new File("C:\\PI-Grupo-5\\" + nome_arquivo + ".txt");
+       // arquivo = new File("C:\\PI-Grupo-5\\" + nome_arquivo + ".txt");
 
         if (!arquivo.exists()) {
             arquivo.createNewFile();

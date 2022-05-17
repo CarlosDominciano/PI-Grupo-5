@@ -146,6 +146,7 @@ fetch("/usuarios/notificar", {
             <span style="color: #9d48ce;">faltam apenas:</span> ${arquivo.dias_para_lancamento} <br>`);
             document.getElementById("bolinha").style.display = "block";
             startAudioNotify()
+           
             console.log("arq", arquivo)
             
         }
@@ -164,9 +165,9 @@ fetch("/usuarios/notificar", {
 
 var notifyStart = document.getElementById('notifyAudio')
 function startAudioNotify(){
-    notifyStart.currentTime = 0
+    notifyStart.currentTime = 0.6
     notifyStart.play()
-  
+    console.log("oiaosi")
    
 }
 
