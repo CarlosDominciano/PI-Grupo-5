@@ -21,23 +21,23 @@ public class Logs {
         gerar_Log("INFO", texto);
     }
 
-    public void warning(String texto) {
-        gerar_Log("AVISO", texto);
+    public void alerta(String texto) {
+        gerar_Log("ALERTA", texto);
     }
 
-    public void severe(String texto) {
+    public void severo(String texto) {
         gerar_Log("SEVERO", texto);
     }
 
     private void gerar_Log(String nivel, String texto) {
         try {
-            diretorio = new File("/home/aluno/Desktop/PI-Grupo-5/");
+            diretorio = new File("/home/aluno/Desktop/Grupo-5-Ingresse/");
             if (!diretorio.exists()) {
                 diretorio.mkdir();
             }
             dataAtual = LocalDateTime.now();
-            this.nome_arquivo = "Log Ingresse" + dataAtual.getHour() + "" + dataAtual.getDayOfMonth() + "" + dataAtual.getMonthValue() + "_" + dataAtual.getYear();
-            arquivo = new File("/home/aluno/Desktop/PI-Grupo-5/" + nome_arquivo + ".txt");
+            this.nome_arquivo = "ingresse" + dataAtual.getHour() + "" + dataAtual.getDayOfMonth() + "" + dataAtual.getMonthValue() + "_" + dataAtual.getYear();
+            arquivo = new File("/home/aluno/Desktop/Grupo-5-Ingresse/" + nome_arquivo + ".txt");
 
             if (!arquivo.exists()) {
                 arquivo.createNewFile();

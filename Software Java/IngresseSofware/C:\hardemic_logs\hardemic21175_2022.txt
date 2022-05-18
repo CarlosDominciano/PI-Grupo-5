@@ -1,0 +1,11 @@
+---------- Logs hardemic ----------
+
+[INFO]:Deu certo amém - Log normal
+[WARNING]:Deu certo amém 2 - Log de erro
+[SEVERE]:Deu certo amém 3 - Log de fudeu
+[INFO]:Deu certo amém - Log normal
+[WARNING]:Deu certo amém 2 - Log de erro
+[SEVERE]:Deu certo amém 3 - Log de fudeu
+[INFO]:Deu certo amém - Log normal
+[WARNING]:Deu certo amém 2 - Log de erro
+[SEVERE]:Deu certo amém 3 - Log de fudeu

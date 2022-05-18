@@ -14,9 +14,9 @@ public class App {
 
         logs.info("Deu certo amém - Log normal");
 
-        logs.warning("Deu certo amém 2 - Log de erro");
+        logs.alerta("Deu certo amém 2 - Log de erro");
 
-        logs.severe("Deu certo amém 3 - Log de fudeu");
+        logs.severo("Deu certo amém 3 - Log de fudeu");
 
 //		LOGGER.info("Logger Name: "+ LOGGER.getName());
 //		
