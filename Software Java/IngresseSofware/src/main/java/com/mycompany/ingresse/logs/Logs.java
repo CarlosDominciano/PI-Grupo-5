@@ -17,45 +17,46 @@ public class Logs {
 
     }
 
-    public void info(String texto) throws IOException {
+    public void info(String texto) {
         gerar_Log("INFO", texto);
     }
 
-    public void warning(String texto) throws IOException {
+    public void warning(String texto) {
         gerar_Log("AVISO", texto);
     }
 
-    public void severe(String texto) throws IOException {
+    public void severe(String texto) {
         gerar_Log("SEVERO", texto);
     }
 
-    private void gerar_Log(String nivel, String texto) throws IOException {
-        diretorio = new File("C:\\PI-Grupo-5");
-        if (!diretorio.exists()) {
-            diretorio.mkdir();
-        }
-        dataAtual = LocalDateTime.now();
-        this.nome_arquivo = "Ingresse" + dataAtual.getDayOfMonth() + "_" + dataAtual.getMonthValue() + "_" + dataAtual.getYear();
-        arquivo = new File("C:\\PI-Grupo-5\\" + nome_arquivo + ".txt");
+    private void gerar_Log(String nivel, String texto) {
+        try {
+            diretorio = new File("/home/aluno/Desktop/PI-Grupo-5/");
+            if (!diretorio.exists()) {
+                diretorio.mkdir();
+            }
+            dataAtual = LocalDateTime.now();
+            this.nome_arquivo = "Log Ingresse" + dataAtual.getHour() + "" + dataAtual.getDayOfMonth() + "" + dataAtual.getMonthValue() + "_" + dataAtual.getYear();
+            arquivo = new File("/home/aluno/Desktop/PI-Grupo-5/" + nome_arquivo + ".txt");
 
-        if (!arquivo.exists()) {
-            arquivo.createNewFile();
-        }
+            if (!arquivo.exists()) {
+                arquivo.createNewFile();
+            }
 
-        FileWriter fw = new FileWriter(arquivo, true);
-        BufferedWriter bw = new BufferedWriter(fw);
-        if (arquivo.length() == 0) {
-            bw.write("@@@@@@@  Log Ingresse  @@@@@@");
+            FileWriter fw = new FileWriter(arquivo, true);
+            BufferedWriter bw = new BufferedWriter(fw);
+            if (arquivo.length() == 0) {
+                bw.write("---------- Logs ingresse ----------");
+                bw.newLine();
+            }
+
             bw.newLine();
+            bw.write("[" + nivel + "]:" + texto);
+
+            bw.close();
+            fw.close();
+        } catch (IOException e) {
+            System.out.println("Error:" + e.getMessage());
         }
-//        if(arquivo.){
-//            bw.write("aaaaaaaaaaaaaaaaaaaaaaaaa");
-//        }
-        bw.newLine();
-        bw.write("[" + nivel + "]:" + texto);
-
-        bw.close();
-        fw.close();
-
     }
 }

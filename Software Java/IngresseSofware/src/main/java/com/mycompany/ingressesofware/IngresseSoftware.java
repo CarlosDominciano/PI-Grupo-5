@@ -8,6 +8,7 @@ package com.mycompany.ingressesofware;
 import com.github.britooo.looca.api.core.Looca;
 import com.mycompany.ingresse.coleta.dados.Componentes;
 import com.mycompany.ingresse.coleta.dados.Conexao;
+import com.mycompany.ingresse.logs.Logs;
 import java.text.ParseException;
 import java.util.List;
 import java.util.Scanner;
@@ -26,6 +27,7 @@ public class IngresseSoftware {
         SlackIntegrationTest slackAlert = new SlackIntegrationTest();
         SlackRelatorio slackRelatorio = new SlackRelatorio();
         SlackToken slackToken = new SlackToken();
+        Logs logs = new Logs();
         
         slackAlert.sendMessageToSlack("Iniciando...");
         slackRelatorio.sendRelatorio("Iniciando...");

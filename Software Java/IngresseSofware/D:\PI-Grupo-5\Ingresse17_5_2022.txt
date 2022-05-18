@@ -1,0 +1,5 @@
+@@@@@@@  Log Ingresse  @@@@@@
+
+[INFO]:Deu certo amém - Log normal
+[AVISO]:Deu certo amém 2 - Log de erro
+[SEVERO]:Deu certo amém 3 - Log de fudeu
