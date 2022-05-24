@@ -25,7 +25,7 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
  */
 public class TelaPrincipal extends javax.swing.JFrame {
 
-    TelaLogin telaLogin = new TelaLogin();
+    TelaLogin telaLogin;
     Componentes comps = new Componentes();
     Looca looca = new Looca();
     Conexao connect = new Conexao();
@@ -37,6 +37,10 @@ public class TelaPrincipal extends javax.swing.JFrame {
     Usuario sessao;
     Relatorio logAtual;
     Timer timer = new Timer();
+    String path;
+    AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+    Logs logs;
+
     private Long segundo = 1000L;
     private Long minuto = segundo * 60;
     private Long hora = minuto * 60;
@@ -47,7 +51,23 @@ public class TelaPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form TelaLogin
      */
-    public TelaPrincipal(Usuario sessao) {
+    public TelaPrincipal(Usuario sessao, String path) {
+        
+         timer.scheduleAtFixedRate(new TimerTask() { 
+
+            @Override 
+
+            public void run() { 
+
+                    logs.info("Dados atuais: " + verificacaoTotem.get(0)); 
+
+                    //System.out.println(verificacaoTotem); 
+
+            } 
+
+            // Para começar , intervalo de ação 
+
+        }, segundo * 2, minuto * 1); 
 
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -68,6 +88,8 @@ public class TelaPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.sessao = sessao;
+        this.path = path;
+        this.logs = new Logs(path);
 
 //        setExtendedState(MAXIMIZED_BOTH);
         ativadoDesativado.setForeground(Color.RED);
@@ -91,14 +113,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
     }
      
     void autoMonitorar(Boolean autorizado){
-        
+
         if(autorizado){
         timer.scheduleAtFixedRate(new TimerTask(){
                 @Override public void run(){
-                    AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
+
                     Integer porcentagem1 = comps.getProcessamento().intValue();
                     Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
                     Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
+                    Double temp = comps.getTemp();
                     
                     logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
                     enviarRelatorio(logAtual);
@@ -106,28 +129,171 @@ public class TelaPrincipal extends javax.swing.JFrame {
                     progres1.setValue(porcentagem1);
                     progres3.setValue(porcentagem3);
                     progres5.setValue(porcentagem5);
-                    if (porcentagem1 > 1) {
-                        alertaMonitora.setVisible(true);
-                        slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
-                        alertaMonitora.textoAlertaMonitoramento1();
+//                    if (porcentagem1 > 1) {
+//                        if(alertaMonitora.isVisible()){
+//                            timer.schedule(new TimerTask(){
+//                                 @Override public void run(){
+//                                    alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+//                                }
+//                            }, segundo * 5);
+//                            //alertaMonitora.setVisible(true);
+//                            slackAlert.sendMessageToSlack(String.format("Alerta: O nível de processamento (CPU) atingiu %d%%", porcentagem1));
+//                            
+//                        }else{
+//                        //alertaMonitora.setVisible(true);
+//                        slackAlert.sendMessageToSlack(String.format("Alerta: O nível de processamento (CPU) atingiu %d%%", porcentagem1));
+//                        //alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+//                        }
+//                    } 
+//                    if(temp>=10.0){
+//                        if(alertaMonitora.isVisible()){
+//                            timer.schedule(new TimerTask(){
+//                                 @Override public void run(){
+//                                    alertaMonitora.textoAlertaMonitoramento2(temp);
+//                                }
+//                            }, segundo * 5);
+//                            //alertaMonitora.setVisible(true);
+//                            slackAlert.sendMessageToSlack(String.format("Alerta: A temperatura atingiu %.2f °C", temp));
+//                            }
+//                        else{
+//                            //alertaMonitora.setVisible(true);
+//                            slackAlert.sendMessageToSlack(String.format("Alerta: A temperatura atingiu %.2f °C", temp));
+//                            //alertaMonitora.textoAlertaMonitoramento2(temp);
+//                        }
+//                    }
+//                    if (porcentagem3 > 80) {
+//                        if(alertaMonitora.isVisible()){
+//                            timer.schedule(new TimerTask(){
+//                                 @Override public void run(){
+//                                    alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+//                                }
+//                            }, segundo * 5);
+//                        //alertaMonitora.setVisible(true);
+//                        slackAlert.sendMessageToSlack(String.format("Alerta: Memória ram atingiu %d%%",porcentagem3));
+//                        }else{
+//                        //alertaMonitora.setVisible(true);
+//                        slackAlert.sendMessageToSlack(String.format("Alerta: Memória ram atingiu %d%%",porcentagem3));
+//                        //alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+//                        }
+//                } 
+//                if (porcentagem5 > 40) {
+//                    if(alertaMonitora.isVisible()){
+//                    timer.schedule(new TimerTask(){
+//                                 @Override public void run(){
+//                                    alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+//                                }
+//                            }, segundo * 5);
+//                    //alertaMonitora.setVisible(true);
+//                    slackAlert.sendMessageToSlack(String.format("Alerta: Armazenamento atingiu %d%%",porcentagem5));
+//                    }
+//                    else{
+//                        //alertaMonitora.setVisible(true);
+//                        slackAlert.sendMessageToSlack(String.format("Alerta: Armazenamento atingiu %d%%",porcentagem5));
+//                        //alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+//                        }
+//                    }
+                if (porcentagem1 > 20) {
+                logs.alerta("O nível de processamento atingiu: " + porcentagem1);
+                if(porcentagem1>50 && porcentagem1<=80){
+                    logs.erro("O nível de processamento atingiu: " + porcentagem1);
+                    
+                }
+                if(porcentagem1>80){
+                    logs.severo("O nível de processamento atingiu: " + porcentagem1); 
 
-                } 
-                    if (porcentagem3 > 80) {
-                    alertaMonitora.setVisible(true);
-                    slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
-                    alertaMonitora.textoAlertaMonitoramento3();
-
-                } 
-                if (porcentagem5 > 80) {
-                    alertaMonitora.setVisible(true);
-                    slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
-                    alertaMonitora.textoAlertaMonitoramento5();
+                }
+                        if(alertaMonitora.isVisible()){
+                            timer.schedule(new TimerTask(){
+                                 @Override public void run(){
+                                    alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+                                }
+                            }, segundo * 5);
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: O nível de processamento (CPU) atingiu %d%%", porcentagem1));
+                            
+                        }else{
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: O nível de processamento (CPU) atingiu %d%%", porcentagem1));
+                        //alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+                        }
+                    } 
+                    if(temp>=10.0){
+                        if(alertaMonitora.isVisible()){
+                            timer.schedule(new TimerTask(){
+                                 @Override public void run(){
+                                    alertaMonitora.textoAlertaMonitoramento2(temp);
+                                }
+                            }, segundo * 5);
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: A temperatura atingiu %.2f °C", temp));
+                            }
+                        else{
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: A temperatura atingiu %.2f °C", temp));
+                            //alertaMonitora.textoAlertaMonitoramento2(temp);
+                        }
                     }
+                    if (porcentagem3 > 30) {
+                        if(porcentagem3>40 && porcentagem3<=60){
+                            logs.alerta("A memória RAM atingiu: " + porcentagem3); 
+                        }
+                        if(porcentagem3>60 && porcentagem3<=80){
+                            logs.erro("A memória RAM atingiu: " + porcentagem3); 
+                        }
+                        if(porcentagem3>80){
+                            logs.severo("A memória RAM atingiu: " + porcentagem3); 
+                        }
+                        if(alertaMonitora.isVisible()){
+                            timer.schedule(new TimerTask(){
+                                 @Override public void run(){
+                                    alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+                                }
+                            }, segundo * 5);
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: Memória ram atingiu %d%%",porcentagem3));
+                        }else{
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: Memória ram atingiu %d%%",porcentagem3));
+                        //alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+                        }
+                } 
+                if (porcentagem5 > 40) {
+                    if(porcentagem5>40 && porcentagem5<=60){
+                        logs.alerta("O armazenamento atingiu: " + porcentagem5);  
+                    }
+                    if(porcentagem5>60 && porcentagem5<=80){
+                        logs.erro("O armazenamento atingiu: " + porcentagem5); 
+                    }
+                    if(porcentagem5>80){
+                        logs.severo("O armazenamento atingiu: " + porcentagem5); 
+                    }
+                    if(alertaMonitora.isVisible()){
+                        timer.schedule(new TimerTask(){
+                                    @Override public void run(){
+                                        alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+                                    }
+                                }, segundo * 5);
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: Armazenamento atingiu %d%%",porcentagem5));
+                    }
+                    else{
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: Armazenamento atingiu %d%%",porcentagem5));
+                            //alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+                        }
+                }
                 }
             }, segundo, minuto);
         }
         
         
+    }
+    
+    void aguardar(Integer delaySeg){
+        timer.schedule(new TimerTask(){
+            @Override public void run(){
+            }
+        }, segundo * delaySeg);
     }
     
     void enviarRelatorio(){
@@ -634,7 +800,9 @@ public class TelaPrincipal extends javax.swing.JFrame {
     private void btnIniciarMonitoramento1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramento1ActionPerformed
         // TODO add your handling code here:
         if(totemCadastrado){
-            enviarRelatorio();}else{}
+            enviarRelatorio();
+             logs.info("Usuário: " + sessao.getNome() + " Enviou o relatório."); 
+        }else{}
     }//GEN-LAST:event_btnIniciarMonitoramento1ActionPerformed
 
     private void btnIniciarMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIniciarMonitoramentoActionPerformed
@@ -642,14 +810,15 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(totemCadastrado){
             ativadoDesativado.setForeground(Color.GREEN);
             ativadoDesativado.setText("Ativado...");
-            AlertaMonitoramento alertaMonitora = new AlertaMonitoramento();
             Integer porcentagem1 = comps.getProcessamento().intValue();
             Integer porcentagem3 = comps.regraTres(comps.getMemVolUso(), comps.getRam());
             Integer porcentagem5 = comps.regraTres(comps.getDiscoUso(), comps.getDisco());
+            Double temp = comps.getTemp();
             
             if(autorizar == false){
                 autorizar = true;
                 autoMonitorar(autorizar);
+                logs.info("Usuário: " + sessao.getNome() + " Iniciou o monitoramento."); 
             }
 
             progres1.setValue(porcentagem1);
@@ -657,24 +826,146 @@ public class TelaPrincipal extends javax.swing.JFrame {
             progres5.setValue(porcentagem5);
 
             //slackAlert.sendMessageToSlack("Alert system");
+            
+            if (porcentagem1 > 20) {
+                logs.alerta("O nível de processamento atingiu: " + porcentagem1);
+                if(porcentagem1>50 && porcentagem1<=80){
+                    logs.erro("O nível de processamento atingiu: " + porcentagem1);
+                    
+                }
+                if(porcentagem1>80){
+                    logs.severo("O nível de processamento atingiu: " + porcentagem1); 
 
-
-            if (porcentagem1 > 1) {
-                alertaMonitora.setVisible(true);
-                slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
-                alertaMonitora.textoAlertaMonitoramento1();
-
-            } if (porcentagem3 > 80) {
-                alertaMonitora.setVisible(true);
-                slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
-                alertaMonitora.textoAlertaMonitoramento3();
-
-            } if (porcentagem5 > 80) {
-                alertaMonitora.setVisible(true);
-                slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
-                alertaMonitora.textoAlertaMonitoramento5();
-            }
-        }else{}
+                }
+                        if(alertaMonitora.isVisible()){
+                            timer.schedule(new TimerTask(){
+                                 @Override public void run(){
+                                    alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+                                }
+                            }, segundo * 5);
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: O nível de processamento (CPU) atingiu %d%%", porcentagem1));
+                            
+                        }else{
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: O nível de processamento (CPU) atingiu %d%%", porcentagem1));
+                        //alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+                        }
+                    } 
+                    if(temp>=10.0){
+                        if(alertaMonitora.isVisible()){
+                            timer.schedule(new TimerTask(){
+                                 @Override public void run(){
+                                    alertaMonitora.textoAlertaMonitoramento2(temp);
+                                }
+                            }, segundo * 5);
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: A temperatura atingiu %.2f °C", temp));
+                            }
+                        else{
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: A temperatura atingiu %.2f °C", temp));
+                            //alertaMonitora.textoAlertaMonitoramento2(temp);
+                        }
+                    }
+                    if (porcentagem3 > 30) {
+                        if(porcentagem3>40 && porcentagem3<=60){
+                            logs.alerta("A memória RAM atingiu: " + porcentagem3); 
+                        }
+                        if(porcentagem3>60 && porcentagem3<=80){
+                            logs.erro("A memória RAM atingiu: " + porcentagem3); 
+                        }
+                        if(porcentagem3>80){
+                            logs.severo("A memória RAM atingiu: " + porcentagem3); 
+                        }
+                        if(alertaMonitora.isVisible()){
+                            timer.schedule(new TimerTask(){
+                                 @Override public void run(){
+                                    alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+                                }
+                            }, segundo * 5);
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: Memória ram atingiu %d%%",porcentagem3));
+                        }else{
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: Memória ram atingiu %d%%",porcentagem3));
+                        //alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+                        }
+                } 
+                if (porcentagem5 > 40) {
+                    if(porcentagem5>40 && porcentagem5<=60){
+                        logs.alerta("O armazenamento atingiu: " + porcentagem5);  
+                    }
+                    if(porcentagem5>60 && porcentagem5<=80){
+                        logs.erro("O armazenamento atingiu: " + porcentagem5); 
+                    }
+                    if(porcentagem5>80){
+                        logs.severo("O armazenamento atingiu: " + porcentagem5); 
+                    }
+                    if(alertaMonitora.isVisible()){
+                        timer.schedule(new TimerTask(){
+                                    @Override public void run(){
+                                        alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+                                    }
+                                }, segundo * 5);
+                        //alertaMonitora.setVisible(true);
+                        slackAlert.sendMessageToSlack(String.format("Alerta: Armazenamento atingiu %d%%",porcentagem5));
+                    }
+                    else{
+                            //alertaMonitora.setVisible(true);
+                            slackAlert.sendMessageToSlack(String.format("Alerta: Armazenamento atingiu %d%%",porcentagem5));
+                            //alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+                        }
+                }
+//            if (porcentagem1 > 1) {
+//                alertaMonitora.setVisible(true);
+//                slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
+//                alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
+//                logs.alerta("O nível de processamento atingiu: " + porcentagem1);
+//                if(porcentagem1>50 && porcentagem1<=80){
+//                    logs.erro("O nível de processamento atingiu: " + porcentagem1);
+//                    
+//                }
+//                if(porcentagem1>80){
+//                    logs.severo("O nível de processamento atingiu: " + porcentagem1); 
+//
+//                }
+//
+//            } if (porcentagem3 > 1) {
+//                alertaMonitora.setVisible(true);
+//                slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
+//                alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
+//                if(porcentagem3>40 && porcentagem3<=60){
+//                    logs.alerta("A memória RAM atingiu: " + porcentagem3); 
+//                }
+//                if(porcentagem3>60 && porcentagem3<=80){
+//                    logs.erro("A memória RAM atingiu: " + porcentagem3); 
+//                }
+//                if(porcentagem3>80){
+//                    logs.severo("A memória RAM atingiu: " + porcentagem3); 
+//                }
+//
+//            }
+//            if(temp>=10.0){
+//                alertaMonitora.setVisible(true);
+//                slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
+//                alertaMonitora.textoAlertaMonitoramento2(temp);
+//            }
+//            if (porcentagem5 > 1) {
+//                alertaMonitora.setVisible(true);
+//                slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
+//                alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
+//                if(porcentagem3>40 && porcentagem3<=60){
+//                    logs.alerta("O armazenamento atingiu: " + porcentagem5);  
+//                }
+//                if(porcentagem3>60 && porcentagem3<=80){
+//                    logs.erro("O armazenamento atingiu: " + porcentagem5); 
+//                }
+//                if(porcentagem3>80){
+//                    logs.severo("O armazenamento atingiu: " + porcentagem5); 
+//                }
+//            }
+        }
 
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed
 
@@ -683,7 +974,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(totemCadastrado){
          
             txtMenu.setText(looca.getProcessador().toString());
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
             
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem9ActionPerformed
@@ -692,7 +983,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(totemCadastrado){
             txtMenu.setText(looca.getSistema().toString());
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnSistemaActionPerformed
 
@@ -701,7 +992,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(totemCadastrado){
             Long result = comps.getMemVolUso()/1000000000;
             txtMenu.setText(result.toString()+" GB");
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem7ActionPerformed
 
@@ -709,7 +1000,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(totemCadastrado){
             txtMenu.setText(comps.getQtdProcessos().toString()+" Processos");
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem6ActionPerformed
 
@@ -717,7 +1008,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(totemCadastrado){
             txtMenu.setText(comps.getProcessamento().toString()+"% da capacidade da CPU");
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem5ActionPerformed
 
@@ -726,14 +1017,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(totemCadastrado){
             Long result = comps.getDisco()/1000000000;
             txtMenu.setText(result.toString()+" GB");
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}
     }//GEN-LAST:event_btnAdicionarTotem4ActionPerformed
 
     private void btnProcessosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProcessosActionPerformed
         if(totemCadastrado){
             txtMenu.setText(comps.getProcessos().toString());
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }
         else{}
 
@@ -744,7 +1035,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
         if(totemCadastrado){
             Long result = comps.getRam()/1000000000;
             txtMenu.setText(result.intValue()+" GB Ram");
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{
 
         }
@@ -752,6 +1043,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnAddTotemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAddTotemActionPerformed
         if(totemCadastrado == false){
+            telaLogin = new TelaLogin(this.path);
             Double discoDouble = (double) (Math.round((comps.getDisco()/1000000000)*1.0/1.0));
             Double ramDouble = (double) (Math.round((comps.getRam()/1000000000)*1.0/1.0));
             //connect.getJdbc().execute(String.format("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador) VALUES %d,%.1f,%.1f,%s,%s,%s", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador()));
@@ -772,9 +1064,14 @@ public class TelaPrincipal extends javax.swing.JFrame {
 
     private void btnSair2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSair2ActionPerformed
         // TODO add your handling code here:
+        telaLogin = new TelaLogin(this.path);
         ativadoDesativado.setForeground(Color.RED);
         ativadoDesativado.setText("Pausado...");
+        logs.info("Usuário: " + sessao.getNome() + " fechou o sistema." 
 
+                + "\n ---------------------------------------------------------" 
+
+                + "-----------------------------------------------------------"); 
         telaLogin.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnSair2ActionPerformed
@@ -783,7 +1080,7 @@ public class TelaPrincipal extends javax.swing.JFrame {
       // TODO add your handling code here:
         if(totemCadastrado){
             txtMenu.setText(comps.getServicosAtv().toString());
-            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
+//            logAtual = gerarNovoRelatorio(verificacaoTotem.get(0),comps);
         }else{}        // TODO add your handling code here:
     }//GEN-LAST:event_btnAdicionarTotem10ActionPerformed
 

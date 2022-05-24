@@ -109,19 +109,19 @@ public class TelaPrincipalVm extends javax.swing.JFrame {
                     if (porcentagem1 > 1) {
                         alertaMonitora.setVisible(true);
                         slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
-                        alertaMonitora.textoAlertaMonitoramento1();
+                        alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
 
                 } 
                     if (porcentagem3 > 80) {
                     alertaMonitora.setVisible(true);
                     slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
-                    alertaMonitora.textoAlertaMonitoramento3();
+                    alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
 
                 } 
                 if (porcentagem5 > 80) {
                     alertaMonitora.setVisible(true);
                     slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
-                    alertaMonitora.textoAlertaMonitoramento5();
+                    alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
                     }
                 }
             }, segundo, minuto);
@@ -489,17 +489,17 @@ public class TelaPrincipalVm extends javax.swing.JFrame {
             if (porcentagem1 > 1) {
                 alertaMonitora.setVisible(true);
                 slackAlert.sendMessageToSlack("Alerta: O nível de processamento (CPU) atingiu 50%");
-                alertaMonitora.textoAlertaMonitoramento1();
+                alertaMonitora.textoAlertaMonitoramento1(porcentagem1);
 
             } if (porcentagem3 > 80) {
                 alertaMonitora.setVisible(true);
                 slackAlert.sendMessageToSlack("Alerta: Memória ram atingiu 80%");
-                alertaMonitora.textoAlertaMonitoramento3();
+                alertaMonitora.textoAlertaMonitoramento3(porcentagem3);
 
             } if (porcentagem5 > 80) {
                 alertaMonitora.setVisible(true);
                 slackAlert.sendMessageToSlack("Alerta: Armazenamento atingiu 80%");
-                alertaMonitora.textoAlertaMonitoramento5();
+                alertaMonitora.textoAlertaMonitoramento5(porcentagem5);
             }
         }else{}
     }//GEN-LAST:event_btnIniciarMonitoramentoActionPerformed

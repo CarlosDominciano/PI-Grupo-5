@@ -26,11 +26,13 @@ public class TelaToken extends javax.swing.JFrame {
     
     private Usuario sessao;
     private Boolean fecharLogin;
+    private String path;
     /**
      * Creates new form TelaToken
      */
-    public TelaToken(Usuario sessao) {
+    public TelaToken(Usuario sessao, String path) {
         this.sessao = sessao;
+        this.path = path;
         initComponents();
         this.setLocationRelativeTo(null);
         setTitle("Confirmação Token");
@@ -172,7 +174,7 @@ public class TelaToken extends javax.swing.JFrame {
     private void btnConfirmacaoTokenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmacaoTokenActionPerformed
         Conexao connect = new Conexao();
         Componentes comps = new Componentes();
-        TelaPrincipal telaPrincipal = new TelaPrincipal(sessao);
+        TelaPrincipal telaPrincipal = new TelaPrincipal(sessao, path);
         List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(),comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
         
         if (randomToken.toString().equals(txtToken.getText()) && (verificacaoTotem.isEmpty()||verificacaoTotem.get(0).getFkFilial()==sessao.getFkFilial())) 

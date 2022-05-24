@@ -4,6 +4,8 @@
  */
 package com.mycompany.ingressesofware;
 
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.JLabel;
 
 /**
@@ -12,6 +14,10 @@ import javax.swing.JLabel;
  */
 public class AlertaMonitoramento extends javax.swing.JFrame {
    
+    Timer timer = new Timer();
+    private Long segundo = 1000L;
+    private Long minuto = segundo * 60;
+    private Long hora = minuto * 60;
     /**
      * Creates new form AlertaMonitoramento
      */
@@ -113,22 +119,33 @@ public class AlertaMonitoramento extends javax.swing.JFrame {
     public JLabel getLblAlerta() {
         return lblAlerta;
     }
-     public void textoAlertaMonitoramento1(){
-         lblAlerta.setText("O processamento (Cpu) atingiu 50%");
+     public void textoAlertaMonitoramento1(Integer cpu){
+         lblAlerta.setText(String.format("O processamento (Cpu) atingiu %d%%", cpu));
+         fecharAlerta();
      }
-     public void textoAlertaMonitoramento2(){
-         lblAlerta.setText("");
-        
+     public void textoAlertaMonitoramento2(Double temperatura){
+         lblAlerta.setText(String.format("Temperatura atingiu %.2f °C", temperatura));
+         fecharAlerta();
      }
-     public void textoAlertaMonitoramento3(){
-         lblAlerta.setText("Memória ram atingiu 80%");
+     public void textoAlertaMonitoramento3(Integer ram){
+         lblAlerta.setText(String.format("Memória ram atingiu %d%%", ram));
+         fecharAlerta();
      }
      public void textoAlertaMonitoramento4(){
          lblAlerta.setText("");
      }
-     public void textoAlertaMonitoramento5(){
-         lblAlerta.setText("Armazenamento atingiu 80%");
+     public void textoAlertaMonitoramento5(Integer armaz){
+         lblAlerta.setText(String.format("Armazenamento atingiu %d%%", armaz));
+         fecharAlerta();
      }
+     
+    private void fecharAlerta(){
+        timer.schedule(new TimerTask(){
+            @Override public void run(){
+                dispose();
+            }
+        }, segundo * 5);
+    }
 
     private void btnAlertaMonitoramentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAlertaMonitoramentoActionPerformed
      // TODO add your handling code here:
