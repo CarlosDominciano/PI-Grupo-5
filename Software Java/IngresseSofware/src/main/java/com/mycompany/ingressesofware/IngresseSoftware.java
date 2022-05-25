@@ -24,13 +24,13 @@ public class IngresseSoftware {
         SlackIntegrationTest slackAlert = new SlackIntegrationTest();
         SlackRelatorio slackRelatorio = new SlackRelatorio();
         SlackToken slackToken = new SlackToken();
-        
+        Boolean repetirMenu = true; 
         slackAlert.sendMessageToSlack("Iniciando...");
         slackRelatorio.sendRelatorio("Iniciando...");
         slackToken.sendToken("Iniciando...");
         Scanner leitor = new Scanner(System.in);
         Scanner leitor2 = new Scanner(System.in);
-        
+        while(repetirMenu){
         System.out.println("Como você deseja acessar o ingresseSoftware?\n"
                 + "1 - Interface gráfica\n"
                 + "2 - Terminal\n"
@@ -38,15 +38,18 @@ public class IngresseSoftware {
                 + "Digite sua escolha: ");
         Integer changeTerminalOrSwing = leitor.nextInt();
         if (changeTerminalOrSwing == 1){
+                repetirMenu = false;
                 System.out.println("insira o caminho definitivo dos logs locais: ");
                 String absolutePath = leitor2.nextLine();
                 TelaLogin telaLogin = new TelaLogin(absolutePath);
-            telaLogin.setVisible(true);
+                telaLogin.setVisible(true);
         } else if(changeTerminalOrSwing == 2) {
+            repetirMenu = false;
             System.out.println("insira o caminho definitivo dos logs locais: ");
             String absolutePath = leitor2.nextLine();
             System.out.println("executando monitoria terminal...");
         } else if(changeTerminalOrSwing == 3){
+            repetirMenu = false;
             System.out.println("insira o caminho definitivo dos logs locais: ");
             String absolutePath = leitor2.nextLine();
             TelaLoginVM telaLoginVm = new TelaLoginVM(); 
@@ -55,6 +58,7 @@ public class IngresseSoftware {
             
         } else {
             System.out.println("Digite um numero válido");
+        }
         }
         
         //Usuario usando = new Usuario(3,"Jose Silva","Jose@gmail.com","suporte",1,"teste");
