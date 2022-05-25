@@ -13,20 +13,33 @@ import org.springframework.jdbc.core.JdbcTemplate;
  * @author isaque.santos@VALEMOBI.CORP
  */
 public class Conexao {
-    private BasicDataSource dataSource;
-    private JdbcTemplate jdbc;
+    private BasicDataSource dataSourceAzure;
+    private JdbcTemplate jdbcAzure;
+    private BasicDataSource dataSourceLocal;
+    private JdbcTemplate jdbcLocal;
     public Conexao(){
-    this.dataSource = new BasicDataSource();
-    dataSource​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-    dataSource​.setUrl("jdbc:sqlserver://ingresse-srv.database.windows.net:1433;database=ingresse-bd;user=ingresseAdmin@ingresse-srv;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
-    dataSource​.setUsername("ingresseAdmin");
-    dataSource​.setPassword("2adsb#grupo5");
-    this.jdbc = new JdbcTemplate(dataSource);
+    this.dataSourceAzure = new BasicDataSource();
+    dataSourceAzure​.setDriverClassName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+    dataSourceAzure​.setUrl("jdbc:sqlserver://ingresse-srv.database.windows.net:1433;database=ingresse-bd;user=ingresseAdmin@ingresse-srv;password={your_password_here};encrypt=true;trustServerCertificate=false;hostNameInCertificate=*.database.windows.net;loginTimeout=30;");
+    dataSource​Azure.setUsername("ingresseAdmin");
+    dataSource​Azure.setPassword("2adsb#grupo5");
+    this.jdbcAzure = new JdbcTemplate(dataSourceAzure);
+    this.dataSourceLocal = new BasicDataSource();
+    dataSourceLocal​.setDriverClassName("com.mysql.cj.jdbc.Driver");
+    dataSourceLocal​.setUrl("jdbc:mysql://localhost:3306/ingresse-local?autoReconnect=true&useSSL=false");
+    dataSource​Local.setUsername("root");
+    dataSource​Local.setPassword("urubu100");
+    this.jdbcLocal = new JdbcTemplate(dataSourceLocal);
     }
 
-    public JdbcTemplate getJdbc() {
-        return jdbc;
+    public JdbcTemplate getJdbcAzure() {
+        return jdbcAzure;
     }
+    
+    public JdbcTemplate getJdbcLocal() {
+        return jdbcAzure;
+    }
+    
 
 
     

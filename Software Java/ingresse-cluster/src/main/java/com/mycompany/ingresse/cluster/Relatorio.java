@@ -13,6 +13,7 @@ import java.util.Date;
  * @author isaque.santos@VALEMOBI.CORP
  */
 public class Relatorio {
+    private Integer idLog;
     private Integer fkTotem;
     private Integer pctgProcessador;
     private Integer pctgMemoriaUso;
@@ -34,8 +35,19 @@ public class Relatorio {
         this.format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         this.dataHora = new Date();
     }
+    public Relatorio(){
+    
+    }
 
+    public Integer getIdLog() {
+        return idLog;
+    }
 
+    public void setIdLog(Integer idLog) {
+        this.idLog = idLog;
+    }
+
+    
     public Integer getFkTotem() {
         return fkTotem;
     }

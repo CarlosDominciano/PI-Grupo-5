@@ -21,6 +21,9 @@ public class IngresseCluster {
     Usuario sessao;
     Totem maquina;
     String path;
+    Long segundo = 1000L;
+    Long minuto = segundo * 60;
+    Long hora = minuto * 60;
     public static void main(String[] args) {
         IngresseCluster inicio = new IngresseCluster();
         inicio.login();
@@ -38,7 +41,7 @@ public class IngresseCluster {
         String senha = leitorSenha.nextLine();
         System.out.println("Caminho absoluto logs fisicos: ");
         path = leitorPath.nextLine();
-        List<Usuario> user = connect.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", login), new BeanPropertyRowMapper<>(Usuario.class));
+        List<Usuario> user = connect.getJdbcAzure().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", login), new BeanPropertyRowMapper<>(Usuario.class));
         if (user.isEmpty() == false) {
             if (user.get(0).getSenha().equals(senha)) {
                 if (user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente")) {
@@ -51,7 +54,7 @@ public class IngresseCluster {
         public void verificar(){
             Conexao connect = new Conexao();
             Componentes comps = new Componentes();
-            List<Totem> verificacaoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(),comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
+            List<Totem> verificacaoTotem = connect.getJdbcAzure().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(),comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
             if(sessao.getFkFilial() == verificacaoTotem.get(0).getFkFilial()){
                 this.maquina = verificacaoTotem.get(0);
                 menu();
@@ -60,8 +63,8 @@ public class IngresseCluster {
                 System.out.println("Totem fora dos registros, realizando cadastro...");
                 Double discoDouble = (double) (Math.round((comps.getDisco()/1000000000)*1.0/1.0));
                 Double ramDouble = (double) (Math.round((comps.getRam()/1000000000)*1.0/1.0));
-                connect.getJdbc().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador, serial_disco, hostname) VALUES (?,?,?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador(), comps.getSerialDisco(),comps.getHostname());
-                List<Totem> verificarNovoTotem = connect.getJdbc().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(),comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
+                connect.getJdbcAzure().update("INSERT INTO totem(fkFilial, ram_total, espaco_disco, processador, data_compra, id_processador, serial_disco, hostname) VALUES (?,?,?,?,?,?,?,?)", sessao.getFkFilial(),ramDouble,discoDouble,comps.getProcessador(),comps.getDataTotem(),comps.getIdProcessador(), comps.getSerialDisco(),comps.getHostname());
+                List<Totem> verificarNovoTotem = connect.getJdbcAzure().query(String.format("SELECT * FROM totem WHERE id_processador='%s' AND serial_disco='%s' AND hostname='%s'",comps.getIdProcessador(),comps.getSerialDisco(), comps.getHostname()), new BeanPropertyRowMapper<>(Totem.class));
                 this.maquina = verificarNovoTotem.get(0);
                 menu();
             }
@@ -105,10 +108,10 @@ public class IngresseCluster {
         public void gerarNovoRelatorio(Totem vinculo){
             Componentes compos = new Componentes();
             Looca looca = new Looca();
-            Conexao connect = new Conexao();
             SlackRelatorio slackRelatorio = new SlackRelatorio();
             Relatorio logAtual = new Relatorio(vinculo.getIdTotem(), compos.getProcessamento().intValue(), compos.regraTres(compos.getMemVolUso(), compos.getRam()), compos.regraTres(compos.getDiscoUso(), compos.getDisco()), compos.getQtdProcessos(), compos.getQtdServicos(), compos.getTemp());
-             connect.getJdbc().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getDataHora());
+            inserirNoBanco(logAtual);    
+                             
              slackRelatorio.sendRelatorio(String.format("%s\n"
               + "_____________________\n"
               + "Relatório do totem:\n\n "
@@ -130,12 +133,38 @@ public class IngresseCluster {
               logAtual.getQtdServicos().toString(),
               logAtual.getTemp().toString()));
         }
+        
+    void inserirNoBanco(Relatorio logAtual){
+        Conexao connect = new Conexao();
+        Timer timer = new Timer();
+        connect.getJdbcLocal().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", logAtual.getFkTotem(),logAtual.getPctgProcessador(),logAtual.getPctgMemoriaUso(),logAtual.getPctgDiscoUso(),logAtual.getQtdProcessos(),logAtual.getQtdServicos(),logAtual.getTemp(),logAtual.getDataHora());
+        timer.scheduleAtFixedRate(new TimerTask(){
+                @Override public void run(){
+                    List<Relatorio> relatoriosLocais = connect.getJdbcLocal().query(String.format("SELECT fkTotem,data_hora FROM logs"), new BeanPropertyRowMapper<>(Relatorio.class));
+                    List<Relatorio> relatoriosAzure = connect.getJdbcAzure().query(String.format("SELECT fkTotem,data_hora FROM logs"), new BeanPropertyRowMapper<>(Relatorio.class));
+                    for (Relatorio relatorio : relatoriosAzure) {
+                        Relatorio checando = relatorio;
+                        for (Relatorio relatorioLocal : relatoriosLocais) {
+                            if(relatorioLocal.getDataHora().equals(checando.getDataHora()) && relatorioLocal.getFkTotem() == checando.getFkTotem()){
+                                connect.getJdbcLocal().execute(String.format("DELETE FROM logs WHERE fkTotem=%d AND data_hora='%s'",relatorioLocal.getFkTotem(),relatorioLocal.getDataHora()));
+                            }else{
+                               List<Relatorio> relatoriosLocaisValidos = connect.getJdbcLocal().query(String.format("SELECT * FROM logs WHERE fkTotem=%d AND data_hora='%s'",relatorioLocal.getFkTotem(),relatorioLocal.getDataHora()), new BeanPropertyRowMapper<>(Relatorio.class));
+                                for (Relatorio relatorioLocalValido : relatoriosLocaisValidos) {
+                                    connect.getJdbcAzure().update("INSERT INTO logs(fkTotem,pctg_processador,pctg_memoria_uso,pctg_disco_uso,qtd_processos,qtd_servicos,temp,data_hora) VALUES (?,?,?,?,?,?,?,?)", relatorioLocalValido.getFkTotem(),relatorioLocalValido.getPctgProcessador(),relatorioLocalValido.getPctgMemoriaUso(),relatorioLocalValido.getPctgDiscoUso(),relatorioLocalValido.getQtdProcessos(),relatorioLocalValido.getQtdServicos(),relatorioLocalValido.getTemp(),relatorioLocalValido.getDataHora());
+                                }
+                            }
+                        }
+                    }
+                    
+                }   
+                
+        }, segundo, minuto);
+        
+                
+    }
 
     void autoMonitorar(){
         Timer timer = new Timer();
-        Long segundo = 1000L;
-        Long minuto = segundo * 60;
-        Long hora = minuto * 60;
         Logs logs = new Logs(path);
         Componentes comps = new Componentes();
         SlackIntegrationTest slackAlert = new SlackIntegrationTest();

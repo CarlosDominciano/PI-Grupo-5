@@ -35,7 +35,7 @@ public class LoginTerminal {
         System.out.println("Senha: ");
         String senha = leitorSenha.nextLine();
 
-        List<Usuario> user = connect.getJdbc().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", login), new BeanPropertyRowMapper<>(Usuario.class));
+        List<Usuario> user = connect.getJdbcAzure().query(String.format("SELECT * FROM usuario WHERE email_usuario='%s'", login), new BeanPropertyRowMapper<>(Usuario.class));
         if (user.isEmpty() == false) {
             if (user.get(0).getSenha().equals(senha)) {
                 if (user.get(0).getTipo_acesso().equals("suporte") || user.get(0).getTipo_acesso().equals("gerente")) {
