@@ -11,8 +11,7 @@
     />
     <title>Inicio Dashboard</title>
   </head>
-  <body onload="notificar()">
-    <audio id="notifyAudio" src="../assets/img_dash/notify.mp3" type="audio/mpeg"></audio>
+  <body>
     <div class="main-dash">
       <div class="main-rigth">
         <div class="lateral">
@@ -58,14 +57,11 @@
           <div class="perfil-notificacao">
             <img src="../assets/img_dash/msg.png" alt="" />
             <img src="../assets/img_dash/carta.png" alt="" />
-            <img src="../assets/img_dash/sino.png" onclick="Modalnotificacao.openNotificar(), notNotify()"  alt="" />
-            <img style="display: none" id="bolinha" src="../assets/bolinha-vermelha.png" alt="" />
-            
+            <img src="../assets/img_dash/sino.png" onclick="modalConst.open()" alt="" />
             <div class="modal">
               <div class="modal-tecnologias">
                 <div>
-                  <img class="exit-modal" onclick="Modalnotificacao.closeNotificar()" src="../assets/Exit.png">
-                  <div style="color: #ffffff" id="aparece">Novas estréias em breve.</div>
+                  <img class="exit-modal" onclick="modalConst.close()" src="../assets/Exit.png">
                 </div>
               </div>
           </div>
@@ -100,78 +96,3 @@
     </div>
   </body>
 </html>
-<script>
-
-  const Modalnotificacao = {
-      
-    openNotificar()
-    {
-        document
-            .querySelector('.modal')
-            .classList
-            .add('active')
-            
-
-    },
-    closeNotificar()
-    {
-        document
-            .querySelector('.modal')
-            .classList
-            .remove('active')
-    }
-}
-
-      function notificar() {
-
-fetch("/usuarios/notificar", {
-    method: "GET",
-}).then(function (resposta) {
-
-
-    resposta.json().then(function (data) {
-
-        let len = data.length;
-        let encontreiNotificacao = false;
-
-     
-        for (let i = 0; i <= len; i++) {
-            let arquivo = data[i];
-
-          
-                encontreiNotificacao = true;
-                aparece.innerHTML += (`<span style="color: #2F1538;">ID:</span> ${arquivo.idLancamento},
-            <span style="color: #2F1538;">Nome:</span> ${arquivo.nomeFilme}, 
-            <span style="color: #2F1538;">Lançamento em: :</span> ${arquivo.dataFilme},
-            <span style="color: #9d48ce;">faltam apenas:</span> ${arquivo.dias_para_lancamento} <br>`);
-            document.getElementById("bolinha").style.display = "block";
-            startAudioNotify()
-           
-            console.log("arq", arquivo)
-            
-        }
-        if (encontreiNotificacao == false) {
-         
-                    //alert("Nenhum funcionario encontrado! :(");
-        } 
-        
-    });
-}).catch(function (error) {
-    console.error(`ERROR`, error);
-});
-
-}
-
-
-var notifyStart = document.getElementById('notifyAudio')
-function startAudioNotify(){
-    notifyStart.currentTime = 0.6
-    notifyStart.play()
-    console.log("oiaosi")
-   
-}
-
-function notNotify(){
-  document.getElementById("bolinha").style.display = "none";
-}
-</script>

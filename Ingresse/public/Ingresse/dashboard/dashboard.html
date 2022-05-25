@@ -13,65 +13,91 @@
     <title>Dashboard</title>
 </head>
 <body>
-    <div class="janela">
         <div class="header">
             <div class="container">
-                <button class="log-out">
-                    Sair
-                </button>
-                <div class="totens">
-                    <button onclick="mostrarTotem1()" class="totem totem1">
-                        totem 1 
-                    </button>
-                    <button onclick="mostrarTotem2()" class="totem totem2">
-                        totem 2
-                    </button>
-                    <button onclick="mostrarTotem3()" class="totem totem3">
-                        totem 3
-                    </button>
-                    <button onclick="mostrarTotem4()" class="totem totem4">
-                        totem 4
-                    </button>
+                <div class="main-title">
+                    <div class="div1"></div>
+                    <span id="nomeTotem" class="text">
+                        Ingresse
+                    </span>
+                    <div class="div2"></div>
                 </div>
-                <button class="back">
-                    Voltar
-                </button>
+                <div class="main-header">
+                    <div class="options">
+                        <ul>
+                            <li id="totens" class="totens"> 
+                                
+                            </li>
+                        </ul>
+                    </div>
+                </div>     
+                <div class="config">
+                    <ion-icon class="config-item" name="person-circle"></ion-icon>
+                    <ion-icon class="config-item" name="notifications-circle"></ion-icon>
+                    <ion-icon class="config-item" name="log-out"></ion-icon>
+                    <ion-icon class="notify-alert" name="ellipse"></ion-icon>
+                </div>   
             </div>
         </div>
-        <div class="dash-informations">
-            <div class="header-left">
-                <div class="container">
-                    <!-- 
-                        Em um for no Back, programar div com
-                        a classe 'cards';
-                     -->
-                     <div class="cards"></div>
-                </div>
-            </div>
-            <div class="header-right">
-                <div class="container">
-                    <div class="dashboards">
-                        <div class="box1">
-                            <div class="dash first">
-                                <canvas class="line-chart1"></canvas>
-                            </div>
-                            <div class="dash second">
-                                <canvas class="line-chart2"></canvas>
+        <div class="main">
+            <div class="container">
+                <div class="box">
+                    <div class="box1">
+                        <div class="cards">
+                            <div id="cardsLog" class="inside card">
+                                <span class="span">
+                                    Alertas
+                                </span>
                             </div>
                         </div>
-                        <div class="box2">
-                            <div class="dash third">
-                                <canvas class="line-chart3"></canvas>
+                        <div class="memoria">
+                            <div class="inside mem">
+                                <canvas class="line-chart1"></canvas>
+                                <span id="memPorcentagem" class="memPorcent">
+                                    
+                                </span>
                             </div>
-                             <div class="dash fourth">
-                                <canvas class="line-chart4"></canvas>
-                            </div> 
+                        </div>
+                        <div class="ram">
+                            <div class="inside ra">
+                                <canvas height=250 class="line-chart2"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="box2">
+                        <div class="cpu">
+                            <div class="inside cp">
+                                <canvas height=250 class="line-chart3"></canvas>
+                            </div>
+                        </div>
+                        <div class="temp">
+                            <div class="inside tem">
+                                <div class="title">
+                                    <span>
+                                        Temperatura
+                                    </span>
+                                    <span id="temperaturaAtual">
+                                        ---
+                                    </span>
+                                </div>
+                                <div class="termometro">
+                                    <div class="borda">
+                                        <div id="porcentagem" class="porcentagem">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="info">
+                            <div id="relatorio" class="inside inf">
+                                
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.7.1/chart.min.js"></script>

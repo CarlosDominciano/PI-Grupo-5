@@ -54,13 +54,31 @@ database.executar(instrucao);
 
 }
 
+function listarTotem() {
+  var instrucao =
+    `SELECT * FROM totem;`
+  return database.executar(instrucao);
+}
 
+function trazerInformacoes(idTotem) {
+  var instrucao =
+    `SELECT TOP 1 * FROM logs WHERE fkTotem = ${idTotem} ORDER BY idlog DESC`
+  return database.executar(instrucao);
+}
+
+function trazerTotem(idTotem) {
+  var instrucao =
+    `SELECT * FROM totem WHERE idTotem = ${idTotem};`
+  return database.executar(instrucao);
+}
 
 module.exports = {
   cadastrar,
   login,
   excluir,
   listar,
-  notificar,
-  editar
+  editar,
+  listarTotem,
+  trazerInformacoes,
+  trazerTotem
 };

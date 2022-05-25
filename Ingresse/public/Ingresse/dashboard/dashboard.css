@@ -9,58 +9,450 @@
 
 body
 {
-    overflow: hidden;
-    background-image: linear-gradient(var(--clrBack), var(--clrGradi));
+    background-color: rgb(84, 19, 110);
 }
 
-.janela
-{
-    width: 100vw;
-    height: 100vh;
+body::-webkit-scrollbar-track {
+    background-color: #616161;
+    border-radius: 10px;
+
+}
+body::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 30px;
+
+}
+body::-webkit-scrollbar-thumb {
+    background: #6aff9c;
+    border-radius: 10px;
 }
 
 /* Header */
-.header 
+.header
 {
-    padding: 0.4rem 0;
-    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
 }
 
 .container 
 {
-    width: 90%;
+    width: 95%;
     margin: auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 0 ;
+}
+
+.main-header 
+{
+    height: 2.5rem;
+    background-color: rgba(0, 0, 0, 0.726);
+    width: 60%;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0.2rem;
+    font-size: large;
+    overflow-x: scroll;
+    overflow-y: hidden;
+}
+
+.main-header::-webkit-scrollbar-track {
+    background-color: #616161;
+    border-radius: 10px;
+
+}
+.main-header::-webkit-scrollbar {
+    height: 5px;
+    border-radius: 30px;
+
+}
+.main-header::-webkit-scrollbar-thumb {
+    background: #6aff9c;
+    border-radius: 10px;
+    width: 1px;
+}
+
+.text {
+    font-size: 1em;
+    font-family: 'Work Sans', sans-serif;
+    font-style: italic;
+    font-weight: 1000;
+    color: rgb(255, 255, 255);
+    text-align: left;
+    margin-left: 0.5rem;
+    letter-spacing: 0.3rem;
+}
+
+.main-title
+{
+    font-size: 1rem;
+    display: flex;
+    height: 2rem;
+    align-items: center;
+    border-radius: 0.2rem;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.85);
+    width: 15%;
+}
+
+.main-title div
+{
+    width: 1rem;
+    height: 1rem;
+    background-color: rgb(84, 19, 110);
+    border-radius: 100%;
+    position: relative;
+    
+}
+.main-title .div1
+{
+    
+    right: 6px;
+}
+
+.main-title .div2
+{
+    
+    left: 6px;
+}
+
+.options
+{
+    width: 70%;
+    margin-right: 0.2em;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    color: azure;
+}
+
+.options ul
+{
+    width: 100%;
+    height: 100%;
+}
+
+.options ul li
+{
+    list-style: none;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.options ul li div 
+{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.options ul li div span
+{
+    padding: 0 2rem;
+    text-decoration-line: none;
+    cursor: pointer;
+    font-weight: 900;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.options ul .totens div:hover
+{
+    background-color: #0000005b;
+}
+
+.config
+{
+    width: 20%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-items: center;
+    border-radius: 0.2em;
+    font-size: 2.5em;
+    color: rgb(0, 0, 0, 0.85);
+
+}
+
+.notify-alert
+{
+    width: 1rem;
+    color: red;
+    position: relative;
+    bottom: 0.9rem;
+    right: 40%;
+    display: block;
+}
+
+.config .config-item:hover
+{
+    cursor: pointer;
+    color: #181818ad;
+}
+
+.main
+{
+    width: 100%;
+}
+
+.box
+{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: baseline;
+}
+
+.box1
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+}
+
+.box2
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.memoria, .ram, .cpu, .info, .temp, .cards
+{
+    padding: 1rem 0;
+    background-color: rgba(0, 0, 0, 0.8);
+    border-radius: 1rem;
+    max-height: 400px;
+    max-width: 500px;
+}
+
+.cards
+{
+    width: 26%;
+}
+
+.memoria
+{
+    width: 31%;
+}
+
+.ram 
+{
+    width: 36%;
+}
+
+.cpu 
+{
+    width: 36%;
+}
+
+.temp
+{
+    width: 31%;
+}
+
+.info 
+{
+    width: 26%;
+}
+
+.inside 
+{
+    width: 80%;
+    height: 100%;
+    background-color: transparent;
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}
+
+.temp .inside .title
+{
+    height: 20%;
+    width: 100%;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
 }
 
-.header .container .log-out 
+.temp .inside .termometro
 {
-    width: 10%;
+    height: 80%;
+    width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.temp .inside .termometro .porcentagem
+{
+    width: 100%;
+    background-color: #dcfc9455;
+    transition: 0.4s;
+}
+
+.borda
+{
+    width: 10%;
+    height: 100%;
+    border: 3px solid #dcfc94;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
     align-items: center;
-    border-radius: 0.1rem;
-    height: 5rem;
+}
+
+.temp .inside span
+{
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+}
+
+@media only screen and (max-width: 1110px) 
+{
+    .temp .inside span
+    {
+        color: white;
+        font-family: sans-serif;
+        font-size: 20px;
+        font-weight: 700;
+    }
+
+    .main-title
+    {
+    font-size: 0.8rem;
+    }
+
+    
+}
+
+
+
+.inf 
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    color: azure;
+}
+
+hr 
+{
+    width: 100%;
+}
+.log
+{
+    width: 95%;
+    background-color: #ddfc942e;
     color: white;
-    font-weight: 900;
-    border-radius: 0.1rem;
-    border: unset;
-    cursor: pointer; 
-    text-transform: uppercase;
-    background-image:linear-gradient(to right bottom, #461059c0, #038C73);
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    margin-bottom: 1rem;
+}
+
+.log-title
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.card::-webkit-scrollbar-track {
+    background-color: #616161;
+    border-radius: 10px;
+
+}
+.card::-webkit-scrollbar {
+    width: 5px;
+    border-radius: 30px;
+
+}
+.card::-webkit-scrollbar-thumb {
+    background: #6aff9c;
     border-radius: 10px;
 }
 
-.header .container .log-out:hover
+.memPorcent 
 {
-    background-image:linear-gradient(to left bottom, #461059bb, #038C73);
+    width: 100%;
+    position: relative;
+    bottom: 50%;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
 }
 
-.totens
+@media only screen and (max-width: 904px) 
+{
+    .main-title
+    {
+    font-size: 0.6rem;
+    }
+
+    .memPorcent 
+    {
+        left: 40%;
+        bottom: 66%;
+        font-size: 25px;
+    }
+}
+
+.card .span 
+{
+    width: 100%;
+    color: #fff;
+    font-family: sans-serif;
+    font-size: 30px;
+    font-weight: 700;
+    margin-bottom: 1rem;
+}
+
+/* .
 {
     width: 60%;
     display: flex;
@@ -112,10 +504,10 @@ body
 {
     background-color: #342a42;
     border-color: #26102c;
-}
+} */
 
 /* Header left */
-.dash-informations
+/* .dash-informations
 {
     width: 100%;
     height: 100%;
@@ -163,10 +555,10 @@ body
     border: 3px solid var(--clrRol1);  
     background-color: var(--clrDetails);
     animation: scrollBody 3s linear infinite;
-}
+} */
 
 /* Header right */
-.header-right
+/* .header-right
 {
     width: 70%;
     height: 80%;
@@ -234,4 +626,4 @@ body
 .fourth 
 {
     width: 40%;
-}
+} */

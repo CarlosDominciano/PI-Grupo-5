@@ -16,4 +16,3 @@ const modalConst =
             .remove('active')
     }
 }
-
