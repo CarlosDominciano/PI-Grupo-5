@@ -13,6 +13,19 @@ function listarTotem(req, res) {
     });
 }
 
+function listarSelenium(req, res) {
+  usuarioModel
+    .listarSelenium()
+    .then(function (resultado) {
+      res.json(resultado);
+    })
+    .catch(function (erro) {
+      console.log(erro);
+      console.log("\nHouve um erro ao pegar os usuarios", erro.sqlMessage);
+      res.status(204).json(erro.sqlMessage);
+    });
+}
+
 function trazerInformacoes(req, res) {
     var idTotem = req.params.idTotem;
     usuarioModel
@@ -49,5 +62,6 @@ function trazerInformacoes(req, res) {
 module.exports = {
     listarTotem,
     trazerInformacoes,
-    trazerTotem
+    trazerTotem,
+    listarSelenium
 };

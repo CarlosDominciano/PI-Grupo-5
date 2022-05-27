@@ -26,5 +26,5 @@ app.use("/empresas", empresaRouter);
 app.use("/totens", totemRouter);
 
 app.listen(PORTA, function () {
-  console.log(`Aplicação Rodando`);
+  console.log(`Aplicação Rodando na porta localhost:${PORTA}`);
 });

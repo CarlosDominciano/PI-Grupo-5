@@ -80,15 +80,6 @@ var chartGraph2 = new Chart(context2, {
     },
     options: {
         plugins: {
-            title: {
-                display: true,
-                text: 'RAM',
-                align: 'start',
-                font: {
-                    size: 30,
-                },
-                color: 'white'
-            },
             legend: {
                 display: false
             }
@@ -192,13 +183,6 @@ function mostrarTotem(idTotem) {
     
 
     setTimeout(() => {
-        
-    
-    console.log(informacoes)
-    console.log(totemAtual)
-
-    
-    
     memTotal = totemAtual[0].espaco_disco
     memUsada = informacoes[0].pctg_disco_uso
     memLivre = memTotal - memUsada;
@@ -250,11 +234,6 @@ function mostrarTotem(idTotem) {
         Relatório do Totem
         </span>
     <hr>
-    <span> Horas ligado: 
-        <span id="horasLigado">
-        
-        </span> 
-    </span>
     <span> Processos: ${informacoes[0].qtd_processos}
         <span id="horasLigado">
         
@@ -312,7 +291,7 @@ function listarTotem() {
 
     });
     setTimeout(() => {
-        console.log("foi?")
+        console.log("foi os totens?")
     }, 3000);
   }
 
@@ -322,10 +301,9 @@ function trazerTotem() {
     fetch(`/totens/trazerTotem/${totemAgora}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                
                 totemAtual = resposta;
-                console.log(`Resposta: ${resposta}`)
-                console.log(`TotemAtual: ${totemAtual}`)
+                
                 resposta.reverse();
             });
         } else {
@@ -341,10 +319,9 @@ function trazerInformacoes() {
     fetch(`/totens/trazerInformacoes/${totemAgora}`, { cache: 'no-store' }).then(function (response) {
         if (response.ok) {
             response.json().then(function (resposta) {
-                console.log(`Dados recebidos: ${JSON.stringify(resposta)}`);
+                
                 informacoes = resposta;
-                console.log(`Resposta: ${resposta}`)
-                console.log(`Informações: ${informacoes}`)
+                
                 resposta.reverse();
             });
         } else {
@@ -357,21 +334,31 @@ function trazerInformacoes() {
 }
 
 
-for (let i = 1; i <= 100; i++) {
-    cardsLog.innerHTML += `<div class="log">
-                        <span class="log-title">
-                            <span>
-                                Id: ${i} 
-                            </span>
-                            <span>
-                                Host: ${((5000*i) / (i/2 + 4)).toFixed(3)}
-                            </span>
-                        </span>
-                        <hr>
-                        <span>Nome:${i}</span>
-                        <span>Erro: ${i}</span>
-                    </div>  `
-    
-}
+function listarSelenium() {
+    fetch("/totens/listarSelenium", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      }
+    }).then(async function (resposta) {
+        const seleniuns = await resposta.json();
+        for (let i = 0; i < seleniuns.length; i++) {
+          console.log(totens[i])
+          
+          cardsLog.innerHTML += `<div class="log"><span class="log-title">
+                                        <span>
+                                            Filme: ${seleniuns[i].nomeFilme} 
+                                        </span>
+                                        </span>
+                                        <hr>
+                                        <span>Data Lanç:${seleniuns[i].dataFilme}</span>
+                                        <span>Dias Lanç:${seleniuns[i].dias_para_lancamento}</span></div>`;
+  
+    }});
+    setTimeout(() => {
+        console.log("foi o selenium?")
+    }, 3000);
+  }
 
 window.addEventListener("load", listarTotem);
+window.addEventListener("load", listarSelenium);

@@ -3,6 +3,10 @@ var router = express.Router();
 
 var totemController = require("../controllers/totemController");
 
+router.get("/listarSelenium", function (req, res) {
+  totemController.listarSelenium(req, res);
+});
+
 router.get("/listarTotem", function (req, res) {
   totemController.listarTotem(req, res);
 });

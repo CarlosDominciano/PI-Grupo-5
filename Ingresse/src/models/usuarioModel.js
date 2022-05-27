@@ -29,9 +29,9 @@ function listar(){
   return database.executar(instrucao);
 }
 
-function notificar(){
+function listarSelenium(){
   var instrucao =
-  `SELECT * FROM lancamento_futuro;`
+  `SELECT * FROM lancamento_futuro ORDER BY dias_para_lancamento ASC;`
   return database.executar(instrucao);
 }
 
@@ -80,5 +80,6 @@ module.exports = {
   editar,
   listarTotem,
   trazerInformacoes,
-  trazerTotem
+  trazerTotem,
+  listarSelenium
 };
