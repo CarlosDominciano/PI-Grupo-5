@@ -175,11 +175,11 @@ const porc = document.getElementById("porcentagem")
 var totemAgora;
 function mostrarTotem(idTotem) {
     nome = idTotem;
-    nomeTotem.innerHTML = `Totem ${nome}`
+    
     totemAgora = idTotem
 
-    trazerTotem(nome)
-    trazerInformacoes(nome)
+    trazerTotem(idTotem)
+    trazerInformacoes(idTotem)
     
 
     setTimeout(() => {
@@ -251,6 +251,7 @@ function mostrarTotem(idTotem) {
     </span>
     `
 
+    nomeTotem.innerHTML = `Totem ${nome}`
 }, 3000);
     
 }
@@ -362,3 +363,7 @@ function listarSelenium() {
 
 window.addEventListener("load", listarTotem);
 window.addEventListener("load", listarSelenium);
+
+function sairDaDash() {
+    window.location.href = "../index.html";
+}
