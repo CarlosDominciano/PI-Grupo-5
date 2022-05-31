@@ -64,7 +64,7 @@ var chartGraph1 = new Chart(context1, {
 var chartGraph2 = new Chart(context2, {
     type: "bar",
     data: { 
-        labels: ["12h", "13h", "14h", "15h", "16h", "17h", "18h"],
+        labels: ["", "", "", "", "", "", ""],
         datasets: [{
             label: "Usada",
             data: [atualRam, atualRam, atualRam, atualRam,
@@ -112,7 +112,7 @@ var chartGraph2 = new Chart(context2, {
 var chartGraph3 = new Chart(context3, {
     type: "line",
     data: {
-        labels: ["12h", "13h", "14h", "15h", "16h", "17h", "18h"],
+        labels: ["", "", "", "", "", "", ""],
         datasets: [{
             label: "Usada",
             data: [cpu, cpu, cpu, cpu, cpu, cpu, cpu],
